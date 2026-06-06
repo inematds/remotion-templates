@@ -2,6 +2,12 @@
 
 A collection of 81 free, ready-to-use Remotion templates for creating programmatic videos with React. Each template is a self-contained React component that uses Remotion hooks (`useCurrentFrame`, `interpolate`, `spring`, `useVideoConfig`) — no CSS keyframes or external animation libraries.
 
+## Curso gratuito (PT-BR)
+
+Um curso completo em português, no formato INEMA.CLUB, ensina a usar estes templates do zero — do conceito de _frame_ aos 81 recursos, até projetos completos que combinam vários elementos:
+
+➡️ **[Acessar o curso](./curso-remotion/index.html)** · 4 trilhas · 19 módulos · 81 templates explicados.
+
 ## Live Demos
 
 See all templates in action at [reactvideoeditor.com/remotion-templates](https://www.reactvideoeditor.com/remotion-templates).

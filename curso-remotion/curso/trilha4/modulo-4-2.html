@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.2 · Vídeo de Produto | Remotion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinação</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projetos</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-amber-400">Trilha 4</a><span>/</span>
+      <span class="text-amber-400">Módulo 4.2</span>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🛍️ Vídeo de Produto</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Combina <code class="text-amber-400">ken-burns</code> para imagem do produto, <code class="text-amber-400">lower-third</code> animado para nome/preço, <code class="text-amber-400">split-screen</code> para comparação, <code class="text-amber-400">stat-counter</code> para números e <code class="text-amber-400">end-card</code> para o CTA — tudo num Series de 30–60 s.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Projeto</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- SVG diagrama equação de produto -->
+    <div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+      <svg viewBox="0 0 1000 190" class="w-full h-auto" role="img" aria-label="ken-burns mais lower-third mais split-screen mais stat-counter mais end-card resultam no vídeo de produto completo">
+        <defs>
+          <linearGradient id="m42-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#f59e0b"/></linearGradient>
+          <filter id="m42-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <pattern id="m42-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#f59e0b" opacity="0.12"/></pattern>
+          <marker id="m42-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#fbbf24"/></marker>
+        </defs>
+        <rect x="0" y="0" width="1000" height="190" fill="url(#m42-grid)"/>
+        <g class="wf-a"><rect x="20" y="70" width="110" height="50" rx="10" fill="#1f1604" stroke="#fbbf24" stroke-width="1.8"/><text x="75" y="93" text-anchor="middle" fill="#fbbf24" font-family="Inter,sans-serif" font-size="12" font-weight="600">ken-burns</text><text x="75" y="109" text-anchor="middle" fill="#fde68a" font-family="Inter,sans-serif" font-size="10">zoom + pan</text></g>
+        <text x="140" y="100" fill="#fbbf24" font-family="Inter,sans-serif" font-size="18" font-weight="700">+</text>
+        <g class="wf-a"><rect x="158" y="70" width="118" height="50" rx="10" fill="#1f1604" stroke="#fbbf24" stroke-width="1.8"/><text x="217" y="93" text-anchor="middle" fill="#fbbf24" font-family="Inter,sans-serif" font-size="12" font-weight="600">lower-third</text><text x="217" y="109" text-anchor="middle" fill="#fde68a" font-family="Inter,sans-serif" font-size="10">nome + preço</text></g>
+        <text x="284" y="100" fill="#fbbf24" font-family="Inter,sans-serif" font-size="18" font-weight="700">+</text>
+        <g class="wf-a"><rect x="302" y="70" width="118" height="50" rx="10" fill="#0e1b26" stroke="#38bdf8" stroke-width="1.8"/><text x="361" y="93" text-anchor="middle" fill="#bfe6ff" font-family="Inter,sans-serif" font-size="12" font-weight="600">split-screen</text><text x="361" y="109" text-anchor="middle" fill="#93c5fd" font-family="Inter,sans-serif" font-size="10">antes/depois</text></g>
+        <text x="428" y="100" fill="#fbbf24" font-family="Inter,sans-serif" font-size="18" font-weight="700">+</text>
+        <g class="wf-a"><rect x="446" y="70" width="118" height="50" rx="10" fill="#1f1604" stroke="#fbbf24" stroke-width="1.8"/><text x="505" y="93" text-anchor="middle" fill="#fbbf24" font-family="Inter,sans-serif" font-size="12" font-weight="600">stat-counter</text><text x="505" y="109" text-anchor="middle" fill="#fde68a" font-family="Inter,sans-serif" font-size="10">4.8★ · 12k</text></g>
+        <text x="572" y="100" fill="#fbbf24" font-family="Inter,sans-serif" font-size="18" font-weight="700">+</text>
+        <g class="wf-a"><rect x="590" y="70" width="100" height="50" rx="10" fill="#0e1b26" stroke="#38bdf8" stroke-width="1.8"/><text x="640" y="93" text-anchor="middle" fill="#bfe6ff" font-family="Inter,sans-serif" font-size="12" font-weight="600">end-card</text><text x="640" y="109" text-anchor="middle" fill="#93c5fd" font-family="Inter,sans-serif" font-size="10">CTA</text></g>
+        <text x="696" y="100" fill="#fbbf24" font-family="Inter,sans-serif" font-size="20" font-weight="700">=</text>
+        <g filter="url(#m42-glow)"><rect x="720" y="60" width="260" height="70" rx="14" fill="#1f1604" stroke="url(#m42-grad)" stroke-width="2.5"/></g>
+        <text x="850" y="93" text-anchor="middle" fill="#fbbf24" font-family="Inter,sans-serif" font-weight="700" font-size="16">vídeo de produto</text>
+        <text x="850" y="113" text-anchor="middle" fill="#fde68a" font-family="Inter,sans-serif" font-size="12">30–60 s · persuasivo</text>
+      </svg>
+    </div>
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🎯 O projeto e a estrutura persuasiva</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Vídeos de produto seguem uma estrutura clássica de marketing: <strong class="text-amber-400">atenção → interesse → desejo → ação</strong>. No Remotion isso se traduz diretamente em cenas: o ken-burns prende atenção, o lower-third desperta interesse, a comparação cria desejo e o end-card convoca ação.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🛍️</span> Mapa de cenas do projeto</h3>
+        <div class="space-y-2 text-neutral-300">
+          <div class="flex items-center space-x-3"><span class="text-amber-400 font-mono text-sm w-24">0–90f</span><span><strong>Hero:</strong> ken-burns na imagem do produto, lower-third entra no frame 30.</span></div>
+          <div class="flex items-center space-x-3"><span class="text-amber-400 font-mono text-sm w-24">90–180f</span><span><strong>Comparação:</strong> split-screen revela antes/depois do produto.</span></div>
+          <div class="flex items-center space-x-3"><span class="text-amber-400 font-mono text-sm w-24">180–270f</span><span><strong>Prova social:</strong> stat-counter de avaliações e vendas.</span></div>
+          <div class="flex items-center space-x-3"><span class="text-amber-400 font-mono text-sm w-24">270–360f</span><span><strong>CTA:</strong> end-card com URL, preço final e chamada para ação.</span></div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Total</div><div class="text-xs text-neutral-400">360 frames = 12 s</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">AIDA</div><div class="text-xs text-neutral-400">Estrutura persuasiva</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Series</div><div class="text-xs text-neutral-400">4 cenas em sequência</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Props</div><div class="text-xs text-neutral-400">productName, price, img</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">📸 Cena de abertura — ken-burns</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">ken-burns</strong> é a técnica de fazer zoom + pan suave em uma imagem estática, criando movimento cinemático sem câmera. No Remotion, é simplesmente scale e translate animados com interpolate em um container com <code class="text-amber-400">overflow: hidden</code>.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Ken-burns com zoom e pan</span>
+          <span class="text-xs text-neutral-500 font-mono">ken-burns.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> { durationInFrames } = <span class="text-blue-400">useVideoConfig</span>();
+
+<span class="text-neutral-500">// zoom: 1.0 → 1.08 ao longo da cena</span>
+<span class="text-purple-400">const</span> scale = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">0</span>, durationInFrames],
+  [<span class="text-amber-400">1.0</span>, <span class="text-amber-400">1.08</span>],
+  { extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+);
+<span class="text-neutral-500">// pan: desloca 20px da esquerda para direita</span>
+<span class="text-purple-400">const</span> x = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">0</span>, durationInFrames],
+  [<span class="text-amber-400">0</span>, <span class="text-amber-400">-20</span>],
+  { extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">return</span> &lt;div style={{ overflow:<span class="text-amber-400">"hidden"</span>, width:<span class="text-amber-400">"100%"</span>, height:<span class="text-amber-400">"100%"</span> }}&gt;
+  &lt;img src={src} style={{
+    width: <span class="text-amber-400">"100%"</span>, height: <span class="text-amber-400">"100%"</span>, objectFit: <span class="text-amber-400">"cover"</span>,
+    transform: <span class="text-amber-400">`scale(${scale}) translateX(${x}px)`</span>
+  }} /&gt;
+&lt;/div&gt;;</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica: escala máxima 1.10</h3>
+        <p class="text-neutral-300">Zoom acima de 1.10 começa a parecer digital e artificial. Mantenha entre 1.03–1.10 e o efeito parece um câmera real. Para pan, 20–30px em 90 frames é o ponto doce — perceptível mas não distrativo.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Zoom</div><div class="text-xs text-neutral-400">1.0 → 1.08</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Pan</div><div class="text-xs text-neutral-400">0 → -20px</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">overflow</div><div class="text-xs text-neutral-400">hidden obrigatório</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">easing</div><div class="text-xs text-neutral-400">linear suave</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🏷️ Overlay — lower-third com nome e preço</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">lower-third</strong> é um overlay que aparece sobre o ken-burns — não é uma cena separada no Series, mas uma <code class="text-amber-400">Sequence</code> dentro da mesma cena de hero. Ele desliza de baixo, mostra nome e preço, e opcionalmente sai antes da cena terminar.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">✓ O que FAZER</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Animar translateY de +80 → 0 em 20 frames (spring). Entrada rápida e firme.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Usar fundo semi-transparente (rgba 0,0,0,0.6) para o texto ser legível sobre qualquer foto.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Iniciar com Sequence from={fps} — dá 1 s para o espectador ver o produto antes do texto.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ O que NÃO fazer</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Texto branco sem fundo sobre foto clara — ilegível dependendo da foto do produto.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Lower-third no frame 0 — cobre o produto antes do espectador ver.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Preço em fonte pequena — no mobile (redes sociais) precisa de pelo menos 36px.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Entrada</div><div class="text-xs text-neutral-400">translateY spring</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Delay</div><div class="text-xs text-neutral-400">Sequence from=fps</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Fundo</div><div class="text-xs text-neutral-400">rgba 0,0,0,0.6</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Posição</div><div class="text-xs text-neutral-400">Bottom, terço inferior</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">⚖️ Cena de comparação — split-screen</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A cena de comparação usa <code class="text-amber-400">split-screen.tsx</code> para mostrar duas imagens lado a lado, ou <code class="text-amber-400">image-comparison-slider.tsx</code> para revelar progressivamente o "depois" sobre o "antes". Ambas usam <code>clip-path</code> animado para controlar a divisão.</p>
+
+      <!-- Timeline de construção da cena -->
+      <div class="space-y-6 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Frame 0–15: entrada das duas imagens</h4>
+            <p class="text-neutral-300 text-sm">Imagem esquerda desliza da esquerda e direita desliza da direita, ambas com opacity 0→1. O espectador vê as duas aparecerem ao mesmo tempo.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Frame 15–60: linha divisória animada</h4>
+            <p class="text-neutral-300 text-sm">Uma linha vertical branca separa os dois lados. No slider, ela se move de 30% para 70% revelando progressivamente o "depois".</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Frame 60–90: rótulos aparecem</h4>
+            <p class="text-neutral-300 text-sm">"Antes" e "Depois" (ou "Sem produto" / "Com produto") entram com spring, reforçando a comparação visualmente.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">clip-path</div><div class="text-xs text-neutral-400">inset(0 X% 0 0)</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Slider</div><div class="text-xs text-neutral-400">30% → 70% em 45f</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Labels</div><div class="text-xs text-neutral-400">spring no frame 60</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Duração</div><div class="text-xs text-neutral-400">90 frames (3 s)</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">📊 Prova social — stat-counter</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A cena de números usa <code class="text-amber-400">stat-counter.tsx</code> para animar contadores de 0 até o valor real do produto: avaliações, vendas, estrelas. O número "contando" prende o olhar e torna o dado mais memorável do que texto estático.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Contador com easing</span>
+          <span class="text-xs text-neutral-500 font-mono">stat-counter.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-purple-400">const</span> progress = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">0</span>, <span class="text-amber-400">60</span>], [<span class="text-amber-400">0</span>, <span class="text-amber-400">1</span>],
+  { easing: Easing.out(Easing.cubic), extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">const</span> value = Math.round(progress * targetValue);
+
+<span class="text-neutral-500">// Exemplo: targetValue = 12847 (vendas)</span>
+<span class="text-neutral-500">// frame 0 → "0", frame 30 → "6.424", frame 60 → "12.847"</span>
+
+<span class="text-purple-400">return</span> &lt;div&gt;
+  &lt;span&gt;{value.toLocaleString(<span class="text-amber-400">"pt-BR"</span>)}&lt;/span&gt;
+  &lt;span className="text-sm"&gt; vendas&lt;/span&gt;
+&lt;/div&gt;;</pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Dados recomendados para vídeos de produto</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>Avaliações:</strong> ⭐⭐⭐⭐⭐ 4.8/5 — efeito visual com estrelas preenchendo</li>
+          <li><strong>Volume:</strong> "12.847 vendas" — número grande impressiona</li>
+          <li><strong>Satisfação:</strong> "97% recomendam" — porcentagem é rápida de absorver</li>
+          <li><strong>Comparativo:</strong> "-40% em relação à concorrência" — ancora o preço</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Math.round</div><div class="text-xs text-neutral-400">progress × target</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Easing.out</div><div class="text-xs text-neutral-400">Cubic — acelera no início</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">toLocaleString</div><div class="text-xs text-neutral-400">Formatação automática</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">60 frames</div><div class="text-xs text-neutral-400">2 s para contar</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">📣 End-card e ritmo do vídeo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">end-card</strong> é a última cena: apresenta logo, URL, preço final ou QR code. Tudo que estava espalhado nas cenas anteriores converge aqui numa mensagem clara: <em>"onde comprar"</em>. O ritmo geral do vídeo deve acelerar levemente em direção ao end-card.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">✓ End-card eficaz</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Logo centralizado com spring — identidade final da marca.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>URL ou CTA em fonte grande e cor contrastante.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Duração de 90–120 frames (3–4 s) — tempo de ler e agir.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ End-card que não converte</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Muitas informações ao mesmo tempo — espectador não sabe onde olhar.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Menos de 60 frames — não há tempo para absorver a URL.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Fundo igual ao do vídeo — end-card não se diferencia visualmente.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Logo</div><div class="text-xs text-neutral-400">spring na entrada</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">CTA</div><div class="text-xs text-neutral-400">Fonte grande, contraste</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Duração</div><div class="text-xs text-neutral-400">90–120 frames</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Fundo</div><div class="text-xs text-neutral-400">Diferente do vídeo</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏁</span> Resumo do Módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Estrutura AIDA</strong><span class="text-neutral-400"> — 4 cenas em Series seguindo a lógica persuasiva.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Ken-burns com overflow hidden</strong><span class="text-neutral-400"> — scale 1.0→1.08 + translateX sobre img com objectFit cover.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Lower-third como overlay</strong><span class="text-neutral-400"> — Sequence inside da cena, from=fps, translateY spring.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Split-screen via clip-path</strong><span class="text-neutral-400"> — inset animado para revelar o "depois" progressivamente.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Stat-counter com Easing.out</strong><span class="text-neutral-400"> — Math.round(progress × target) + toLocaleString.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">End-card limpo</strong><span class="text-neutral-400"> — logo + CTA + duração ≥ 90 frames para absorção.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-amber-400 mb-2">Próximo Módulo:</h3>
+          <p class="text-neutral-300">4.3 — Data-Story: gráficos animados + stat-counter + comparação + narrativa de dados.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-4-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo 4.1</a>
+          <a href="modulo-4-3.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Curso Remotion · Módulo 4.2 · 2026 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

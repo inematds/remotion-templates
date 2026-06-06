@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 4.4 · Reels / Shorts | Remotion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinação</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projetos</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-amber-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-amber-400">Trilha 4</a><span>/</span>
+      <span class="text-amber-400">Módulo 4.4</span>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📱 Reels / Shorts</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Vídeo vertical <strong class="text-amber-400">1080×1920</strong> para Instagram Reels e YouTube Shorts. Ritmo rápido, texto de impacto com <code class="text-amber-400">typewriter</code> e <code class="text-amber-400">bounce-text</code>, glitch no destaque, sound-wave visual, fundo bokeh e subscribe reminder nos últimos 5 segundos.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avançado</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Projeto</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- SVG diagrama empilhamento de camadas do Reel -->
+    <div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+      <svg viewBox="0 0 1000 210" class="w-full h-auto" role="img" aria-label="Reel é formado por camadas: bokeh no fundo, sound-wave, texto typewriter e glitch, subscribe no topo — tudo em formato 9 por 16">
+        <defs>
+          <linearGradient id="m44-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#f59e0b"/></linearGradient>
+          <filter id="m44-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <pattern id="m44-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#f59e0b" opacity="0.12"/></pattern>
+          <marker id="m44-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#fbbf24"/></marker>
+          <marker id="m44-ahc" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"/></marker>
+        </defs>
+        <rect x="0" y="0" width="1000" height="210" fill="url(#m44-grid)"/>
+        <!-- camadas empilhadas (z crescente) -->
+        <g font-family="Inter,sans-serif">
+          <!-- base: bokeh -->
+          <g class="wf-a"><rect x="30" y="160" width="180" height="34" rx="8" fill="#1f1604" stroke="#fbbf24" stroke-width="1.6"/><text x="120" y="182" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">bokeh-circles (z=0)</text></g>
+          <!-- sound-wave -->
+          <g class="wf-a"><rect x="30" y="120" width="180" height="34" rx="8" fill="#0e1b26" stroke="#38bdf8" stroke-width="1.6"/><text x="120" y="142" text-anchor="middle" fill="#bfe6ff" font-size="12" font-weight="600">sound-wave (z=1)</text></g>
+          <!-- typewriter -->
+          <g class="wf-a"><rect x="30" y="80" width="180" height="34" rx="8" fill="#1f1604" stroke="#fbbf24" stroke-width="1.6"/><text x="120" y="102" text-anchor="middle" fill="#fbbf24" font-size="12" font-weight="600">typewriter (z=2)</text></g>
+          <!-- glitch -->
+          <g class="wf-a"><rect x="30" y="40" width="180" height="34" rx="8" fill="#0e1b26" stroke="#38bdf8" stroke-width="1.6"/><text x="120" y="62" text-anchor="middle" fill="#bfe6ff" font-size="12" font-weight="600">glitch-text (z=3)</text></g>
+          <!-- subscribe -->
+          <g class="wf-a"><rect x="30" y="8" width="180" height="26" rx="7" fill="#1f1604" stroke="#fbbf24" stroke-width="1.4"/><text x="120" y="25" text-anchor="middle" fill="#fde68a" font-size="11" font-weight="600">subscribe (z=4, final)</text></g>
+        </g>
+        <!-- seta combinação -->
+        <path d="M210,104 L300,104" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.65" marker-end="url(#m44-ah)"/>
+        <!-- frame 9:16 -->
+        <rect x="306" y="20" width="160" height="174" rx="12" fill="#1f1604" stroke="#fbbf24" stroke-width="2"/>
+        <rect x="318" y="32" width="136" height="150" rx="8" fill="#111827"/>
+        <text x="386" y="107" text-anchor="middle" fill="#fbbf24" font-family="Inter,sans-serif" font-size="13" font-weight="700">9:16</text>
+        <text x="386" y="125" text-anchor="middle" fill="#fde68a" font-family="Inter,sans-serif" font-size="11">1080×1920</text>
+        <!-- seta para resultado -->
+        <path d="M466,104 L550,104" fill="none" stroke="#fbbf24" stroke-width="2" opacity="0.65" marker-end="url(#m44-ah)"/>
+        <!-- resultado -->
+        <g filter="url(#m44-glow)"><rect x="556" y="60" width="400" height="88" rx="14" fill="#1f1604" stroke="url(#m44-grad)" stroke-width="2.5"/></g>
+        <text x="756" y="98" text-anchor="middle" fill="#fbbf24" font-family="Inter,sans-serif" font-weight="700" font-size="16">Reel / Short pronto</text>
+        <text x="756" y="120" text-anchor="middle" fill="#fde68a" font-family="Inter,sans-serif" font-size="12">30–60 s · ritmo rápido · 85% sem som</text>
+      </svg>
+    </div>
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📐 Formato vertical — 1080×1920 com useVideoConfig</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O Reel começa na definição da <code class="text-amber-400">Composition</code>: <code>width: 1080, height: 1920</code>. Tudo dentro do componente lê essas dimensões via <code class="text-amber-400">useVideoConfig()</code> para se adaptar — fontes maiores, margens menores, conteúdo centralizado verticalmente no terço superior (onde fica o polegar do usuário).</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Composition vertical + hook</span>
+          <span class="text-xs text-neutral-500 font-mono">Root.tsx + Reel.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// Root.tsx — declaração do formato</span>
+&lt;Composition
+  id=<span class="text-amber-400">"Reel"</span>
+  component={ReelVideo}
+  width={<span class="text-amber-400">1080</span>}
+  height={<span class="text-amber-400">1920</span>}
+  fps={<span class="text-amber-400">30</span>}
+  durationInFrames={<span class="text-amber-400">900</span>}  <span class="text-neutral-500">// 30 s</span>
+/&gt;
+
+<span class="text-neutral-500">// Reel.tsx — layout responsivo</span>
+<span class="text-purple-400">const</span> { width, height } = <span class="text-blue-400">useVideoConfig</span>();
+
+<span class="text-neutral-500">// fonte escala com a largura</span>
+<span class="text-purple-400">const</span> baseFontSize = width * <span class="text-amber-400">0.055</span>; <span class="text-neutral-500">// ~60px em 1080px</span>
+
+<span class="text-neutral-500">// conteúdo no terço superior (fora da área do polegar)</span>
+<span class="text-purple-400">const</span> contentTop = height * <span class="text-amber-400">0.15</span>;</pre>
+      </div>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📱</span> Regras de layout 9:16</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>Terço superior (0–30%):</strong> título e texto principal — área mais visível</li>
+          <li><strong>Terço central (30–70%):</strong> visual/imagem — zona de foco do olho</li>
+          <li><strong>Terço inferior (70–100%):</strong> CTA e subscribe — zona do polegar, interação</li>
+          <li><strong>Fonte mínima:</strong> 60px em 1080px (width * 0.055) — legível em celular pequeno</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">1080×1920</div><div class="text-xs text-neutral-400">Resolução 9:16</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">width*0.055</div><div class="text-xs text-neutral-400">Fonte base escalável</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">30 s = 900f</div><div class="text-xs text-neutral-400">Duração ideal</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Terços</div><div class="text-xs text-neutral-400">Layout em 3 zonas</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">💬 Legenda animada — typewriter e bounce-text</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">85% dos Reels são assistidos sem som. Isso significa que o texto <strong class="text-amber-400">é o áudio</strong> do vídeo. O <code class="text-amber-400">typewriter-subtitle.tsx</code> revela o texto letra por letra, enquanto o <code class="text-amber-400">bounce-text.tsx</code> faz cada palavra entrar com um pequeno pulo — ambos criam a sensação de que alguém está "escrevendo ao vivo".</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Typewriter por palavra</span>
+          <span class="text-xs text-neutral-500 font-mono">typewriter-subtitle.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> words = text.<span class="text-blue-400">split</span>(<span class="text-amber-400">" "</span>);
+<span class="text-purple-400">const</span> FRAMES_PER_WORD = <span class="text-amber-400">8</span>;  <span class="text-neutral-500">// ritmo: 1 palavra a cada 8 frames</span>
+
+{words.<span class="text-blue-400">map</span>((word, i) => {
+  <span class="text-purple-400">const</span> startFrame = i * FRAMES_PER_WORD;
+  <span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(
+    frame, [startFrame, startFrame + <span class="text-amber-400">6</span>], [<span class="text-amber-400">0</span>, <span class="text-amber-400">1</span>],
+    { extrapolateLeft: <span class="text-amber-400">"clamp"</span>, extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+  );
+  <span class="text-neutral-500">// bounce: entra de baixo</span>
+  <span class="text-purple-400">const</span> y = <span class="text-blue-400">interpolate</span>(
+    frame, [startFrame, startFrame + <span class="text-amber-400">10</span>], [<span class="text-amber-400">20</span>, <span class="text-amber-400">0</span>],
+    { easing: Easing.out(Easing.back(<span class="text-amber-400">1.5</span>)), extrapolateLeft: <span class="text-amber-400">"clamp"</span>, extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+  );
+  <span class="text-purple-400">return</span> &lt;span key={i} style={{ opacity, transform: <span class="text-amber-400">`translateY(${y}px)`</span>, display: <span class="text-amber-400">"inline-block"</span>, margin: <span class="text-amber-400">"0 4px"</span> }}&gt;{word}&lt;/span&gt;;
+})}</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Ritmo: 8 frames por palavra = 0.27 s</h3>
+        <p class="text-neutral-300">A 30fps, 8 frames por palavra produz leitura natural e fluida. Para frases de impacto que precisam de mais ênfase, use 12–15 frames por palavra. Para listas rápidas ("fácil · rápido · barato"), use 5–6 frames. O ritmo do texto deve imitar o ritmo da fala.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Ritmo</div><div class="text-xs text-neutral-400">8f por palavra</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Bounce</div><div class="text-xs text-neutral-400">Easing.back(1.5)</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Display</div><div class="text-xs text-neutral-400">inline-block por word</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Fonte</div><div class="text-xs text-neutral-400">≥60px em 1080px</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">⚡ Glitch no destaque — impacto visual nos primeiros frames</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O algoritmo do Reels mede a retenção dos primeiros 3 segundos. O <strong class="text-amber-400">glitch-text.tsx</strong> cria um efeito de "interferência" na palavra-chave do vídeo: deslocamentos rápidos de cor (channel offset) por 2–4 frames, criando impacto visual que prende o olhar imediatamente.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+          <h4 class="font-bold text-amber-400 mb-4">✓ Glitch que funciona</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Glitch nos primeiros 0–15 frames — prende a atenção antes do scroll.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Offset pequeno (3–8px) — perceptível sem ser nauseante.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>random("glitch-N") com seed — mesmo glitch em todos os renders.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Glitch que afasta</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Glitch em todo o vídeo — cansa e parece bug, não efeito.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Offset grande (20px+) — torna o texto ilegível.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Math.random() sem seed — texto "piscando" incontrolavelmente no render.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- Timeline do glitch -->
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Frame 0–3: glitch intenso</h4>
+            <p class="text-neutral-300 text-sm">Três camadas do texto deslocadas em X e Y aleatoriamente (mas semeadas). Cores: âmbar, ciano e branco separadas por 3–6px.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Frame 4–6: glitch residual</h4>
+            <p class="text-neutral-300 text-sm">Offset reduz a 1–2px. A "cura" do glitch é tão importante quanto o glitch — a estabilização reforça a palavra como memória.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Frame 7+: texto estável</h4>
+            <p class="text-neutral-300 text-sm">O texto principal fica estável pelo restante da cena. O efeito glitch pode reaparecer brevemente quando uma nova frase surge.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Frames 0–6</div><div class="text-xs text-neutral-400">Janela do glitch</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">3 camadas</div><div class="text-xs text-neutral-400">Cor separada por offset</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">random seed</div><div class="text-xs text-neutral-400">Determinístico</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">3–8px</div><div class="text-xs text-neutral-400">Offset máximo</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🎵 Sound-wave visual — ritmo sem áudio</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">sound-wave.tsx</strong> renderiza uma fileira de barras que oscilam com <code>Math.sin()</code>, simulando uma visualização de áudio. No Reel sem som, esse elemento sinaliza "este vídeo tem energia" — é o equivalente visual de uma batida de música.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Barras oscilantes com Math.sin</span>
+          <span class="text-xs text-neutral-500 font-mono">sound-wave.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> BAR_COUNT = <span class="text-amber-400">32</span>;
+<span class="text-purple-400">const</span> MAX_H = <span class="text-amber-400">80</span>; <span class="text-neutral-500">// px, relativo ao height do container</span>
+
+{Array.<span class="text-blue-400">from</span>({ length: BAR_COUNT }).<span class="text-blue-400">map</span>((_, i) => {
+  <span class="text-purple-400">const</span> seed = <span class="text-blue-400">random</span>(<span class="text-amber-400">`wave-${i}`</span>); <span class="text-neutral-500">// fase aleatória por barra</span>
+  <span class="text-purple-400">const</span> barH = Math.abs(
+    Math.sin(frame * <span class="text-amber-400">0.15</span> + seed * Math.PI * <span class="text-amber-400">2</span>)
+  ) * MAX_H + <span class="text-amber-400">4</span>;  <span class="text-neutral-500">// mínimo 4px para não sumir</span>
+
+  <span class="text-purple-400">return</span> &lt;div key={i} style={{
+    width: <span class="text-amber-400">4</span>, height: barH,
+    background: i % <span class="text-amber-400">3</span> === <span class="text-amber-400">0</span> ? <span class="text-amber-400">"#38bdf8"</span> : <span class="text-amber-400">"#fbbf24"</span>,
+    borderRadius: <span class="text-amber-400">2</span>
+  }} /&gt;;
+})}</pre>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Math.sin</div><div class="text-xs text-neutral-400">frame * 0.15 + seed</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">32 barras</div><div class="text-xs text-neutral-400">Densidade visual</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">random seed</div><div class="text-xs text-neutral-400">Fase única por barra</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Mínimo 4px</div><div class="text-xs text-neutral-400">Nunca desaparece</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🫧 Fundo bokeh — profundidade de campo sintética</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">bokeh-circles.tsx</strong> gera círculos desfocados flutuando no fundo — o efeito bokeh de câmera real, mas 100% computacional. Cada círculo tem tamanho, posição, opacidade e velocidade vertical aleatórios (semeados), criando profundidade de campo sem câmera física.</p>
+
+      <div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🫧</span> Como o bokeh é gerado</h3>
+        <ul class="space-y-2 text-neutral-300 text-sm">
+          <li><strong>Posição:</strong> random("bokeh-x-N") e random("bokeh-y-N") — fixas, determinísticas</li>
+          <li><strong>Tamanho:</strong> random("bokeh-r-N") * 80 + 20 — entre 20 e 100px de raio</li>
+          <li><strong>Flutuação:</strong> translateY = -frame * random("bokeh-speed-N") * 0.3 — sobe lentamente</li>
+          <li><strong>Reaparecimento:</strong> quando y &lt; -r, reposicionar para height + r (loop)</li>
+          <li><strong>Desfoque:</strong> filter: blur(Npx) — entre 8 e 20px para parecer fora de foco</li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">blur</div><div class="text-xs text-neutral-400">8–20px por círculo</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">opacity</div><div class="text-xs text-neutral-400">0.15–0.45</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Loop</div><div class="text-xs text-neutral-400">Reaparece no bottom</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">z=0</div><div class="text-xs text-neutral-400">AbsoluteFill base</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🔔 Subscribe reminder — CTA nos últimos 5 s</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">subscribe-reminder.tsx</strong> aparece nos últimos 150 frames (5 s) do Reel — uma animação de sino + texto "Inscreva-se" que não compete com o conteúdo principal, mas está lá quando o espectador está mais engajado (por ter assistido até o fim).</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Subscribe com timing relativo ao fim</span>
+          <span class="text-xs text-neutral-500 font-mono">subscribe-reminder.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> { durationInFrames } = <span class="text-blue-400">useVideoConfig</span>();
+<span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-neutral-500">// aparece nos últimos 150 frames</span>
+<span class="text-purple-400">return</span> (
+  &lt;Sequence from={durationInFrames - <span class="text-amber-400">150</span>}&gt;
+    &lt;SubscribeWidget /&gt;
+  &lt;/Sequence&gt;
+);
+
+<span class="text-neutral-500">// SubscribeWidget — sino com shake e texto</span>
+<span class="text-purple-400">const</span> bellFrame = <span class="text-blue-400">useCurrentFrame</span>(); <span class="text-neutral-500">// local frame (0–150)</span>
+<span class="text-purple-400">const</span> scale = <span class="text-blue-400">spring</span>({ frame: bellFrame, fps,
+  config: { damping: <span class="text-amber-400">10</span>, stiffness: <span class="text-amber-400">200</span> }
+});
+<span class="text-neutral-500">// shake: oscila 3x por segundo</span>
+<span class="text-purple-400">const</span> shakeX = Math.sin(bellFrame * <span class="text-amber-400">0.5</span>) *
+  <span class="text-blue-400">interpolate</span>(bellFrame, [<span class="text-amber-400">0</span>, <span class="text-amber-400">10</span>], [<span class="text-amber-400">8</span>, <span class="text-amber-400">0</span>], { extrapolateRight: <span class="text-amber-400">"clamp"</span> });</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Por que o último quinto?</h3>
+        <p class="text-neutral-300">Espectadores que chegam até os últimos 5 s do Reel já são "quentes" — aprovaram o conteúdo. Esse é o melhor momento para pedir uma ação. O subscribe antes disso parece spam; depois disso não há tempo para reagir. O timing correto é o que separa CTA eficaz de intrusão.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Timing</div><div class="text-xs text-neutral-400">durationInFrames - 150</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Frame local</div><div class="text-xs text-neutral-400">Reinicia do 0</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Spring</div><div class="text-xs text-neutral-400">Entrada do sino</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Shake</div><div class="text-xs text-neutral-400">Math.sin × 8px → 0</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO FINAL — fim do curso -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏆</span> Resumo do Módulo — e do Curso</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Composition 1080×1920</strong><span class="text-neutral-400"> — width/height lidos via useVideoConfig para layout responsivo.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Texto é o áudio</strong><span class="text-neutral-400"> — typewriter a 8f/palavra + bounce com Easing.back(1.5).</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Glitch nos 3 primeiros segundos</strong><span class="text-neutral-400"> — 3 camadas, offset 3–8px, random semeado, cura em 6 frames.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Sound-wave visual</strong><span class="text-neutral-400"> — Math.sin(frame * 0.15 + seed) com 32 barras oscilantes.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Bokeh computacional</strong><span class="text-neutral-400"> — círculos com blur 8–20px flutuando em loop semeado.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Subscribe nos últimos 5 s</strong><span class="text-neutral-400"> — Sequence from=durationInFrames-150, frame local do sino.</span></div></div>
+        </div>
+
+        <div class="bg-gradient-to-r from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-8">
+          <h3 class="font-bold text-amber-400 text-lg mb-3 flex items-center"><span class="mr-2">🎓</span> Você completou a Trilha 4 — e o curso!</h3>
+          <p class="text-neutral-300">Você passou pelas 4 trilhas: Fundamentos (T1), Recursos e Templates (T2), Combinação e Composição (T3), e agora Projetos Completos (T4). Com os 81 templates da biblioteca e as técnicas que aprendeu, você está equipado para criar qualquer vídeo programático — de aberturas de canal a Reels virais.</p>
+        </div>
+
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-4-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo 4.3</a>
+          <a href="../../index.html" class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors">Voltar ao início →</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Curso Remotion · Módulo 4.4 · 2026 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

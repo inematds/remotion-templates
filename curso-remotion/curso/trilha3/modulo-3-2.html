@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 3.2 · Camadas &amp; Composição Visual | Remotion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (purple T3) */
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,0.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* boxes de pesquisa/alerta */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.4s} .wf-a:nth-child(3){animation-delay:.8s}
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinação</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projetos</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-purple-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-purple-400">Trilha 3</a><span>/</span>
+      <span class="text-purple-400">Módulo 3.2</span>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🗂️ Camadas &amp; Composição Visual</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Vídeo profissional é feito de camadas. <code class="text-purple-400">AbsoluteFill</code> é o mecanismo que permite empilhar fundo, conteúdo e overlay sem mexer em z-index ou position na mão. A ordem de declaração é tudo.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Intermediário</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Visual</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- SVG ilustrativo — pilha de camadas (aninhamento) -->
+    <div class="rounded-2xl border border-purple-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+      <svg viewBox="0 0 1000 220" class="w-full h-auto" role="img" aria-label="Diagrama de pilha: três AbsoluteFill sobrepostos — Fundo na base, Conteúdo no meio, Overlay no topo">
+        <defs>
+          <linearGradient id="m32-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#c084fc"/><stop offset="1" stop-color="#a855f7"/></linearGradient>
+          <filter id="m32-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <pattern id="m32-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#a855f7" opacity="0.12"/></pattern>
+          <marker id="m32-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#c084fc"/></marker>
+        </defs>
+        <rect x="0" y="0" width="1000" height="220" fill="url(#m32-grid)"/>
+        <!-- label -->
+        <text x="500" y="22" text-anchor="middle" fill="#e9d5ff" font-family="Inter,sans-serif" font-size="13" font-weight="600">Pilha de AbsoluteFill — ordem = z-index</text>
+        <!-- camada 1: fundo -->
+        <g class="wf-a">
+          <rect x="60" y="44" width="280" height="60" rx="10" fill="#0d0a1a" stroke="#4b5563" stroke-width="2"/>
+          <text x="200" y="71" text-anchor="middle" fill="#9ca3af" font-family="Inter,sans-serif" font-size="12" font-weight="600">1º · AbsoluteFill (Fundo)</text>
+          <text x="200" y="90" text-anchor="middle" fill="#6b7280" font-family="Inter,sans-serif" font-size="11">vídeo / gradiente / cor sólida</text>
+        </g>
+        <!-- camada 2: conteúdo -->
+        <g class="wf-a">
+          <rect x="60" y="122" width="280" height="60" rx="10" fill="#1a1230" stroke="#c084fc" stroke-width="2"/>
+          <text x="200" y="149" text-anchor="middle" fill="#c084fc" font-family="Inter,sans-serif" font-size="12" font-weight="600">2º · AbsoluteFill (Conteúdo)</text>
+          <text x="200" y="168" text-anchor="middle" fill="#e9d5ff" font-family="Inter,sans-serif" font-size="11">título / lista / ícones</text>
+        </g>
+        <!-- seta de ordem -->
+        <path d="M400,74 L460,74" fill="none" stroke="#4b5563" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <path d="M400,152 L460,152" fill="none" stroke="#c084fc" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <path d="M400,192 L460,192" fill="none" stroke="#38bdf8" stroke-width="1.5" stroke-dasharray="4,3"/>
+        <!-- resultado visual empilhado -->
+        <g filter="url(#m32-glow)">
+          <rect x="470" y="40" width="460" height="160" rx="14" fill="#0d0a1a" stroke="url(#m32-grad)" stroke-width="2.5"/>
+          <!-- fundo simulado -->
+          <rect x="486" y="56" width="428" height="128" rx="10" fill="#120c24" opacity="0.8"/>
+          <!-- conteúdo simulado -->
+          <rect x="510" y="80" width="200" height="18" rx="4" fill="#c084fc" opacity="0.6"/>
+          <rect x="510" y="108" width="140" height="12" rx="3" fill="#a855f7" opacity="0.4"/>
+          <rect x="510" y="126" width="160" height="12" rx="3" fill="#a855f7" opacity="0.3"/>
+          <!-- overlay simulado -->
+          <rect x="486" y="56" width="428" height="128" rx="10" fill="rgba(0,0,0,0.35)"/>
+        </g>
+        <text x="700" y="212" text-anchor="middle" fill="#e9d5ff" font-family="Inter,sans-serif" font-size="12">resultado: fundo + conteúdo + overlay</text>
+        <!-- camada 3: overlay -->
+        <rect x="60" y="175" width="280" height="38" rx="10" fill="#0e1622" stroke="#38bdf8" stroke-width="2"/>
+        <text x="200" y="193" text-anchor="middle" fill="#38bdf8" font-family="Inter,sans-serif" font-size="12" font-weight="600">3º · AbsoluteFill (Overlay)</text>
+        <text x="200" y="207" text-anchor="middle" fill="#bae6fd" font-family="Inter,sans-serif" font-size="11">vinheta / fade / efeito</text>
+      </svg>
+    </div>
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🏗️ AbsoluteFill aninhado — a pilha de camadas</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed"><code class="text-purple-400">AbsoluteFill</code> é um componente do Remotion que renderiza uma <code>div</code> com <code>position: absolute; top: 0; left: 0; width: 100%; height: 100%</code>. Quando você coloca dois ou mais como irmãos (não como filhos um do outro), eles se empilham — exatamente como transparências fotográficas colocadas uma sobre a outra.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Estrutura básica de 3 camadas</span>
+          <span class="text-xs text-neutral-500 font-mono">LayeredScene.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { AbsoluteFill } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+
+<span class="text-purple-400">export const</span> <span class="text-blue-400">LayeredScene</span> = () => (
+  <span class="text-neutral-500">{/* Container principal */}</span>
+  &lt;<span class="text-blue-400">AbsoluteFill</span>&gt;
+
+    <span class="text-neutral-500">{/* CAMADA 1 — fundo (renderizado primeiro = mais atrás) */}</span>
+    &lt;<span class="text-blue-400">AbsoluteFill</span>&gt;
+      &lt;<span class="text-blue-400">Background</span> /&gt;
+    &lt;/<span class="text-blue-400">AbsoluteFill</span>&gt;
+
+    <span class="text-neutral-500">{/* CAMADA 2 — conteúdo principal */}</span>
+    &lt;<span class="text-blue-400">AbsoluteFill</span> style={{ display: <span class="text-emerald-400">"flex"</span>, alignItems: <span class="text-emerald-400">"center"</span> }}&gt;
+      &lt;<span class="text-blue-400">Title</span> /&gt;
+    &lt;/<span class="text-blue-400">AbsoluteFill</span>&gt;
+
+    <span class="text-neutral-500">{/* CAMADA 3 — overlay (renderizado por último = mais na frente) */}</span>
+    &lt;<span class="text-blue-400">AbsoluteFill</span> style={{ background: <span class="text-emerald-400">"rgba(0,0,0,0.3)"</span> }} /&gt;
+
+  &lt;/<span class="text-blue-400">AbsoluteFill</span>&gt;
+);</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">A ordem de declaração no JSX é a ordem de renderização (z-index implícito). O último filho fica na frente. Isso é diferente de z-index CSS — aqui a estrutura do código é a documentação visual.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">AbsoluteFill</div><div class="text-xs text-neutral-400">100% width+height</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Irmãos</div><div class="text-xs text-neutral-400">Não filhos</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Ordem</div><div class="text-xs text-neutral-400">Último = frente</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Sem z-index</div><div class="text-xs text-neutral-400">Manual desnecessário</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🎨 Fundo → conteúdo → overlay</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">A convenção de 3 camadas é universal em edição de vídeo: o fundo (Background) carrega a ambiência visual, o conteúdo (Conteúdo) entrega a mensagem, e o overlay finalmente une tudo e garante legibilidade. Inverter qualquer camada quebra imediatamente a hierarquia.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Ordem correta</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">1.</span><span><strong>Background</strong> — vídeo, gradiente, imagem de fundo.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">2.</span><span><strong>Conteúdo</strong> — título, lista, ícone principal.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">3.</span><span><strong>Overlay</strong> — vinheta, gradiente, fade-out de borda.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Erros comuns de ordem</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Overlay antes do conteúdo — conteúdo fica por baixo do escurecimento.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Fundo depois do conteúdo — fundo cobre o texto.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Tudo dentro de um único AbsoluteFill com position manual.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Posição 1</div><div class="text-xs text-neutral-400">Fundo sempre</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Posição 2</div><div class="text-xs text-neutral-400">Conteúdo</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Posição 3</div><div class="text-xs text-neutral-400">Overlay</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Convencional</div><div class="text-xs text-neutral-400">Universal em vídeo</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 — Tip box e Grid -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🌫️ Vinheta e overlay escuro — legibilidade</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O problema mais comum ao combinar vídeo de fundo com texto é a legibilidade. Um fundo colorido e vibrante pode ter exatamente as mesmas tonalidades do texto branco — tornando-o invisível. A solução é uma camada semitransparente preta entre os dois.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Valores de opacidade para overlay</h3>
+        <ul class="space-y-2 text-neutral-300">
+          <li><strong>rgba(0,0,0,0.2)</strong> — sutil, para fundos já escuros. Mal perceptível.</li>
+          <li><strong>rgba(0,0,0,0.4)</strong> — padrão para a maioria dos casos. Bom equilíbrio.</li>
+          <li><strong>rgba(0,0,0,0.6)</strong> — fundos muito claros ou coloridos. Pode escurecer demais.</li>
+          <li><strong>rgba(0,0,0,0.8)</strong> — quase opaco. Use apenas para fade-out de cena.</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Overlay animado com interpolate</span>
+          <span class="text-xs text-neutral-500 font-mono">OverlayLayer.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-neutral-500">// Overlay entra gradualmente nos primeiros 20 frames</span>
+<span class="text-purple-400">const</span> overlayOpacity = <span class="text-blue-400">interpolate</span>(
+  frame,
+  [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">20</span>],
+  [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">0.4</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">return</span> (
+  &lt;<span class="text-blue-400">AbsoluteFill</span>
+    style={{ backgroundColor: <span class="text-emerald-400">`rgba(0,0,0,${overlayOpacity})`</span> }}
+  /&gt;
+);</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">Antes de definir o valor do overlay, abra o frame mais "problemático" (geralmente com o fundo mais claro ou colorido) e ajuste até o texto ser legível confortavelmente — não só "tecnicamente legível".</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Padrão</div><div class="text-xs text-neutral-400">rgba(0,0,0,0.4)</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Limite</div><div class="text-xs text-neutral-400">Máximo 0.6</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Animado</div><div class="text-xs text-neutral-400">Fade-in suave</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Teste</div><div class="text-xs text-neutral-400">Frame mais claro</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🎚️ Opacidade por camada — fade independente</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Cada AbsoluteFill pode ter sua própria opacidade animada de forma independente. Isso cria efeitos de revelação em cascata: o fundo pode fazer fade-in nos primeiros 20 frames enquanto o conteúdo espera até o frame 30. O espectador percebe o contexto antes da mensagem.</p>
+
+      <!-- Timeline de passos -->
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">1</div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Fundo faz fade-in (frames 0–20)</h4>
+            <p class="text-neutral-300 text-sm">O Background revela o ambiente visual — o espectador já sabe onde está antes de ver a mensagem.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">2</div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Overlay acompanha o fundo (frames 5–25)</h4>
+            <p class="text-neutral-300 text-sm">Garante que quando o texto aparecer, o fundo já estará escurecido o suficiente para contraste.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">3</div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-2">Conteúdo entra por último (frame 25+)</h4>
+            <p class="text-neutral-300 text-sm">Com o contexto estabelecido e o overlay pronto, o conteúdo entra sobre um canvas legível.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">style opacity</div><div class="text-xs text-neutral-400">Por camada</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Revelação</div><div class="text-xs text-neutral-400">Contexto primeiro</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Hierarquia</div><div class="text-xs text-neutral-400">Temporal</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Efeito</div><div class="text-xs text-neutral-400">Elegância pro</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">⚖️ Não competir por atenção</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Design de vídeo é uma questão de foco. Em cada momento, deve haver <em>um</em> elemento principal que domina a atenção. Quando fundo, texto e ícone animam com a mesma intensidade simultaneamente, o espectador fica desorientado — olha para tudo sem ver nada.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Hierarquia de atenção</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Fundo: animação sutil e lenta (não distrai).</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Conteúdo: animação de entrada expressiva (este é o foco).</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Decoração: opacidade baixa, sem movimento.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Caos visual</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Fundo com partículas rápidas e brilhantes por todo o vídeo.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Título e subtítulo com spring diferente animando juntos.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>4+ elementos com cor saturada competindo na mesma cena.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Regra do foco único</h3>
+        <p class="text-neutral-300">Pause o vídeo em qualquer frame e faça a pergunta: "onde o olho vai naturalmente?". Se a resposta não for imediata e clara, o frame está sobrecarregado. Reduza a intensidade dos elementos de suporte até o foco ser óbvio.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">1 foco</div><div class="text-xs text-neutral-400">Por frame</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Fundo</div><div class="text-xs text-neutral-400">Sutil sempre</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Overlay</div><div class="text-xs text-neutral-400">Mascara excesso</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Teste</div><div class="text-xs text-neutral-400">Pausa e pergunta</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🔍 Depurar camadas no Studio</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Quando uma camada "desaparece" ou fica invisível inesperadamente, a técnica de depuração mais rápida é dar um <code class="text-purple-400">outline</code> temporário em cada AbsoluteFill ou aumentar sua opacidade para identificar exatamente onde ela está na pilha.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Técnicas de depuração visual</span>
+          <span class="text-xs text-neutral-500 font-mono">debug.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// Técnica 1: outline colorido para ver bordas</span>
+&lt;<span class="text-blue-400">AbsoluteFill</span> style={{ outline: <span class="text-emerald-400">"2px solid red"</span> }}&gt;
+  &lt;<span class="text-blue-400">Background</span> /&gt;
+&lt;/<span class="text-blue-400">AbsoluteFill</span>&gt;
+
+<span class="text-neutral-500">// Técnica 2: opacidade 0.5 para revelar sobreposição</span>
+&lt;<span class="text-blue-400">AbsoluteFill</span> style={{ opacity: <span class="text-emerald-400">0.5</span> }}&gt;
+  &lt;<span class="text-blue-400">Overlay</span> /&gt;
+&lt;/<span class="text-blue-400">AbsoluteFill</span>&gt;
+
+<span class="text-neutral-500">// Técnica 3: comentar camadas individualmente</span>
+<span class="text-neutral-500">{/* &lt;AbsoluteFill&gt;&lt;Background /&gt;&lt;/AbsoluteFill&gt; */}</span></pre>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">outline</div><div class="text-xs text-neutral-400">Ver bordas</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">opacity: 0.5</div><div class="text-xs text-neutral-400">Revelar camadas</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Comentar</div><div class="text-xs text-neutral-400">Isolar problema</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">DevTools</div><div class="text-xs text-neutral-400">Inspect no Studio</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">AbsoluteFill irmãos</strong><span class="text-neutral-400"> — empilham como transparências; ordem no JSX = z-index.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Fundo → conteúdo → overlay</strong><span class="text-neutral-400"> — convenção universal; inverter quebra a hierarquia visual.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Overlay rgba(0,0,0,0.4)</strong><span class="text-neutral-400"> — garante legibilidade do texto sobre qualquer fundo.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Opacidade independente</strong><span class="text-neutral-400"> — cada camada pode ter seu próprio fade-in/out.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">1 foco por frame</strong><span class="text-neutral-400"> — reduzir a intensidade dos elementos de suporte é tão importante quanto animar o principal.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-purple-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">3.3 — Ritmo &amp; Transições entre Cenas: Series, durações que respiram e como casar com a batida.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-3-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo 3.1</a>
+          <a href="modulo-3-3.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Curso Remotion · Módulo 3.2 · 2026 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

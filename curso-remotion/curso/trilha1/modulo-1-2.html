@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Módulo 1.2 · interpolate() | Remotion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (emerald T1) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5,150,105,0.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* boxes de pesquisa/alerta */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinação</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projetos</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-emerald-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-emerald-400">Trilha 1</a><span>/</span>
+      <span class="text-emerald-400">Módulo 1.2</span>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">📈 interpolate() — frame vira valor</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">O <code>interpolate()</code> é a ferramenta central do Remotion: você dá um frame e ele devolve um número — opacidade, posição, escala, cor. Uma chamada, infinitas animações.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Tópicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nível</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Prático</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+
+    <!-- Diagrama do conceito -->
+    <div class="rounded-2xl border border-emerald-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+      <svg viewBox="0 0 1000 220" class="w-full h-auto" role="img" aria-label="interpolate mapeia um inputRange de frames para um outputRange de valores; o frame 0 produz 0, o frame 30 produz 1, com extrapolação clamp nos extremos">
+        <defs>
+          <linearGradient id="m12-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#34d399"/><stop offset="1" stop-color="#10b981"/></linearGradient>
+          <filter id="m12-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+          <pattern id="m12-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#10b981" opacity="0.12"/></pattern>
+          <marker id="m12-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#34d399"/></marker>
+          <marker id="m12-ahc" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"/></marker>
+        </defs>
+        <rect x="0" y="0" width="1000" height="220" fill="url(#m12-grid)"/>
+
+        <!-- Caixa frame (entrada) -->
+        <g filter="url(#m12-glow)">
+          <rect x="40" y="70" width="160" height="80" rx="12" fill="#0e2018" stroke="url(#m12-grad)" stroke-width="2.5"/>
+        </g>
+        <text x="120" y="106" text-anchor="middle" fill="#34d399" font-family="Inter,sans-serif" font-size="13" font-weight="600">frame</text>
+        <text x="120" y="126" text-anchor="middle" fill="#a7f3d0" font-family="Inter,sans-serif" font-size="22" font-weight="700">42</text>
+
+        <!-- Seta frame → interpolate -->
+        <path d="M200,110 L280,110" fill="none" stroke="#34d399" stroke-width="2" opacity="0.65" marker-end="url(#m12-ah)"/>
+
+        <!-- Caixa interpolate (função central) -->
+        <rect x="288" y="58" width="300" height="104" rx="14" fill="#0e1622" stroke="#38bdf8" stroke-width="2"/>
+        <text x="438" y="98" text-anchor="middle" fill="#bfe6ff" font-family="Inter,sans-serif" font-size="15" font-weight="600">interpolate(frame,</text>
+        <text x="438" y="118" text-anchor="middle" fill="#93c5fd" font-family="Inter,sans-serif" font-size="13">[0, 30], [0, 1])</text>
+        <text x="438" y="146" text-anchor="middle" fill="#64748b" font-family="Inter,sans-serif" font-size="11">inputRange → outputRange</text>
+
+        <!-- Seta interpolate → valor -->
+        <path d="M588,110 L668,110" fill="none" stroke="#34d399" stroke-width="2" opacity="0.65" marker-end="url(#m12-ah)"/>
+
+        <!-- Caixa valor (saída) -->
+        <g filter="url(#m12-glow)">
+          <rect x="676" y="70" width="280" height="80" rx="12" fill="#0e2018" stroke="url(#m12-grad)" stroke-width="2.5"/>
+        </g>
+        <text x="816" y="106" text-anchor="middle" fill="#34d399" font-family="Inter,sans-serif" font-size="13" font-weight="600">opacity</text>
+        <text x="816" y="126" text-anchor="middle" fill="#a7f3d0" font-family="Inter,sans-serif" font-size="22" font-weight="700">1.4</text>
+
+        <!-- Rótulos embaixo -->
+        <text x="120" y="195" text-anchor="middle" fill="#9ca3af" font-family="Inter,sans-serif" font-size="11.5">entrada: frame atual</text>
+        <text x="438" y="195" text-anchor="middle" fill="#9ca3af" font-family="Inter,sans-serif" font-size="11.5">clamp: valor fica entre 0 e 1</text>
+        <text x="816" y="195" text-anchor="middle" fill="#9ca3af" font-family="Inter,sans-serif" font-size="11.5">saída: qualquer número</text>
+      </svg>
+    </div>
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">📝 A assinatura do interpolate()</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-emerald-400">interpolate()</code> recebe quatro argumentos: o <strong class="text-emerald-400">valor de entrada</strong> (quase sempre <code>frame</code>), o <strong class="text-emerald-400">inputRange</strong>, o <strong class="text-emerald-400">outputRange</strong> e opções opcionais. Em troca, devolve um número calculado por interpolação linear entre os pontos.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Assinatura completa</span>
+          <span class="text-xs text-neutral-500 font-mono">interpolate.ts</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { interpolate, useCurrentFrame } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+
+<span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-neutral-500">// interpolate(valor, inputRange, outputRange, opcoes?)</span>
+<span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(
+  frame,            <span class="text-neutral-500">// entrada: número atual</span>
+  [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">30</span>],          <span class="text-neutral-500">// inputRange: do frame 0 ao 30</span>
+  [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>],           <span class="text-neutral-500">// outputRange: de 0 a 1 (opacidade)</span>
+  { extrapolateLeft: <span class="text-emerald-400">"clamp"</span>, extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);</pre>
+      </div>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> O que cada argumento faz</h3>
+        <ul class="space-y-3 text-neutral-300">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>frame</strong> — o número que muda a cada quadro; pode ser qualquer variável numérica.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>inputRange</strong> — a janela de frames onde a animação acontece (pelo menos 2 pontos).</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>outputRange</strong> — os valores correspondentes de saída; pode ser pixels, graus, decimais.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><strong>opcoes</strong> — controla o que acontece fora do inputRange (clamp, extend, wrap).</span></li>
+        </ul>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">arg 1</div><div class="text-xs text-neutral-400">Valor de entrada</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">arg 2</div><div class="text-xs text-neutral-400">inputRange []</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">arg 3</div><div class="text-xs text-neutral-400">outputRange []</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">arg 4</div><div class="text-xs text-neutral-400">opções (opcional)</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🗺️ inputRange e outputRange — domínio e contradomínio</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Pense em <code class="text-emerald-400">inputRange</code> como o <strong>domínio</strong> (quais frames fazem parte da animação) e <code class="text-emerald-400">outputRange</code> como o <strong>contradomínio</strong> (quais valores saem). O <code>interpolate()</code> encontra o ponto proporcionalmente equivalente dentro do outputRange.</p>
+
+      <div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Exemplos de mapeamento</h3>
+        <ul class="space-y-3 text-neutral-300 text-sm">
+          <li><code>[0, 30] → [0, 1]</code> — <strong>fade-in</strong>: opacidade cresce de 0 a 1 em 1 segundo (30fps).</li>
+          <li><code>[0, 30] → [0, 300]</code> — <strong>slide</strong>: translateX vai de 0 a 300px em 1 segundo.</li>
+          <li><code>[0, 30] → [0.5, 1]</code> — <strong>scale</strong>: objeto começa na metade do tamanho e cresce para 100%.</li>
+          <li><code>[0, 30] → [360, 0]</code> — <strong>rotação inversa</strong>: começa girado 360° e vai para 0.</li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Slide + opacidade juntos</span>
+          <span class="text-xs text-neutral-500 font-mono">SlideIn.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">20</span>], [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>], { extrapolateRight: <span class="text-emerald-400">"clamp"</span> });
+<span class="text-purple-400">const</span> translateY = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">20</span>], [<span class="text-emerald-400">40</span>, <span class="text-emerald-400">0</span>], { extrapolateRight: <span class="text-emerald-400">"clamp"</span> });
+
+<span class="text-purple-400">return</span> (
+  &lt;div style={{ opacity, transform: <span class="text-emerald-400">`translateY(${translateY}px)`</span> }}&gt;
+    Conteúdo que entra de baixo
+  &lt;/div&gt;
+);</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Dica: ranges não precisam começar em 0</h3>
+        <p class="text-neutral-300">Você pode usar <code>[45, 60]</code> como inputRange para que a animação comece 1,5s depois do início do vídeo. O que está fora do range é controlado pela opção <code>extrapolate</code>.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Domínio</div><div class="text-xs text-neutral-400">inputRange de frames</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Contradomínio</div><div class="text-xs text-neutral-400">outputRange de valores</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Linear</div><div class="text-xs text-neutral-400">Proporcional por padrão</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Qualquer valor</div><div class="text-xs text-neutral-400">px, graus, 0–1</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">🔒 extrapolate: clamp vs extend</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O que acontece quando <code>frame</code> sai do <code>inputRange</code>? Por padrão, o <code>interpolate()</code> <strong class="text-emerald-400">extende</strong> a linha além dos pontos definidos — o que pode fazer a opacidade passar de 1 ou ir abaixo de 0. O <code>clamp</code> evita isso.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ O que FAZER</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Usar <code>extrapolateRight: "clamp"</code> em opacidade para nunca passar de 1.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Usar <code>extrapolateLeft: "clamp"</code> para segurar o valor antes do início da animação.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Deixar <code>extend</code> (padrão) só quando a extrapolação faz sentido (ex.: posição que continua).</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ O que NÃO fazer</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Deixar opacidade sem <code>clamp</code> — no frame 60, <code>[0,30]→[0,1]</code> devolve 2 (invisível no CSS).</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Esquecer o <code>extrapolateLeft</code> quando a animação começa tarde (frame 45+).</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar opções diferentes de <code>clamp/extend/wrap/identity</code> — não existem.</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">clamp dos dois lados</span>
+          <span class="text-xs text-neutral-500 font-mono">Fade.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// SEM clamp: frame=60 → opacity=2 (bug visual)</span>
+<span class="text-red-400">const</span> opacityBug = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">30</span>], [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>]);
+
+<span class="text-neutral-500">// COM clamp: frame=60 → opacity=1 (correto)</span>
+<span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">30</span>], [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>], {
+  extrapolateLeft: <span class="text-emerald-400">"clamp"</span>,
+  extrapolateRight: <span class="text-emerald-400">"clamp"</span>,
+});</pre>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">clamp</div><div class="text-xs text-neutral-400">Segura nos extremos</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">extend</div><div class="text-xs text-neutral-400">Continua a reta</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">wrap</div><div class="text-xs text-neutral-400">Reinicia em loop</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Padrão</div><div class="text-xs text-neutral-400">extend (cuidado!)</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">🔑 Múltiplos keyframes — fade-in / hold / fade-out</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <code>inputRange</code> e o <code>outputRange</code> aceitam <strong class="text-emerald-400">mais de dois pontos</strong>. Isso cria keyframes: a animação passa por cada par <code>[frame → valor]</code> em sequência. É como o timeline de um editor de vídeo, mas em código.</p>
+
+      <!-- Timeline -->
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-sm">0</div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">frame 0 → opacity 0</h4>
+            <p class="text-neutral-300 text-sm">Elemento invisível no início.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-sm">15</div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">frame 15 → opacity 1</h4>
+            <p class="text-neutral-300 text-sm">Fade-in completo em 0,5s.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-sm">75</div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">frame 75 → opacity 1</h4>
+            <p class="text-neutral-300 text-sm">Permanece totalmente visível até 2,5s — o "hold".</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-sm">90</div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">frame 90 → opacity 0</h4>
+            <p class="text-neutral-300 text-sm">Fade-out de 0,5s antes do corte.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">fade-in / hold / fade-out</span>
+          <span class="text-xs text-neutral-500 font-mono">FadeInOut.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(
+  frame,
+  [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">15</span>, <span class="text-emerald-400">75</span>, <span class="text-emerald-400">90</span>],   <span class="text-neutral-500">// 4 keyframes</span>
+  [<span class="text-emerald-400">0</span>,  <span class="text-emerald-400">1</span>,  <span class="text-emerald-400">1</span>,  <span class="text-emerald-400">0</span>],   <span class="text-neutral-500">// entra, segura, sai</span>
+  { extrapolateLeft: <span class="text-emerald-400">"clamp"</span>, extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);</pre>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Keyframes</div><div class="text-xs text-neutral-400">N pontos no range</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Hold</div><div class="text-xs text-neutral-400">Mesmo valor repetido</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Padrão textual</div><div class="text-xs text-neutral-400">0→1→1→0</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Flexível</div><div class="text-xs text-neutral-400">Qualquer sequência</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🎨 Easing — movimento natural</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Por padrão, o <code>interpolate()</code> faz uma interpolação <strong>linear</strong> — velocidade constante do começo ao fim. Para movimento natural, use a opção <code>easing</code> com funções do módulo <code class="text-emerald-400">Easing</code> do Remotion (compatível com React Native).</p>
+
+      <div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Easings mais usados</h3>
+        <ul class="space-y-3 text-neutral-300 text-sm">
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><code>Easing.out(Easing.ease)</code> — começa rápido, desacelera no final. Clássico para entradas.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><code>Easing.in(Easing.ease)</code> — começa devagar, acelera. Bom para saídas.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><code>Easing.inOut(Easing.ease)</code> — suave nos dois extremos. Sólido para transições.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><code>Easing.bezier(0.25, 0.1, 0.25, 1)</code> — controle total com curva cúbica.</span></li>
+          <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span><code>Easing.cubic</code> — alternativa rápida ao bezier com curva cúbica padrão.</span></li>
+        </ul>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Entrada com easing natural</span>
+          <span class="text-xs text-neutral-500 font-mono">EasedSlide.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { interpolate, Easing, useCurrentFrame } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+
+<span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-purple-400">const</span> translateY = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">25</span>], [<span class="text-emerald-400">60</span>, <span class="text-emerald-400">0</span>], {
+  extrapolateRight: <span class="text-emerald-400">"clamp"</span>,
+  easing: <span class="text-blue-400">Easing.out</span>(<span class="text-blue-400">Easing.cubic</span>),
+});</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Linear vs Easing na prática</h3>
+        <p class="text-neutral-300">Uma animação linear parece "mecânica" — objeto se move em velocidade robótica. Com <code>Easing.out</code>, o elemento entra com energia e desacelera naturalmente, como se obedecesse à física. Essa diferença é o que separa protótipos de vídeos profissionais.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">linear</div><div class="text-xs text-neutral-400">Velocidade constante</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Easing.out</div><div class="text-xs text-neutral-400">Desacelera no fim</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Easing.in</div><div class="text-xs text-neutral-400">Acelera até o fim</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">bezier</div><div class="text-xs text-neutral-400">Controle total</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🧩 Padrões: fade, slide e scale</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Com <code>interpolate()</code> em mãos, três padrões cobrem 90% das animações de UI de vídeo: <strong class="text-emerald-400">fade</strong> (opacidade), <strong class="text-emerald-400">slide</strong> (translateX/Y) e <strong class="text-emerald-400">scale</strong>. Combinando os três, você constrói qualquer entrada ou saída de elemento.</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+        <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+          <h4 class="font-bold text-emerald-400 mb-4">✓ Os três padrões essenciais</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>Fade:</strong> <code>opacity = interpolate(frame, [0,20], [0,1], {clamp})</code></span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>Slide X:</strong> <code>transform: translateX(${x}px)</code> com x de −200 a 0.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span><strong>Scale:</strong> <code>transform: scale(${s})</code> com s de 0.8 a 1.</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+          <h4 class="font-bold text-red-400 mb-4">✗ Erros comuns</h4>
+          <ul class="space-y-3 text-neutral-300 text-sm">
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar CSS transitions ou keyframes — conflita com o modelo de render do Remotion.</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Combinar <code>scale</code> e <code>translateX</code> sem <code>transform</code> em string única (se apagam).</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar <code>width</code>/<code>height</code> animados em vez de <code>transform: scale</code> (causa reflow).</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Fade + slide + scale combinados</span>
+          <span class="text-xs text-neutral-500 font-mono">Entrance.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> opts = { extrapolateRight: <span class="text-emerald-400">"clamp"</span>, easing: <span class="text-blue-400">Easing.out</span>(<span class="text-blue-400">Easing.cubic</span>) } <span class="text-purple-400">as const</span>;
+
+<span class="text-purple-400">const</span> opacity  = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">20</span>], [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>],    opts);
+<span class="text-purple-400">const</span> x        = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">20</span>], [<span class="text-emerald-400">-60</span>, <span class="text-emerald-400">0</span>],  opts);
+<span class="text-purple-400">const</span> scale    = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">20</span>], [<span class="text-emerald-400">0.9</span>, <span class="text-emerald-400">1</span>], opts);
+
+<span class="text-purple-400">return</span> (
+  &lt;div style={{
+    opacity,
+    transform: <span class="text-emerald-400">`translateX(${x}px) scale(${scale})`</span>,
+  }}&gt;
+    Conteúdo com entrada suave
+  &lt;/div&gt;
+);</pre>
+      </div>
+
+      <div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Combine sempre no mesmo <code>transform</code></h3>
+        <p class="text-neutral-300">Quando você usa <code>transform</code> duas vezes no mesmo objeto de estilo, o segundo <strong>sobrescreve</strong> o primeiro. Sempre concatene tudo numa string só: <code>`translateX(${x}px) scale(${s})`</code>.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">opacity</div><div class="text-xs text-neutral-400">0→1 fade</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">translateX/Y</div><div class="text-xs text-neutral-400">slide</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">scale</div><div class="text-xs text-neutral-400">cresce/encolhe</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Combine</div><div class="text-xs text-neutral-400">1 string transform</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">interpolate(frame, inputRange, outputRange, opts)</strong><span class="text-neutral-400"> — mapeia qualquer frame em qualquer valor.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">inputRange → outputRange</strong><span class="text-neutral-400"> — domínio de frames mapeado linearmente para qualquer contradomínio de valores.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">extrapolate: "clamp"</strong><span class="text-neutral-400"> — impede que opacidade passe de 1 ou fique abaixo de 0.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Múltiplos keyframes</strong><span class="text-neutral-400"> — [0,15,75,90]→[0,1,1,0] cria fade-in, hold e fade-out numa linha.</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Easing</strong><span class="text-neutral-400"> — <code>Easing.out(Easing.cubic)</code> torna o movimento natural; combine com os padrões fade/slide/scale.</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-emerald-400 mb-2">Próximo módulo:</h3>
+          <p class="text-neutral-300">1.3 — spring() &amp; composição: física de mola, overshoot natural e como empilhar cenas com Sequence e AbsoluteFill.</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha</a>
+          <a href="modulo-1-3.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Próximo Módulo →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Curso Remotion · Módulo 1.2 · 2026 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Módulo 2.9 — Logo &amp; Branding · Remotion</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'dark': { 600: '#4b5563', 700: '#374151', 800: '#1f2937', 900: '#111827' },
+            'primary': '#60a5fa'
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f9fafb; color: #111827; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-700 { background-color: #e5e7eb; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-neutral-300 { color: #374151; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .text-white { color: #111827; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) .bg-dark-800\/50 { background-color: rgba(243,244,246,0.5); }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    /* Light mode - cores de acento (trilha blue) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    /* other-trilha nav hover */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #d97706; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* Light mode - remove gradientes */
+    html:not(.dark) .from-blue-900\/40 { --tw-gradient-from: rgba(37,99,235,0.08); }
+    html:not(.dark) .from-blue-900\/30 { --tw-gradient-from: rgba(37,99,235,0.06); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    /* SVG pulse */
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s}
+      .wf-a:nth-child(4){animation-delay:.9s} .wf-a:nth-child(5){animation-delay:1.2s}
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+
+  <!-- NAVIGATION -->
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300">
+            <span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+          </a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinação</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projetos</span></a>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- BREADCRUMB -->
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-blue-400">Início</a><span>/</span>
+      <a href="index.html" class="hover:text-blue-400">Trilha 2</a><span>/</span>
+      <span class="text-blue-400">Módulo 2.9</span>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <header class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+    <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-2xl border border-blue-500/30 p-8">
+      <div class="flex items-center space-x-3 mb-4">
+        <span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-bold tracking-widest uppercase">MÓDULO 2.9</span>
+        <span class="px-3 py-1 bg-dark-700 text-neutral-400 rounded-full text-xs">Trilha 2 · Recursos</span>
+      </div>
+      <h1 class="text-4xl sm:text-5xl font-bold mb-4">™️ Logo &amp; Branding</h1>
+      <p class="text-neutral-300 text-lg leading-relaxed mb-6">Nove animações de logotipo — do focus pull blur-reveal ao RGB split glitch — para dar personalidade à identidade visual de qualquer marca em vídeos Remotion.</p>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+          <div class="text-blue-400 font-bold text-2xl">8</div>
+          <div class="text-neutral-400 text-sm mt-1">Tópicos</div>
+        </div>
+        <div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+          <div class="text-blue-400 font-bold text-2xl">45</div>
+          <div class="text-neutral-400 text-sm mt-1">Minutos</div>
+        </div>
+        <div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+          <div class="text-blue-400 font-bold text-2xl">Int</div>
+          <div class="text-neutral-400 text-sm mt-1">Nível</div>
+        </div>
+        <div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+          <div class="text-blue-400 font-bold text-2xl">9</div>
+          <div class="text-neutral-400 text-sm mt-1">Templates</div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+
+    <!-- DIVISOR -->
+    <h2 class="text-sm font-semibold text-neutral-500 uppercase tracking-widest mb-8 pb-2 border-b border-dark-600">Conteúdo detalhado</h2>
+
+    <!-- TÓPICO 1 -->
+    <section id="topico-1" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+        <h2 class="text-2xl font-bold">🗺️ Visão geral — quando animar o logotipo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O logotipo animado é o <strong class="text-blue-400">cartão de visita em movimento</strong> da marca. A escolha do estilo de animação comunica personalidade: blur-reveal = sofisticação, bounce-drop = energia, glitch = tech/disruptivo, stroke-draw = artesanal/premium.</p>
+
+      <!-- SVG — espectro de personalidade de marca -->
+      <div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-4 mb-6 overflow-hidden">
+        <svg role="img" aria-label="Espectro de personalidade das animações de logo" viewBox="0 0 760 160" class="w-full h-auto" font-family="Inter,sans-serif">
+          <defs>
+            <linearGradient id="m29-grad" x1="0" y1="0" x2="1" y2="0">
+              <stop offset="0" stop-color="#38bdf8"/><stop offset="0.5" stop-color="#3b82f6"/><stop offset="1" stop-color="#60a5fa"/>
+            </linearGradient>
+            <filter id="m29-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+            <pattern id="m29-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#3b82f6" opacity="0.12"/></pattern>
+          </defs>
+          <rect x="0" y="0" width="760" height="160" fill="url(#m29-grid)"/>
+          <!-- barra espectro -->
+          <rect x="40" y="70" width="680" height="20" rx="10" fill="url(#m29-grad)" opacity="0.6"/>
+          <!-- marcadores -->
+          <line x1="40" y1="60" x2="40" y2="100" stroke="#38bdf8" stroke-width="2"/>
+          <line x1="227" y1="60" x2="227" y2="100" stroke="#60a5fa" stroke-width="1.5"/>
+          <line x1="414" y1="60" x2="414" y2="100" stroke="#60a5fa" stroke-width="1.5"/>
+          <line x1="601" y1="60" x2="601" y2="100" stroke="#60a5fa" stroke-width="1.5"/>
+          <line x1="720" y1="60" x2="720" y2="100" stroke="#60a5fa" stroke-width="2"/>
+          <!-- labels acima -->
+          <text x="40" y="48" fill="#38bdf8" font-size="11" font-weight="600" text-anchor="middle">Suave</text>
+          <text x="227" y="48" fill="#60a5fa" font-size="10" text-anchor="middle">Elegante</text>
+          <text x="414" y="48" fill="#60a5fa" font-size="10" text-anchor="middle">Neutro</text>
+          <text x="601" y="48" fill="#60a5fa" font-size="10" text-anchor="middle">Energético</text>
+          <text x="720" y="48" fill="#60a5fa" font-size="11" font-weight="600" text-anchor="middle">Disruptivo</text>
+          <!-- labels abaixo -->
+          <text x="40" y="125" fill="#93c5fd" font-size="9" text-anchor="middle">blur-reveal</text>
+          <text x="40" y="137" fill="#93c5fd" font-size="9" text-anchor="middle">fade-reveal</text>
+          <text x="227" y="125" fill="#93c5fd" font-size="9" text-anchor="middle">stroke-draw</text>
+          <text x="227" y="137" fill="#93c5fd" font-size="9" text-anchor="middle">typewriter</text>
+          <text x="414" y="125" fill="#93c5fd" font-size="9" text-anchor="middle">scale-rotate</text>
+          <text x="414" y="137" fill="#93c5fd" font-size="9" text-anchor="middle">spin-reveal</text>
+          <text x="601" y="125" fill="#93c5fd" font-size="9" text-anchor="middle">bounce-drop</text>
+          <text x="601" y="137" fill="#93c5fd" font-size="9" text-anchor="middle">split-reveal</text>
+          <text x="720" y="125" fill="#93c5fd" font-size="9" text-anchor="middle">glitch-reveal</text>
+        </svg>
+      </div>
+
+      <div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🎯</span> Regra de escolha</h3>
+        <p class="text-neutral-300">Antes de escolher a animação, responda: <em>que adjetivo descreve minha marca?</em> — Sofisticada → <strong class="text-blue-400">blur-reveal</strong>. Confiável → <strong class="text-blue-400">stroke-draw</strong>. Inovadora → <strong class="text-blue-400">glitch-reveal</strong>. Jovem → <strong class="text-blue-400">bounce-drop</strong>. Use no máximo uma animação de logo por vídeo.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">1 logo por vídeo</div><div class="text-neutral-400 text-xs">Mais de uma dilui o impacto</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">no início</div><div class="text-neutral-400 text-xs">Abertura é o lugar certo para a marca</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">duração 2–4s</div><div class="text-neutral-400 text-xs">Animação de logo ≠ intro longo</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">consistência</div><div class="text-neutral-400 text-xs">Mesma animação em todos os vídeos</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 2 -->
+    <section id="topico-2" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+        <h2 class="text-2xl font-bold">🔍 logo-blur-reveal — focus pull fotográfico</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">logo-blur-reveal</strong> imita o <em>focus pull</em> de câmera: o logo começa com blur extremo (desfocado como quando a câmera foca em primeiro plano) e vai ficando nítido progressivamente. O nome da empresa aparece com spring após o logo estar completamente focado.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">blur + spring sequencial</span>
+          <span class="text-xs text-neutral-500 font-mono">logo-blur-reveal.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { useCurrentFrame, useVideoConfig, spring, interpolate } <span class="text-purple-400">from</span> <span class="text-blue-400">"remotion"</span>;
+
+<span class="text-neutral-500">// blur de 20px → 0 em 1.5s</span>
+<span class="text-purple-400">const</span> blur = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-amber-400">0</span>, fps * <span class="text-amber-400">1.5</span>], [<span class="text-amber-400">20</span>, <span class="text-amber-400">0</span>],
+  { extrapolateLeft: <span class="text-emerald-400">"clamp"</span>, extrapolateRight: <span class="text-emerald-400">"clamp"</span> });
+
+<span class="text-neutral-500">// nome aparece DEPOIS do logo estar nítido</span>
+<span class="text-purple-400">const</span> nameProgress = <span class="text-blue-400">spring</span>({
+  frame: Math.<span class="text-blue-400">max</span>(<span class="text-amber-400">0</span>, frame - Math.<span class="text-blue-400">round</span>(fps * <span class="text-amber-400">1.5</span>)),
+  fps, config: { damping: <span class="text-amber-400">12</span>, stiffness: <span class="text-amber-400">100</span> },
+});
+<span class="text-neutral-500">// aplicar: filter: \`blur(\${blur}px)\`</span></pre>
+      </div>
+
+      <!-- tip box -->
+      <div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">Para marcas premium, reduza a <code>stiffness</code> para <strong>60</strong> e aumente o <code>damping</code> para <strong>20</strong>. O nome da empresa vai aparecer mais lentamente, comunicando luxo e confiança — ao contrário do bounce energético do padrão.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">blur 20→0</div><div class="text-neutral-400 text-xs">CSS filter blur animado via interpolate</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">opacity 0.3→1</div><div class="text-neutral-400 text-xs">Simultaneamente com o desfoque</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">frame offset</div><div class="text-neutral-400 text-xs">Math.max(0, frame - delay)</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">translateY nome</div><div class="text-neutral-400 text-xs">spring 20→0 para entrada suave</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 3 -->
+    <section id="topico-3" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+        <h2 class="text-2xl font-bold">⚡ logo-glitch-reveal — RGB split disruptivo</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">logo-glitch-reveal</strong> usa a técnica de <em>RGB channel separation</em>: três cópias do logo (vermelha, verde, azul) ficam deslocadas aleatoriamente (<code>Math.sin</code>) e depois "convergem" para o logo limpo. O efeito é de falha técnica resolvida — perfeito para marcas de tecnologia.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">deslocamento senoidal decrescente</span>
+          <span class="text-xs text-neutral-500 font-mono">logo-glitch-reveal.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// decay: glitch some progressivamente</span>
+<span class="text-purple-400">const</span> decay = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-amber-400">0</span>, <span class="text-amber-400">25</span>], [<span class="text-amber-400">1</span>, <span class="text-amber-400">0</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> });
+
+<span class="text-neutral-500">// canal vermelho: oscilação senoidal × decay</span>
+<span class="text-purple-400">const</span> redOffsetX = Math.<span class="text-blue-400">sin</span>(frame * <span class="text-amber-400">7.3</span>) * <span class="text-amber-400">15</span> * decay;
+<span class="text-purple-400">const</span> blueOffsetX = Math.<span class="text-blue-400">sin</span>(frame * <span class="text-amber-400">9.2</span>) * <span class="text-amber-400">15</span> * decay;
+
+<span class="text-neutral-500">// logo limpo aparece com spring após glitch</span>
+<span class="text-purple-400">const</span> cleanOpacity = <span class="text-blue-400">spring</span>({
+  frame: Math.<span class="text-blue-400">max</span>(<span class="text-amber-400">0</span>, frame - <span class="text-amber-400">25</span>),
+  fps, config: { damping: <span class="text-amber-400">14</span>, stiffness: <span class="text-amber-400">80</span>, mass: <span class="text-amber-400">0.6</span> },
+});</pre>
+      </div>
+
+      <!-- grid fazer vs evitar -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-5">
+          <h4 class="text-emerald-400 font-semibold mb-3 flex items-center"><span class="mr-2">✓</span> Marcas que combinam</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Startups de tecnologia, cybersecurity, games</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Canais de YouTube tech/hacking/programming</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Música eletrônica, eventos EDM, streamers</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5">
+          <h4 class="text-red-400 font-semibold mb-3 flex items-center"><span class="mr-2">✗</span> Marcas que não combinam</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Bancos, saúde, jurídico — passa sensação de erro</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Marcas de luxo — o glitch contradiz o posicionamento</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Conteúdo infantil — pode assustar ou confundir</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">3 cópias RGB</div><div class="text-neutral-400 text-xs">red, green, blue com mixBlendMode screen</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Math.sin × decay</div><div class="text-neutral-400 text-xs">Oscilação que diminui até zero</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">cleanOpacity spring</div><div class="text-neutral-400 text-xs">Logo real aparece após frame 25</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">glow intensity</div><div class="text-neutral-400 text-xs">box-shadow cresce com limpeza</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 4 -->
+    <section id="topico-4" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+        <h2 class="text-2xl font-bold">✏️ logo-stroke-draw — traço SVG desenhado</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">logo-stroke-draw</strong> usa a técnica de <code>strokeDashoffset</code> para simular um traço SVG sendo desenhado em tempo real. Exige que o logotipo seja SVG puro (não imagem rasterizada). É o mais artesanal e premium dos estilos.</p>
+
+      <!-- timeline de como implementar -->
+      <div class="space-y-4 mb-6">
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+            <span class="text-blue-400 font-bold">1</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Obter comprimento do path SVG</h4>
+            <p class="text-sm text-neutral-400">Em React, <code class="font-mono text-blue-400">pathRef.current.getTotalLength()</code> retorna o comprimento total em pixels do path.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+            <span class="text-blue-400 font-bold">2</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Configurar dasharray = comprimento</h4>
+            <p class="text-sm text-neutral-400"><code class="font-mono">strokeDasharray={pathLength}</code> cria um traço que cobre todo o path — o dashoffset controla quanto aparece.</p>
+          </div>
+        </div>
+        <div class="flex items-start space-x-4">
+          <div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+            <span class="text-blue-400 font-bold">3</span>
+          </div>
+          <div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+            <h4 class="font-semibold text-white mb-1">Animar dashoffset de comprimento→0</h4>
+            <p class="text-sm text-neutral-400"><code class="font-mono">interpolate(frame, [0, fps*2], [pathLength, 0])</code> — o traço "se desenha" ao longo de 2 segundos.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">💡</span> Dica prática</h3>
+        <p class="text-neutral-300">Adicione <code>fill="none"</code> no path durante a animação de desenho e use um segundo interpolate para fazer o <code>fill</code> aparecer (<code>fillOpacity 0→1</code>) somente após o traço terminar. O efeito é: desenha o contorno → preenche a cor. Muito mais impactante que só o traço.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">getTotalLength()</div><div class="text-neutral-400 text-xs">Comprimento do path em ref useRef</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">dashoffset L→0</div><div class="text-neutral-400 text-xs">Revela o traço progressivamente</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">fill none→cor</div><div class="text-neutral-400 text-xs">Preenchimento aparece após o traço</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">SVG obrigatório</div><div class="text-neutral-400 text-xs">Não funciona com PNG/JPG</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 5 -->
+    <section id="topico-5" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+        <h2 class="text-2xl font-bold">🏀 logo-bounce-drop — queda com física</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">logo-bounce-drop</strong> usa <code>spring()</code> com <code>damping</code> muito baixo para criar o efeito de um objeto caindo de cima e quicando antes de repousar. É o template mais energético e divertido — ideal para marcas jovens e marcas de entretenimento.</p>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">spring de queda com bounce</span>
+          <span class="text-xs text-neutral-500 font-mono">logo-bounce-drop.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { spring, useCurrentFrame, useVideoConfig } <span class="text-purple-400">from</span> <span class="text-blue-400">"remotion"</span>;
+
+<span class="text-purple-400">const</span> dropY = <span class="text-blue-400">spring</span>({
+  frame, fps,
+  from: <span class="text-amber-400">-300</span>,  <span class="text-neutral-500">// começa 300px acima</span>
+  to: <span class="text-amber-400">0</span>,
+  config: {
+    damping: <span class="text-amber-400">6</span>,     <span class="text-neutral-500">// baixo = muitos bounces</span>
+    stiffness: <span class="text-amber-400">120</span>, <span class="text-neutral-500">// alto = queda rápida</span>
+    mass: <span class="text-amber-400">1.2</span>,     <span class="text-neutral-500">// leve extra de peso</span>
+  },
+});
+
+<span class="text-neutral-500">// Logo "amassa" no bounce usando scaleY</span>
+<span class="text-purple-400">const</span> squash = <span class="text-blue-400">interpolate</span>(Math.<span class="text-blue-400">abs</span>(dropY),
+  [<span class="text-amber-400">0</span>, <span class="text-amber-400">50</span>], [<span class="text-amber-400">0.85</span>, <span class="text-amber-400">1</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> });</pre>
+      </div>
+
+      <!-- grid fazer vs evitar -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+        <div class="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-5">
+          <h4 class="text-emerald-400 font-semibold mb-3 flex items-center"><span class="mr-2">✓</span> Perfeito para</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Canais infantis, educação lúdica, games</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Marcas de esporte, fitness, energia</span></li>
+            <li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Apps e startups com tom descontraído</span></li>
+          </ul>
+        </div>
+        <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5">
+          <h4 class="text-red-400 font-semibold mb-3 flex items-center"><span class="mr-2">✗</span> Inadequado para</h4>
+          <ul class="space-y-2 text-sm text-neutral-300">
+            <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Marcas premium, finanças, saúde</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Contextos formais — prejudica credibilidade</span></li>
+            <li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Logotipos com muito detalhe — squash distorce</span></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">damping 6</div><div class="text-neutral-400 text-xs">Valor baixo = muitos bounces</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">stiffness 120</div><div class="text-neutral-400 text-xs">Alto = queda e bounce rápidos</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">squash scaleY</div><div class="text-neutral-400 text-xs">Esmaga no impacto como cartoon</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">from -300</div><div class="text-neutral-400 text-xs">Começa fora do frame acima</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 6 -->
+    <section id="topico-6" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+        <h2 class="text-2xl font-bold">🔀 logo-split-reveal — metades expandem</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">logo-split-reveal</strong> divide o logotipo horizontalmente ao meio: a metade superior sobe e a inferior desce (ou vice-versa), revelando o fundo — e então as duas metades retornam e se encaixam. É um efeito de "abertura de cortina" aplicado ao próprio logo.</p>
+
+      <div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 mb-6">
+        <h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">💡</span> Técnica de clip-path</h3>
+        <p class="text-neutral-300">O split usa <code>clipPath</code> para criar duas versões do mesmo logo — a metade de cima com <code>clip: inset(0 0 50% 0)</code> e a de baixo com <code>clip: inset(50% 0 0 0)</code>. As duas são animadas com <code>spring translateY</code> em direções opostas. O logo original permanece estático por baixo como âncora visual.</p>
+      </div>
+
+      <div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+        <div class="flex items-center justify-between mb-3">
+          <span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">clip + spring em direções opostas</span>
+          <span class="text-xs text-neutral-500 font-mono">logo-split-reveal.tsx</span>
+        </div>
+        <pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> splitY = <span class="text-blue-400">spring</span>({ frame, fps,
+  from: <span class="text-amber-400">60</span>, to: <span class="text-amber-400">0</span>,
+  config: { damping: <span class="text-amber-400">16</span>, stiffness: <span class="text-amber-400">100</span> },
+});
+
+<span class="text-neutral-500">// metade superior vai para cima, inferior para baixo</span>
+style={{ transform: `translateY(-${splitY}px)`,
+  clipPath: <span class="text-emerald-400">"inset(0 0 50% 0)"</span> }}   <span class="text-neutral-500">// topo</span>
+
+style={{ transform: `translateY(${splitY}px)`,
+  clipPath: <span class="text-emerald-400">"inset(50% 0 0 0)"</span> }}   <span class="text-neutral-500">// base</span></pre>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">clipPath inset</div><div class="text-neutral-400 text-xs">Divide o elemento visualmente</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">±translateY</div><div class="text-neutral-400 text-xs">Opostos saem e retornam</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">logo âncora</div><div class="text-neutral-400 text-xs">Original estático por baixo</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">damping 16</div><div class="text-neutral-400 text-xs">Encaixe com um bounce suave</div></div>
+      </div>
+    </section>
+
+    <!-- TÓPICO 7 — Biblioteca Completa -->
+    <section id="topico-7" class="mb-16">
+      <div class="flex items-center space-x-4 mb-6">
+        <span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+        <h2 class="text-2xl font-bold">📚 Biblioteca completa de Logo &amp; Branding</h2>
+      </div>
+      <p class="text-neutral-300 mb-6 leading-relaxed">Os 9 templates de animação de logotipo — referência rápida com técnica principal:</p>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <div class="text-blue-400 font-bold mb-1">logo-blur-reveal</div>
+          <div class="text-xs text-neutral-500 font-mono mb-2">templates/logo-blur-reveal.tsx</div>
+          <div class="text-sm text-neutral-400">Focus pull: blur 20px→0 + nome com spring</div>
+          <div class="mt-2 text-xs text-cyan-400 font-mono">hook: interpolate blur + spring delay</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <div class="text-blue-400 font-bold mb-1">logo-bounce-drop</div>
+          <div class="text-xs text-neutral-500 font-mono mb-2">templates/logo-bounce-drop.tsx</div>
+          <div class="text-sm text-neutral-400">Queda de -300px com squash no impacto</div>
+          <div class="mt-2 text-xs text-cyan-400 font-mono">hook: spring damping 6 + scaleY squash</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <div class="text-blue-400 font-bold mb-1">logo-fade-reveal</div>
+          <div class="text-xs text-neutral-500 font-mono mb-2">templates/logo-fade-reveal.tsx</div>
+          <div class="text-sm text-neutral-400">Fade + scale sutil — o mais minimalista</div>
+          <div class="mt-2 text-xs text-cyan-400 font-mono">hook: interpolate opacity + spring scale</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <div class="text-blue-400 font-bold mb-1">logo-glitch-reveal</div>
+          <div class="text-xs text-neutral-500 font-mono mb-2">templates/logo-glitch-reveal.tsx</div>
+          <div class="text-sm text-neutral-400">RGB split com deslocamento senoidal decrescente</div>
+          <div class="mt-2 text-xs text-cyan-400 font-mono">hook: Math.sin × decay + cleanOpacity spring</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <div class="text-blue-400 font-bold mb-1">logo-scale-rotate</div>
+          <div class="text-xs text-neutral-500 font-mono mb-2">templates/logo-scale-rotate.tsx</div>
+          <div class="text-sm text-neutral-400">Giro + escala simultâneos com spring</div>
+          <div class="mt-2 text-xs text-cyan-400 font-mono">hook: spring rotate + spring scale</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <div class="text-blue-400 font-bold mb-1">logo-spin-reveal</div>
+          <div class="text-xs text-neutral-500 font-mono mb-2">templates/logo-spin-reveal.tsx</div>
+          <div class="text-sm text-neutral-400">Giro 3D no eixo Y (perspectiva CSS)</div>
+          <div class="mt-2 text-xs text-cyan-400 font-mono">hook: interpolate rotateY + perspective</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <div class="text-blue-400 font-bold mb-1">logo-split-reveal</div>
+          <div class="text-xs text-neutral-500 font-mono mb-2">templates/logo-split-reveal.tsx</div>
+          <div class="text-sm text-neutral-400">Metades do logo saem e retornam</div>
+          <div class="mt-2 text-xs text-cyan-400 font-mono">hook: clipPath inset + spring ±translateY</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <div class="text-blue-400 font-bold mb-1">logo-stroke-draw</div>
+          <div class="text-xs text-neutral-500 font-mono mb-2">templates/logo-stroke-draw.tsx</div>
+          <div class="text-sm text-neutral-400">Traço SVG sendo desenhado em tempo real</div>
+          <div class="mt-2 text-xs text-cyan-400 font-mono">hook: strokeDashoffset L→0 + fillOpacity</div>
+        </div>
+        <div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+          <div class="text-blue-400 font-bold mb-1">logo-typewriter</div>
+          <div class="text-xs text-neutral-500 font-mono mb-2">templates/logo-typewriter.tsx</div>
+          <div class="text-sm text-neutral-400">Ícone + nome digitado letra por letra</div>
+          <div class="mt-2 text-xs text-cyan-400 font-mono">hook: Math.floor(progress × text.length)</div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">9 templates</div><div class="text-neutral-400 text-xs">Do minimalista ao disruptivo</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">SVG obrigatório</div><div class="text-neutral-400 text-xs">Para stroke-draw e spin (3D)</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">damping = personalidade</div><div class="text-neutral-400 text-xs">Baixo = energia, alto = elegância</div></div>
+        <div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">consistência</div><div class="text-neutral-400 text-xs">1 estilo por série de vídeos</div></div>
+      </div>
+    </section>
+
+    <!-- RESUMO (último módulo da trilha 2 → aponta para trilha 3) -->
+    <section class="mb-12">
+      <div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+        <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Resumo do módulo</h2>
+        <div class="space-y-4 mb-8">
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Escolha baseada em personalidade</strong><span class="text-neutral-400"> — blur-reveal = sofisticação, glitch = tech, bounce = energia</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">logo-blur-reveal</strong><span class="text-neutral-400"> — interpolate blur + spring delay para o nome</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">logo-glitch-reveal</strong><span class="text-neutral-400"> — RGB split com Math.sin × decay, cleanOpacity com spring</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">logo-stroke-draw</strong><span class="text-neutral-400"> — strokeDashoffset L→0 exige SVG puro (não raster)</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">logo-bounce-drop</strong><span class="text-neutral-400"> — spring damping 6, squash scaleY no impacto</span></div></div>
+          <div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Trilha 2 concluída!</strong><span class="text-neutral-400"> — você conhece os 27 templates de Recursos (transições, intros, logos)</span></div></div>
+        </div>
+        <div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+          <h3 class="font-semibold text-blue-400 mb-2">Próxima Trilha:</h3>
+          <p class="text-neutral-300">Trilha 3 — Combinação: aprender a compor múltiplos templates em vídeos completos e profissionais</p>
+        </div>
+        <div class="flex flex-col sm:flex-row gap-4">
+          <a href="modulo-2-8.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Módulo 2.8</a>
+          <a href="../trilha3/index.html" class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors">Próxima trilha: Combinação →</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-8">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+      <p>Curso Remotion · Módulo 2.9 · 2026 · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p>
+    </div>
+  </footer>
+
+  <script>
+    const toggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    function applyTheme(theme) {
+      if (theme === 'dark') { html.classList.add('dark'); darkIcon.classList.add('hidden'); lightIcon.classList.remove('hidden'); }
+      else { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); lightIcon.classList.add('hidden'); }
+    }
+    const saved = localStorage.getItem('theme') || 'dark';
+    applyTheme(saved);
+    toggle.addEventListener('click', () => {
+      const next = html.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem('theme', next); applyTheme(next);
+    });
+  </script>
+</body>
+</html>
