@@ -8,6 +8,17 @@ Um curso completo em português, no formato INEMA.CLUB, ensina a usar estes temp
 
 ➡️ **[Acessar o curso](./curso-remotion/index.html)** · 4 trilhas · 19 módulos · 81 templates explicados.
 
+## Onde é usado (ecossistema INEMA)
+
+Estes templates são a **biblioteca de componentes de render** do ecossistema de vídeo INEMA:
+
+- [**videoprodutor**](https://github.com/inematds/skill-videoprodutor) — peça oficial das **camadas 2 e 3**:
+  Text/Intro→Outro = texto cinético; Charts & Data/Content Animation = ilustração de tópico; Cinematic/Background/Transition = camada cinema.
+- [**video-plan-editor**](https://github.com/inematds/skill-video-plan-editor) — render nativo Remotion (roadmap):
+  archetypes por beat/`role` (`hook`→Intro/Title, `point`→Text/Charts, `broll`→Image/Cinematic, `cta`→End Card).
+- [**pixflow**](https://github.com/inematds/pixflow) — par complementar: o PixFlow faz o fundo cinema (parallax 2.5D), estes templates fazem o texto/dados por cima (mesmo motor Remotion).
+- Skills `remotion` / `remotion-best-practices` — aproveitam os 81 templates como **referência** idiomática.
+
 ## Live Demos
 
 See all templates in action at [reactvideoeditor.com/remotion-templates](https://www.reactvideoeditor.com/remotion-templates).
