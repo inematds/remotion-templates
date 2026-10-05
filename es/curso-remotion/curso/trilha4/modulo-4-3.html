@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 4.3 · Data-Story | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha4/modulo-4-3.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha4/modulo-4-3.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha4/modulo-4-3.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha4/modulo-4-3.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../../en/curso-remotion/curso/trilha4/modulo-4-3.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-4-3.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinación</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10" href="index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Proyectos</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-amber-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-amber-400" href="index.html">Trayecto 4</a><span>/</span>
+<span class="text-amber-400">Módulo 4.3</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.3</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">📈 Data-Story</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Los datos por sí solos son aburridos. Los datos contados como una historia son memorables. Este módulo crea un video que guía al espectador por una narrativa de números: gráficos animados, contadores, comparaciones y texto destacado, todo orquestado con <code class="text-amber-400">Series</code> y transiciones <code class="text-amber-400">cross-dissolve</code>.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Temas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avanzado</div><div class="text-xs text-neutral-400">Nivel</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Proyecto</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SVG diagrama fan-out de dados -->
+<div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Los datos ingresan a un orquestador que los divide en gráfico de barras, dona, contador de estadísticas y comparación, y produce un Data-Story coherente" class="w-full h-auto" role="img" viewbox="0 0 1000 210">
+<defs>
+<lineargradient id="m43-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#f59e0b"></stop></lineargradient>
+<filter height="180%" id="m43-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m43-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#f59e0b" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m43-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#fbbf24"></path></marker>
+<marker id="m43-ahc" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"></path></marker>
+</defs>
+<rect fill="url(#m43-grid)" height="210" width="1000" x="0" y="0"></rect>
+<!-- nó de dados -->
+<g filter="url(#m43-glow)"><rect fill="#1f1604" height="50" rx="12" stroke="url(#m43-grad)" stroke-width="2.5" width="130" x="30" y="80"></rect></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="15" font-weight="700" text-anchor="middle" x="95" y="103">datos</text>
+<text fill="#fde68a" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="95" y="120">JSON/props</text>
+<!-- setas fan-out -->
+<g fill="none" opacity="0.6" stroke="#38bdf8" stroke-width="1.6">
+<path d="M160,105 C230,105 240,40 320,40" marker-end="url(#m43-ahc)"></path>
+<path d="M160,105 C230,105 240,80 320,80" marker-end="url(#m43-ahc)"></path>
+<path d="M160,105 C230,105 240,130 320,130" marker-end="url(#m43-ahc)"></path>
+<path d="M160,105 C230,105 240,170 320,170" marker-end="url(#m43-ahc)"></path>
+</g>
+<!-- componentes -->
+<g class="wf-a"><rect fill="#0e1b26" height="40" rx="9" stroke="#38bdf8" stroke-width="1.6" width="130" x="326" y="20"></rect><text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="391" y="44">chart-animation</text></g>
+<g class="wf-a"><rect fill="#1f1604" height="40" rx="9" stroke="#fbbf24" stroke-width="1.6" width="130" x="326" y="62"></rect><text fill="#fbbf24" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="391" y="86">donut-chart</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="40" rx="9" stroke="#38bdf8" stroke-width="1.6" width="130" x="326" y="110"></rect><text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="391" y="134">stat-counter</text></g>
+<g class="wf-a"><rect fill="#1f1604" height="40" rx="9" stroke="#fbbf24" stroke-width="1.6" width="130" x="326" y="152"></rect><text fill="#fbbf24" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="391" y="176">comparison-chart</text></g>
+<!-- setas para resultado -->
+<g fill="none" opacity="0.6" stroke="#fbbf24" stroke-width="1.6">
+<path d="M456,40 C550,40 560,100 640,100" marker-end="url(#m43-ah)"></path>
+<path d="M456,82 C540,82 550,100 640,100" marker-end="url(#m43-ah)"></path>
+<path d="M456,130 C540,130 550,100 640,100" marker-end="url(#m43-ah)"></path>
+<path d="M456,172 C550,172 560,100 640,100" marker-end="url(#m43-ah)"></path>
+</g>
+<!-- resultado -->
+<g filter="url(#m43-glow)"><rect fill="#1f1604" height="60" rx="14" stroke="url(#m43-grad)" stroke-width="2.5" width="310" x="646" y="70"></rect></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="16" font-weight="700" text-anchor="middle" x="801" y="98">Data-Story</text>
+<text fill="#fde68a" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="801" y="118">narrativa coherente con los datos</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">📖 Estructura narrativa — el arco del dato</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Un Data-Story eficaz no empieza con el gráfico — empieza con el <strong class="text-amber-400">problema</strong>. El espectador necesita entender qué está en juego antes de ver el número. La secuencia de escenas crea automáticamente ese arco narrativo cuando ordenas bien el Series.</p>
+<div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">📈</span> El arco de 5 escenas</h3>
+<div class="space-y-2 text-neutral-300 text-sm">
+<div class="flex items-start space-x-3"><span class="text-amber-400 font-bold w-6">1.</span><span><strong>Contexto</strong> — una frase que define el problema. Ej.: "En 2025, el 68% de los videos se vieron sin sonido."</span></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 font-bold w-6">2.</span><span><strong>Dato central</strong> — el número más importante, animado con un stat-counter grande.</span></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 font-bold w-6">3.</span><span><strong>Proporción</strong> — donut chart que muestra cómo se divide ese número.</span></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 font-bold w-6">4.</span><span><strong>Tendencia</strong> — line-chart que muestra la evolución a lo largo del tiempo.</span></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 font-bold w-6">5.</span><span><strong>Conclusión</strong> — texto destacado con el mensaje central + llamado a la acción.</span></div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Regla de 5–8 segundos por escena</h3>
+<p class="text-neutral-300">Cada escena de datos debe durar entre 5 y 8 segundos. Menos de 5 s: el espectador no procesa el dato. Más de 8 s: el ritmo decae y parece una presentación de PowerPoint. Las transiciones cross-dissolve de 10–15 frames cubren el cambio sin interrumpir el flujo.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">5 escenas</div><div class="text-xs text-neutral-400">Arco completo</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">5–8 s</div><div class="text-xs text-neutral-400">Por escena de datos</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Contexto</div><div class="text-xs text-neutral-400">Siempre primero</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Total</div><div class="text-xs text-neutral-400">~30–45 s</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">📊 Gráfico de barras animado — chart-animation</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">chart-animation.tsx</strong> usa un array de valores y anima cada barra creciendo de 0 hasta su altura proporcional. El stagger entre barras hace que el gráfico parezca "llenarse": el ojo del espectador sigue la barra más alta, que normalmente representa el dato más importante.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Barras con stagger</span>
+<span class="text-xs text-neutral-500 font-mono">chart-animation.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> data = [<span class="text-amber-400">42</span>, <span class="text-amber-400">68</span>, <span class="text-amber-400">55</span>, <span class="text-amber-400">91</span>, <span class="text-amber-400">37</span>]; <span class="text-neutral-500">// valores %</span>
+<span class="text-purple-400">const</span> maxH = <span class="text-amber-400">200</span>;        <span class="text-neutral-500">// px de altura máxima</span>
+
+{data.<span class="text-blue-400">map</span>((val, i) =&gt; {
+  <span class="text-purple-400">const</span> delay = i * <span class="text-amber-400">6</span>;  <span class="text-neutral-500">// stagger de 6 frames</span>
+  <span class="text-purple-400">const</span> barHeight = <span class="text-blue-400">interpolate</span>(
+    frame, [delay, delay + <span class="text-amber-400">45</span>],
+    [<span class="text-amber-400">0</span>, (val / <span class="text-amber-400">100</span>) * maxH],
+    { extrapolateRight: <span class="text-amber-400">"clamp"</span>, easing: Easing.out(Easing.quad) }
+  );
+  <span class="text-neutral-500">// rótulo aparece quando barra chega ao topo</span>
+  <span class="text-purple-400">const</span> labelOpacity = <span class="text-blue-400">interpolate</span>(
+    frame, [delay + <span class="text-amber-400">40</span>, delay + <span class="text-amber-400">55</span>], [<span class="text-amber-400">0</span>, <span class="text-amber-400">1</span>],
+    { extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+  );
+  <span class="text-purple-400">return</span> &lt;div key={i} style={{ height: <span class="text-amber-400">`${barHeight}px`</span>, opacity: <span class="text-amber-400">1</span> }}&gt;
+    &lt;span style={{ opacity: labelOpacity }}&gt;{val}%&lt;/span&gt;
+  &lt;/div&gt;;
+})}</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+<h4 class="font-bold text-amber-400 mb-4">✓ Barras que funcionan</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Stagger de 4–8 frames entre barras: perceptible sin ser lento.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>La etiqueta aparece cuando termina la barra: 15 frames después del retraso de la barra.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Easing.out para crecer: empieza rápido y desacelera al llegar a la cima.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Errores de gráficos</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Todas las barras crecen al mismo tiempo: se pierde el efecto de revelación.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>La etiqueta aparece antes de que termine la barra: parece un error.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Easing.in para crecer: empieza demasiado lento y parece trabado.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Stagger</div><div class="text-xs text-neutral-400">delay = i * 6</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Altura</div><div class="text-xs text-neutral-400">(val/100) * maxH</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Easing</div><div class="text-xs text-neutral-400">out(quad)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Etiqueta</div><div class="text-xs text-neutral-400">+15f después de la barra</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🍩 Gráfico de dona de proporción</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">donut-chart.tsx</strong> usa SVG con <code>stroke-dasharray</code> e <code>stroke-dashoffset</code> animados. Cada segmento es un <code>&lt;circle&gt;</code> con la longitud del arco calculada a partir del porcentaje. El reveal progresivo sigue la misma lógica de las barras: Easing.out, revelación de cada porción con un pequeño stagger.</p>
+<!-- Timeline de construção do donut -->
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Calcular la circunferencia y los offsets</h4>
+<p class="text-neutral-300 text-sm"><code>const c = 2 * Math.PI * r</code> — circunferencia del círculo. Para una porción del 42%, la longitud del arco es <code>c * 0.42</code>. O <code>strokeDasharray</code> é <code>"arco restante"</code> y el offset se rota para posicionarlo correctamente.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Animación de strokeDashoffset</h4>
+<p class="text-neutral-300 text-sm">Empieza con <code>dashoffset = c</code> (sector invisible) y anima hasta <code>dashoffset = c - arco</code> (sector completo). El resultado es el sector "dibujándose" en sentido horario.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">El subtítulo aparece después del reveal</h4>
+<p class="text-neutral-300 text-sm">Cada color del gráfico de dona tiene una leyenda que aparece gradualmente cuando termina de aparecer la porción correspondiente. La leyenda y la porción quedan asociadas visualmente.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">strokeDasharray</div><div class="text-xs text-neutral-400">arco + resto</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">strokeDashoffset</div><div class="text-xs text-neutral-400">c → c-arco</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Rotación</div><div class="text-xs text-neutral-400">-90° para iniciar desde arriba</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Subtítulo</div><div class="text-xs text-neutral-400">fade después de reveal</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🔢 stat-counter y text-highlight combinados</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La escena del dato central combina dos plantillas: <code class="text-amber-400">stat-counter.tsx</code> con el número animándose de 0 hasta el valor, y <code class="text-amber-400">text-highlight.tsx</code> que destaca una frase contextual con un background colorido que crece del 0% al 100% del width. Ambos entran en stagger: primero el número y luego el texto.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Counter + highlight en secuencia</span>
+<span class="text-xs text-neutral-500 font-mono">DataScene.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-neutral-500">// número conta de 0 → 68% em 60 frames</span>
+<span class="text-purple-400">const</span> pct = Math.round(<span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">0</span>, <span class="text-amber-400">60</span>], [<span class="text-amber-400">0</span>, <span class="text-amber-400">68</span>],
+  { easing: Easing.out(Easing.cubic), extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+));
+
+<span class="text-neutral-500">// highlight cresce de 0 → 100% a partir do frame 50</span>
+<span class="text-purple-400">const</span> hlWidth = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">50</span>, <span class="text-amber-400">80</span>], [<span class="text-amber-400">0</span>, <span class="text-amber-400">100</span>],
+  { extrapolateLeft: <span class="text-amber-400">"clamp"</span>, extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">return</span> &lt;AbsoluteFill style={{ display:<span class="text-amber-400">"flex"</span>, flexDirection:<span class="text-amber-400">"column"</span>, alignItems:<span class="text-amber-400">"center"</span>, justifyContent:<span class="text-amber-400">"center"</span> }}&gt;
+  &lt;span style={{ fontSize: <span class="text-amber-400">120</span>, fontWeight: <span class="text-amber-400">800</span>, color: <span class="text-amber-400">"#fbbf24"</span> }}&gt;{pct}%&lt;/span&gt;
+  &lt;div style={{ position: <span class="text-amber-400">"relative"</span> }}&gt;
+    &lt;div style={{ position:<span class="text-amber-400">"absolute"</span>, inset:<span class="text-amber-400">0</span>, background:<span class="text-amber-400">"rgba(251,191,36,0.25)"</span>, width:<span class="text-amber-400">`${hlWidth}%`</span> }}/&gt;
+    &lt;span&gt;dos vídeos são assistidos sem som&lt;/span&gt;
+  &lt;/div&gt;
+&lt;/AbsoluteFill&gt;;</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Counter</div><div class="text-xs text-neutral-400">0 → valor en 60f</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Destacado</div><div class="text-xs text-neutral-400">width 0 → 100%</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Stagger</div><div class="text-xs text-neutral-400">Counter primero</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Fuente</div><div class="text-xs text-neutral-400">120px+ para generar impacto</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">⚔️ Gráfico de comparación — comparison-chart</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">comparison-chart.tsx</strong> muestra dos barras lado a lado que crecen de forma diferente: el argumento visual más poderoso para mostrar una diferencia. La regla de oro: la barra «mala» aparece primero, crece un poco y, entonces, la barra «buena» la supera de forma dramática.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+<h4 class="font-bold text-amber-400 mb-4">✓ Comparación impactante</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>La barra negativa (roja) aparece primero: ancla baja.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>La barra positiva (ámbar/verde) crece después y la supera: drama visual.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>La etiqueta de diferencia porcentual aparece con spring en la parte superior de la barra más alta.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Comparación débil</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Ambas barras crecen al mismo tiempo: se pierde el efecto de «adelantamiento».</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Colores similares en ambos lados: la comparación no queda clara.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Sin una etiqueta de diferencia, el espectador tiene que calcularla mentalmente.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Orden</div><div class="text-xs text-neutral-400">Malo → bueno</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Delay</div><div class="text-xs text-neutral-400">+15f para la 2.ª barra</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Colores</div><div class="text-xs text-neutral-400">Rojo vs. ámbar</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Δ%</div><div class="text-xs text-neutral-400">Spring en la parte superior</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🔀 Transiciones cross-dissolve entre escenas</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El cross-dissolve es la transición ideal para Data-Story: lo bastante fluida para no interrumpir el razonamiento, pero marca claramente el cambio de escena. Se implementa superponiendo dos Sequence con overlap y animando las opacidades en sentidos opuestos durante los frames de superposición.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Fundido cruzado manual con superposición</span>
+<span class="text-xs text-neutral-500 font-mono">DataStory.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// Cena A: frames 0–90 | Cena B: frames 78–168 | overlap: 78–90</span>
+<span class="text-purple-400">const</span> DISSOLVE = <span class="text-amber-400">12</span>; <span class="text-neutral-500">// frames de sobreposição</span>
+
+<span class="text-purple-400">return</span> (
+  &lt;AbsoluteFill&gt;
+    &lt;Sequence from={<span class="text-amber-400">0</span>} durationInFrames={<span class="text-amber-400">90</span>}&gt;
+      &lt;div style={{ opacity: <span class="text-blue-400">interpolate</span>(frame,
+        [<span class="text-amber-400">90</span> - DISSOLVE, <span class="text-amber-400">90</span>], [<span class="text-amber-400">1</span>, <span class="text-amber-400">0</span>], { extrapolateLeft: <span class="text-amber-400">"clamp"</span>, extrapolateRight: <span class="text-amber-400">"clamp"</span> }) }}&gt;
+        &lt;CenaA /&gt;
+      &lt;/div&gt;
+    &lt;/Sequence&gt;
+    &lt;Sequence from={<span class="text-amber-400">90</span> - DISSOLVE}&gt;
+      &lt;div style={{ opacity: <span class="text-blue-400">interpolate</span>(frame,
+        [<span class="text-amber-400">90</span> - DISSOLVE, <span class="text-amber-400">90</span>], [<span class="text-amber-400">0</span>, <span class="text-amber-400">1</span>], { extrapolateLeft: <span class="text-amber-400">"clamp"</span>, extrapolateRight: <span class="text-amber-400">"clamp"</span> }) }}&gt;
+        &lt;CenaB /&gt;
+      &lt;/div&gt;
+    &lt;/Sequence&gt;
+  &lt;/AbsoluteFill&gt;
+);</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> 10–15 fotogramas de disolución</h3>
+<p class="text-neutral-300">Una disolvencia de 10 fotogramas (0.33 s a 30fps) casi no se percibe, pero suaviza el corte. Una disolvencia de 15 fotogramas (0.5 s) se nota y es más elegante. Por encima de 20 fotogramas empieza a parecer intencionalmente dramática; úsala solo si quieres ese efecto.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Overlap</div><div class="text-xs text-neutral-400">10–15 fotogramas</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Escena A</div><div class="text-xs text-neutral-400">opacity 1 → 0</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Escena B</div><div class="text-xs text-neutral-400">opacity 0 → 1</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">extrapolate</div><div class="text-xs text-neutral-400">clamp en ambos</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏁</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Arco de 5 escenas</strong><span class="text-neutral-400"> — contexto → dato → proporción → tendencia → conclusión.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Barras con stagger</strong><span class="text-neutral-400"> — delay = i * 6, etiqueta +15f después de la barra, Easing.out(quad).</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Dona mediante SVG</strong><span class="text-neutral-400"> — strokeDashoffset animado de c a c-arco con rotación de -90°.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Counter + highlight</strong><span class="text-neutral-400"> — número grande con width animada debajo del texto contextual.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Comparación dramática</strong><span class="text-neutral-400"> — la barra mala aparece primero; la buena la supera con un delay de 15 fotogramas.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Fundido cruzado</strong><span class="text-neutral-400"> — 12 frames de superposición, opacidades inversas entre escenas consecutivas.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-amber-400 mb-2">Próximo módulo:</h3>
+<p class="text-neutral-300">4.4 — Reels / Shorts: video vertical 9:16, typewriter, glitch, sound-wave, bokeh y recordatorio para suscribirse.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="modulo-4-2.html">← Módulo 4.2</a>
+<a class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors" href="modulo-4-4.html">Próximo módulo →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Curso de Remotion · Módulo 4.3 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

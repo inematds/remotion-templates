@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 2.6 · Cinemático | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (blue T2) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes m26-shake { 0%,100% { transform: translate(0,0); } 20% { transform: translate(-2px, 1px); } 40% { transform: translate(2px,-1px); } 60% { transform: translate(-1px,2px); } 80% { transform: translate(1px,-2px); } }
+    @media (prefers-reduced-motion: no-preference) {
+      .m26-s { animation: m26-shake 0.6s ease-in-out infinite; }
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha2/modulo-2-6.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha2/modulo-2-6.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha2/modulo-2-6.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha2/modulo-2-6.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../../en/curso-remotion/curso/trilha2/modulo-2-6.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-2-6.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinación</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Proyectos</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Trayecto 2</a><span>/</span>
+<span class="text-blue-400">Módulo 2.6</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MÓDULO 2.6</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🎬 Cinemático</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Nueve templates que emulan técnicas de cámara y posproducción cinematográficas: movimiento de cámara, film burn, ken burns, letterbox, parallax y más. Cada efecto transforma un video común en una narrativa visual con profundidad cinematográfica.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">8</div><div class="text-xs text-neutral-400">Temas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">50</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Medio</div><div class="text-xs text-neutral-400">Nivel</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Práctico</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SVG diagrama das técnicas cinematográficas -->
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Técnicas cinematográficas emuladas por Remotion: temblor, blur, reveal, parallax y zoom" class="w-full h-auto" role="img" viewbox="0 0 1000 220">
+<defs>
+<lineargradient id="m26-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#3b82f6"></stop></lineargradient>
+<filter height="180%" id="m26-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m26-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.09" r="1.3"></circle></pattern>
+<marker id="m26-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#60a5fa"></path></marker>
+</defs>
+<rect fill="url(#m26-grid)" height="220" width="1000" x="0" y="0"></rect>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="500" y="28">Técnicas de cámara y posproducción → Remotion</text>
+<!-- Câmera física -->
+<g filter="url(#m26-glow)"><rect fill="#0e1622" height="110" rx="14" stroke="url(#m26-grad)" stroke-width="2.5" width="140" x="40" y="50"></rect></g>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="110" y="82">📷 Cámara</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="110" y="100">camera-shake</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="110" y="116">whip-pan</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="110" y="132">ken-burns</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="110" y="148">zoom-pulse</text>
+<path d="M180,105 L230,105" fill="none" marker-end="url(#m26-ah)" opacity="0.6" stroke="#60a5fa" stroke-width="1.8"></path>
+<!-- Composição -->
+<rect fill="#0e1622" height="110" rx="14" stroke="#38bdf8" stroke-width="2" width="140" x="238" y="50"></rect>
+<text fill="#bae6fd" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="308" y="82">🎞️ Composición</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="308" y="100">letterbox-reveal</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="308" y="116">parallax-pan</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="308" y="132">spotlight-reveal</text>
+<path d="M378,105 L428,105" fill="none" marker-end="url(#m26-ah)" opacity="0.6" stroke="#60a5fa" stroke-width="1.8"></path>
+<!-- Pós-produção -->
+<rect fill="#0e1622" height="110" rx="14" stroke="#60a5fa" stroke-width="2" width="140" x="436" y="50"></rect>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="506" y="82">🎨 Posprod.</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="506" y="100">film-burn</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="506" y="116">vignette-pulse</text>
+<path d="M576,105 L626,105" fill="none" marker-end="url(#m26-ah)" opacity="0.6" stroke="#60a5fa" stroke-width="1.8"></path>
+<!-- Resultado -->
+<g filter="url(#m26-glow)"><rect fill="#0e1622" height="126" rx="14" stroke="url(#m26-grad)" stroke-width="2.5" width="310" x="634" y="42"></rect></g>
+<text fill="#60a5fa" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="789" y="70">Remotion: translate + sin + interpolate</text>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="789" y="90">temblor → sin(frame) * amplitude * decay</text>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="789" y="108">motion blur → filter blur proporcional a la vel.</text>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="789" y="126">clip-path → spotlight · letterbox · reveal</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="789" y="144">todo mediante frame → determinístico</text>
+<text fill="#6b7280" font-family="Inter,sans-serif" font-size="11" font-style="italic" text-anchor="middle" x="500" y="196">Técnica física → fórmula matemática → render perfecto cada vez</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🎬 Vista general — imitar el cine con matemáticas</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Las plantillas cinemáticas comparten una filosofía: cada efecto físico de cámara o de posproducción puede describirse como una <strong class="text-blue-400">función matemática del frame</strong>. El temblor de cámara es <code>sin(frame)</code> con decaimiento. Film burn es un gradiente radial con intensidad variable. Ken Burns es escala + traslación lineal.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Tres categorías internas</h3>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Movimiento de cámara:</strong> <code class="text-blue-400">camera-shake</code>, <code class="text-blue-400">whip-pan</code>, <code class="text-blue-400">ken-burns</code>, <code class="text-blue-400">zoom-pulse</code> — mueven la imagen o crean la ilusión de movimiento de lente.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Composición de pantalla:</strong> <code class="text-blue-400">letterbox-reveal</code>, <code class="text-blue-400">parallax-pan</code>, <code class="text-blue-400">spotlight-reveal</code> — controlan lo que es visible y cómo se relacionan las capas.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Efectos de posproducción:</strong> <code class="text-blue-400">film-burn</code>, <code class="text-blue-400">vignette-pulse</code> — superponen capas de textura o sombra sobre el contenido.</span></li>
+</ul>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Combinar con moderación</h3>
+<p class="text-neutral-300">Los efectos cinemáticos son como condimentos: usa uno o dos por escena, no todos al mismo tiempo. <code>camera-shake</code> + <code>film-burn</code> en el mismo momento crea un clímax impactante. Los mismos dos efectos durante todo el video causan fatiga visual.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">9 plantillas</div><div class="text-xs text-neutral-400">En esta categoría</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">3 subgrupos</div><div class="text-xs text-neutral-400">Cámara · composición · posproducción</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">sin(frame)</div><div class="text-xs text-neutral-400">Patrón de temblor</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">clip-path</div><div class="text-xs text-neutral-400">Reveals y reveals</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">📳 camera-shake — temblor que decae</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">camera-shake</code> simula el temblor de una cámara en mano: comienza intenso y decae exponencialmente hasta que el movimiento se detiene. La técnica central es <strong class="text-blue-400">sin(frame) multiplicado por una amplitud que disminuye con el frame</strong>.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Temblor con decaimiento exponencial</span>
+<span class="text-xs text-neutral-500 font-mono">camera-shake.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> { fps } = <span class="text-blue-400">useVideoConfig</span>();
+<span class="text-neutral-500">// amplitude decai de maxAmp até 0 ao longo do impacto</span>
+<span class="text-purple-400">const</span> maxAmp = <span class="text-blue-400">18</span>;
+<span class="text-purple-400">const</span> decayFrames = fps * <span class="text-blue-400">1.5</span>;   <span class="text-neutral-500">// 1.5s de tremor</span>
+<span class="text-purple-400">const</span> amplitude = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-blue-400">0</span>, decayFrames], [maxAmp, <span class="text-blue-400">0</span>], { extrapolateRight: <span class="text-blue-400">"clamp"</span> }
+);
+<span class="text-purple-400">const</span> shakeX = Math.<span class="text-blue-400">sin</span>(frame * <span class="text-blue-400">1.7</span>) * amplitude;
+<span class="text-purple-400">const</span> shakeY = Math.<span class="text-blue-400">cos</span>(frame * <span class="text-blue-400">2.3</span>) * amplitude * <span class="text-blue-400">0.6</span>;
+<span class="text-neutral-500">// aplicar: transform: `translate(${shakeX}px, ${shakeY}px)`</span></pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Por qué usar multiplicadores diferentes en X e Y</h3>
+<p class="text-neutral-300">Los valores <code>1.7</code> e <code>2.3</code> son intencionalmente distintos entre sí, sin ser múltiplos. Si fueran iguales (o uno múltiplo del otro), los ciclos de X e Y se sincronizarían y crearían un patrón repetitivo visible. Los valores primos o irracionales generan una trayectoria más orgánica y caótica, parecida a un temblor real.</p>
+</div>
+<!-- Timeline de intensidade do shake -->
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Frame 0 — impacto máximo</h4>
+<p class="text-neutral-300 text-sm">La amplitud está en su punto máximo. El desplazamiento puede ser de ±18px. Úsalo para simular una explosión, un golpe o un corte abrupto.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Frames intermedios — decaimiento</h4>
+<p class="text-neutral-300 text-sm">La amplitud cae linealmente mediante <code>interpolate</code>. El temblor persiste, pero se debilita, como la vibración después de un impacto físico que se disipa.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Después de decayFrames: estabilidad</h4>
+<p class="text-neutral-300 text-sm"><code>extrapolateRight: "clamp"</code> garantiza que la amplitud no se vuelva negativa. La cámara se detiene por completo y la escena permanece estable.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Archivo</div><div class="text-xs text-neutral-400">camera-shake.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Técnica</div><div class="text-xs text-neutral-400">sin * decaimiento</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Duración</div><div class="text-xs text-neutral-400">fps * 1.5 predeterminado</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Uso</div><div class="text-xs text-neutral-400">Impacto · tensión</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🔥 film-burn — light leak cálido</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">film-burn</code> superpone manchas de luz anaranjada y amarilla que crecen y desaparecen en loop, imitando el efecto de exposición a la luz en una película física. La intensidad de las manchas sigue una curva en forma de campana: aparece de la nada, alcanza el pico en el medio y desaparece.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🌡️</span> La curva en forma de campana de la intensidad</h3>
+<p class="text-neutral-300 mb-3">El pico en el medio crea la sensación de que la luz «se filtra» y después «se cierra». Tres gradientes radiales con posiciones oscilantes dan la apariencia orgánica e impredecible del film burn real.</p>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed bg-dark-800 rounded-lg p-4"><span class="text-purple-400">const</span> totalFrames = fps * <span class="text-blue-400">3</span>;
+<span class="text-neutral-500">// intensidade em sino: 0 → 0.85 → 0</span>
+<span class="text-purple-400">const</span> intensity = <span class="text-blue-400">interpolate</span>(
+  frame,
+  [<span class="text-blue-400">0</span>, totalFrames * <span class="text-blue-400">0.5</span>, totalFrames],
+  [<span class="text-blue-400">0</span>, <span class="text-blue-400">0.85</span>, <span class="text-blue-400">0</span>],
+  { extrapolateRight: <span class="text-blue-400">"clamp"</span> }
+);
+<span class="text-neutral-500">// posição oscilante para parecer "vazamento" orgânico</span>
+<span class="text-purple-400">const</span> xShift1 = <span class="text-blue-400">50</span> + Math.<span class="text-blue-400">sin</span>(frame * <span class="text-blue-400">0.05</span>) * <span class="text-blue-400">30</span>;</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">✓ Qué HACER</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Usar en transiciones entre escenas para ocultar el corte.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Combinar con noise-grain para lograr el look completo de película antigua.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Ajusta la intensidad máxima (0.85) para que sea más o menos sutil.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Qué NO hacer</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar en videos con una paleta de colores fríos: el naranja cálido contrasta demasiado.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Dejar en loop continuo: pierde impacto después de la segunda aparición.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Intensidad muy alta (&gt;0.9) sobre texto: ilegible.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Archivo</div><div class="text-xs text-neutral-400">film-burn.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Técnica</div><div class="text-xs text-neutral-400">radial-gradient overlay</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Curva</div><div class="text-xs text-neutral-400">Campana 0→0.85→0</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Uso</div><div class="text-xs text-neutral-400">Transiciones · estética</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🎞️ letterbox-reveal — barras negras que se retraen</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">letterbox-reveal</code> comienza con barras negras cubriendo la parte superior e inferior de la pantalla —el formato cinematográfico letterbox 2.35:1— y las retrae con el tiempo para revelar la imagen completa. El efecto comunica al instante «este es un momento cinematográfico».</p>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Las matemáticas de las barras</h3>
+<p class="text-neutral-300">Cada barra tiene una altura inicial que cubre ~12% de la pantalla (el estándar del letterbox 2.35:1 en 16:9). El spring anima esta altura hasta llegar a cero. Como el spring usa <code>clamp</code>, las barras nunca van hacia valores negativos; desaparecen limpiamente.</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Barras con revelado spring</span>
+<span class="text-xs text-neutral-500 font-mono">letterbox-reveal.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> { height, fps } = <span class="text-blue-400">useVideoConfig</span>();
+<span class="text-purple-400">const</span> barH = height * <span class="text-blue-400">0.12</span>;  <span class="text-neutral-500">// 12% = letterbox 2.35:1</span>
+<span class="text-purple-400">const</span> s = <span class="text-blue-400">spring</span>({ frame, fps, config: { damping: <span class="text-blue-400">18</span>, stiffness: <span class="text-blue-400">60</span> } });
+<span class="text-neutral-500">// barra superior: começa em barH e vai para 0</span>
+<span class="text-purple-400">const</span> topBarH = <span class="text-blue-400">interpolate</span>(s, [<span class="text-blue-400">0</span>, <span class="text-blue-400">1</span>], [barH, <span class="text-blue-400">0</span>]);
+<span class="text-neutral-500">// div: position absolute, top: 0, height: topBarH, bg: black</span></pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Archivo</div><div class="text-xs text-neutral-400">letterbox-reveal.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Hook</div><div class="text-xs text-neutral-400">spring + interpolate</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Formato</div><div class="text-xs text-neutral-400">2.35:1 (12%)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Uso</div><div class="text-xs text-neutral-400">Intros · apertura</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🔦 spotlight-reveal — clip-path con círculo que se expande</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">spotlight-reveal</code> usa <code>clip-path: circle()</code> para revelar el contenido desde un punto central, como un foco que se abre. El radio del círculo aumenta desde cero hasta cubrir toda la pantalla con el paso del tiempo.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🔵</span> Clip-path circle en CSS</h3>
+<p class="text-neutral-300 mb-3">La propiedad <code>clip-path: circle(rPx at xPx yPx)</code> es compatible de forma nativa y eficiente en el browser. En el render de Remotion se renderiza mediante Puppeteer con soporte total. El radio puede calcularse como porcentaje de la diagonal de la pantalla para garantizar una cobertura total.</p>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed bg-dark-800 rounded-lg p-4"><span class="text-purple-400">const</span> { width, height, fps } = <span class="text-blue-400">useVideoConfig</span>();
+<span class="text-purple-400">const</span> maxRadius = Math.<span class="text-blue-400">sqrt</span>(width ** <span class="text-blue-400">2</span> + height ** <span class="text-blue-400">2</span>) / <span class="text-blue-400">2</span>;
+<span class="text-purple-400">const</span> s = <span class="text-blue-400">spring</span>({ frame, fps, config: { damping: <span class="text-blue-400">20</span>, stiffness: <span class="text-blue-400">50</span> } });
+<span class="text-purple-400">const</span> radius = s * maxRadius;
+<span class="text-neutral-500">// style: clipPath: `circle(${radius}px at 50% 50%)`</span></pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">✓ Qué HACER</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Cambiar el centro (<code>at X% Y%</code>) para revelar desde una esquina o desde donde debe dirigirse la mirada primero.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Usar un damping alto (&gt;18) para un reveal suave sin bounce.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Combinar con vignette-pulse para mantener el foco incluso después del reveal.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Qué NO hacer</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar un radio menor que la diagonal: deja visibles las esquinas oscuras.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Stiffness demasiado alto: un spring con bounce al revelar una imagen parece un glitch.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Aplicar en transiciones muy cortas (&lt;15 frames): el efecto no aparece.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Archivo</div><div class="text-xs text-neutral-400">spotlight-reveal.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Técnica</div><div class="text-xs text-neutral-400">clip-path circle</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Radio</div><div class="text-xs text-neutral-400">0 → diagonal/2</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Uso</div><div class="text-xs text-neutral-400">Reveal dramático</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🌑 vignette-pulse vs. whip-pan — dos estilos opuestos</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">vignette-pulse</code> es sutil y emocional: oscurece los bordes de la pantalla en pulsos y enfoca la mirada en el centro. El <code class="text-blue-400">whip-pan</code> es agresivo y dinámico: un desplazamiento horizontal rápido con blur que simula el paneo de cámara a máxima velocidad.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">vignette-pulse — sutil, enfoque</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Degradado radial negro en los bordes con opacidad pulsante mediante una onda sinusoidal.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Opacidad: <code>0.3 + sin(frame * 0.1) * 0.15</code> — pulso suave y lento.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Ideal para documentales, entrevistas y enfoque narrativo.</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h4 class="font-bold text-neutral-300 mb-4">whip-pan — enérgico, corte</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>TranslateX rápido con motion blur mediante <code>filter: blur()</code> proporcional a la velocidad.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Velocidad: <code>interpolate(frame, [0, dur/2, dur], [0, maxVel, 0])</code>.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Ideal para transiciones entre escenas, videos de acción y montajes rápidos.</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Desenfoque de movimiento según la velocidad</span>
+<span class="text-xs text-neutral-500 font-mono">whip-pan.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> velocity = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-blue-400">0</span>, durationInFrames / <span class="text-blue-400">2</span>, durationInFrames],
+  [<span class="text-blue-400">0</span>, <span class="text-blue-400">400</span>, <span class="text-blue-400">0</span>], { extrapolateRight: <span class="text-blue-400">"clamp"</span> }
+);
+<span class="text-purple-400">const</span> blurAmount = Math.<span class="text-blue-400">abs</span>(velocity) / <span class="text-blue-400">80</span>;
+<span class="text-neutral-500">// style: { transform: `translateX(${velocity}px)`, filter: `blur(${blurAmount}px)` }</span></pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">vignette</div><div class="text-xs text-neutral-400">opacidad de onda sinusoidal</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">whip-pan</div><div class="text-xs text-neutral-400">velocity + blur</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Viñeta</div><div class="text-xs text-neutral-400">Enfoque emocional</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Whip</div><div class="text-xs text-neutral-400">Transición rápida</div></div>
+</div>
+</section>
+<!-- TÓPICO 7 — Biblioteca completa -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">📚 Biblioteca completa — las 9 plantillas</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Referencia rápida de todas las plantillas cinemáticas, con archivo, técnica principal y contexto de uso.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+<div class="grid grid-cols-3 gap-0 bg-dark-700 px-4 py-3 text-xs font-semibold text-neutral-400 uppercase tracking-wide">
+<span>Plantilla</span><span>Archivo</span><span>Técnica central</span>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">camera-shake</span>
+<span class="font-mono text-xs text-neutral-400">camera-shake.tsx</span>
+<span class="text-xs text-neutral-300">sin(frame) × amplitud decreciente</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">film-burn</span>
+<span class="font-mono text-xs text-neutral-400">film-burn.tsx</span>
+<span class="text-xs text-neutral-300">radial-gradient overlay con curva de campana</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">ken-burns</span>
+<span class="font-mono text-xs text-neutral-400">ken-burns.tsx</span>
+<span class="text-xs text-neutral-300">Animación CSS de escala + traslación</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">letterbox-reveal</span>
+<span class="font-mono text-xs text-neutral-400">letterbox-reveal.tsx</span>
+<span class="text-xs text-neutral-300">spring · barras 12% → 0</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">parallax-pan</span>
+<span class="font-mono text-xs text-neutral-400">parallax-pan.tsx</span>
+<span class="text-xs text-neutral-300">interpolate · translateX por capa</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">spotlight-reveal</span>
+<span class="font-mono text-xs text-neutral-400">spotlight-reveal.tsx</span>
+<span class="text-xs text-neutral-300">spring · clip-path circle() 0→diagonal</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">vignette-pulse</span>
+<span class="font-mono text-xs text-neutral-400">vignette-pulse.tsx</span>
+<span class="text-xs text-neutral-300">radial-gradient · opacidad de onda sinusoidal</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">whip-pan</span>
+<span class="font-mono text-xs text-neutral-400">whip-pan.tsx</span>
+<span class="text-xs text-neutral-300">velocidad de translateX · blur proporcional</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">zoom-pulse</span>
+<span class="font-mono text-xs text-neutral-400">zoom-pulse.tsx</span>
+<span class="text-xs text-neutral-300">sin(frame) · scale en pulso rítmico</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Total</div><div class="text-xs text-neutral-400">9 plantillas</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Cámara</div><div class="text-xs text-neutral-400">4 plantillas</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Composición</div><div class="text-xs text-neutral-400">3 plantillas</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Posproducción</div><div class="text-xs text-neutral-400">2 plantillas</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Tres categorías</strong><span class="text-neutral-400"> — movimiento de cámara, composición de pantalla y posproducción. Cada una resuelve un problema diferente.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">camera-shake</strong><span class="text-neutral-400"> — <code>sin(frame) × amplitude</code> con decaimiento mediante interpolate. Los multiplicadores que no son múltiplos crean una trayectoria orgánica.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">film-burn</strong><span class="text-neutral-400"> — curva de campana (0→0.85→0) con gradientes radiales de posición oscilante.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">spotlight-reveal</strong><span class="text-neutral-400"> — <code>clip-path: circle()</code> con el radio creciendo desde cero hasta la diagonal completa.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Moderación</strong><span class="text-neutral-400"> — uno o dos efectos cinemáticos por escena. Todos juntos destruyen el impacto individual.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Conclusión de la Ruta 2:</h3>
+<p class="text-neutral-300">Dominaste las tres categorías de recursos visuales de Remotion: imagen y medios, fondos y efectos cinematográficos. La Ruta 3 — Combinación — muestra cómo encadenar estas plantillas en secuencias narrativas completas.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="modulo-2-5.html">← Módulo 2.5</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="index.html">↩ Ruta 2 — índice</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Curso de Remotion · Módulo 2.6 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

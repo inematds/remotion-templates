@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 2.2 · Charts &amp; Data | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha2/modulo-2-2.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha2/modulo-2-2.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha2/modulo-2-2.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha2/modulo-2-2.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-2-2.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../../es/curso-remotion/curso/trilha2/modulo-2-2.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Resources</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combination</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projects</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Track 2</a><span>/</span>
+<span class="text-blue-400">Module 2.2</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MODULE 2.2</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">📊 Charts &amp; Data</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">9 templates that turn numbers into animated visuals using pure SVG and interpolate—with no Chart.js or D3. From bars growing in a stagger to a progress ring and a numeric counter with commas.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">9</div><div class="text-xs text-neutral-400">Templates</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">45</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Inter</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">SVG</div><div class="text-xs text-neutral-400">Type</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SVG hero conceitual — bar chart crescendo -->
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Raw data goes into an SVG with interpolate and generates animated bars growing from the baseline" class="w-full h-auto" role="img" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="m22-grad" x1="0" x2="0" y1="0" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#3b82f6"></stop></lineargradient>
+<filter height="180%" id="m22-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m22-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m22-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#60a5fa"></path></marker>
+</defs>
+<rect fill="url(#m22-grid)" height="200" width="1000" x="0" y="0"></rect>
+<!-- dados -->
+<g filter="url(#m22-glow)"><rect fill="#0e1622" height="52" rx="10" stroke="url(#m22-grad)" stroke-width="2.5" width="120" x="30" y="74"></rect></g>
+<text fill="#60a5fa" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="90" y="97">data[ ]</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="90" y="114">[45, 72, 58, 90]</text>
+<path d="M150,100 L208,100" fill="none" marker-end="url(#m22-ah)" opacity="0.6" stroke="#60a5fa" stroke-width="2"></path>
+<!-- interpolate box -->
+<rect fill="#0e1622" height="52" rx="10" stroke="#38bdf8" stroke-width="2" width="150" x="214" y="74"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="289" y="97">interpolate()</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="289" y="114">frame → height</text>
+<path d="M364,100 L422,100" fill="none" marker-end="url(#m22-ah)" opacity="0.6" stroke="#60a5fa" stroke-width="2"></path>
+<!-- bar chart visual -->
+<rect fill="#0e1622" height="130" rx="10" stroke="#374151" stroke-width="1.5" width="340" x="428" y="40"></rect>
+<!-- eixo x -->
+<line stroke="#374151" stroke-width="1" x1="448" x2="748" y1="150" y2="150"></line>
+<!-- barras animadas (representadas como retângulos com alturas diferentes) -->
+<g class="wf-a">
+<rect fill="#3b82f6" height="32" opacity="0.85" rx="4" width="38" x="468" y="118"></rect>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="487" y="163">Jan</text>
+</g>
+<g class="wf-a">
+<rect fill="#60a5fa" height="52" opacity="0.85" rx="4" width="38" x="528" y="98"></rect>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="547" y="163">Feb</text>
+</g>
+<g class="wf-a">
+<rect fill="#93c5fd" height="42" opacity="0.85" rx="4" width="38" x="588" y="108"></rect>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="607" y="163">Sea</text>
+</g>
+<g class="wf-a">
+<rect fill="#3b82f6" height="67" opacity="0.85" rx="4" width="38" x="648" y="83"></rect>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="667" y="163">Abr</text>
+</g>
+<!-- label stagger -->
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="598" y="30">stagger: each bar grows with delay = i × 3 frames</text>
+<!-- resultado -->
+<path d="M768,100 L826,100" fill="none" marker-end="url(#m22-ah)" opacity="0.6" stroke="#60a5fa" stroke-width="2"></path>
+<g filter="url(#m22-glow)"><rect fill="#0e1622" height="52" rx="10" stroke="url(#m22-grad)" stroke-width="2" width="130" x="832" y="74"></rect></g>
+<text fill="#60a5fa" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="897" y="97">video</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="897" y="114">animated chart</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">📊 Why use pure SVG instead of Chart.js?</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Chart libraries like Chart.js and D3 are designed for the browser — they depend on the DOM, events, and internal state. In Remotion, <strong class="text-blue-400">each frame is calculated independently and deterministically</strong>. Pure SVG with interpolate is the right approach: each visual element's value is a direct function of the frame.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> The mental model for charts in Remotion</h3>
+<p class="text-neutral-300 mb-3">Each visual element (bar, dot, arc) has <strong>a dimension that grows</strong> according to the frame. The formula is always the same:</p>
+<div class="bg-dark-800/80 rounded-lg p-4 font-mono text-sm text-neutral-300">
+<span class="text-blue-300">const</span> progress = <span class="text-blue-400">interpolate</span>(frame, [startFrame, endFrame], [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>], {'{'}extrapolateRight: <span class="text-emerald-400">"clamp"</span>{'}'});<br/>
+<span class="text-blue-300">const</span> height = targetHeight * progress; <span class="text-neutral-500">// the SVG uses this height</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Pure SVG: advantages</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>100% deterministic — same frame, same pixel.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Full timing control: each bar has its own stagger.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Zero extra dependencies — the project’s smallest bundle.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Chart.js in Remotion: problems</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Internal animations don’t sync with the Remotion frame.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Canvas may render differently in headless Chrome.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Hard to customize timing and easing.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Paradigm</div><div class="text-xs text-neutral-400">frame → dimension</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Tool</div><div class="text-xs text-neutral-400">SVG + interpolate</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Stagger</div><div class="text-xs text-neutral-400">i × delay offset</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">No dependencies</div><div class="text-xs text-neutral-400">Zero libraries</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">📊 chart-animation — staggered SVG bars</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">chart-animation.tsx</code> is the reference template for bar charts. Each bar grows from the bottom with a delay proportional to its index—the stagger adds visual rhythm and visually separates the information.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">chart-animation.tsx — staggered bars</span>
+<span class="text-xs text-neutral-500 font-mono">templates/chart-animation.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed">{data.<span class="text-blue-400">map</span>((point, i) =&gt; {
+  <span class="text-purple-400">const</span> barHeight = (point.y / <span class="text-emerald-400">100</span>) * (chartHeight - padding * <span class="text-emerald-400">2</span>);
+
+  <span class="text-purple-400">const</span> barProgress = <span class="text-blue-400">interpolate</span>(
+    frame,
+    [i * <span class="text-emerald-400">3</span>, <span class="text-emerald-400">15</span> + i * <span class="text-emerald-400">3</span>],    <span class="text-neutral-500">// stagger</span>
+    [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>],
+    { extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+  );
+
+  <span class="text-purple-400">const</span> currentHeight = barHeight * barProgress;
+
+  <span class="text-purple-400">return</span> (
+    &lt;rect
+      key={i}
+      x={barX}
+      y={chartHeight - padding - currentHeight} <span class="text-neutral-500">/* crescer de baixo */</span>
+      width={barWidth}
+      height={currentHeight}
+      fill={colors[i % colors.length]}
+      rx={<span class="text-emerald-400">4</span>}
+    /&gt;
+  );
+})}</pre>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Why does y increase from bottom to top in SVG?</h3>
+<p class="text-neutral-300">In SVG, the Y axis is inverted: y=0 is the top, y=height is the bottom. For a bar to grow from the bottom, you define <code>y = chartHeight - padding - currentHeight</code> e <code>height = currentHeight</code>. As currentHeight increases, the bar rises visually.</p>
+</div>
+<!-- timeline stagger -->
+<div class="space-y-4 mb-6">
+<h3 class="font-semibold text-white mb-3">Bar timing (delay = i × 3):</h3>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-xs">B0</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+<h4 class="font-semibold text-white text-sm mb-1">Bar 0: animates from frame 0 to 15</h4>
+<p class="text-neutral-400 text-xs">inputRange [0, 15] — the first to grow.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-xs">B1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+<h4 class="font-semibold text-white text-sm mb-1">Bar 1: animates from frame 3 to 18</h4>
+<p class="text-neutral-400 text-xs">inputRange [3, 18] — starts 3 frames later.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-xs">Bn</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+<h4 class="font-semibold text-white text-sm mb-1">Bar n: inputRange [n×3, n×3+15]</h4>
+<p class="text-neutral-400 text-xs">Universal stagger pattern for any N bars.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Stagger</div><div class="text-xs text-neutral-400">i × 3 frames</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">SVG Y</div><div class="text-xs text-neutral-400">Inverted (0=top)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Extrapolate</div><div class="text-xs text-neutral-400">clamp required</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Colors</div><div class="text-xs text-neutral-400">i % colors.length</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">📈 line-chart — strokeDashoffset</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The line chart uses the technique of <strong class="text-blue-400">stroke-dashoffset</strong> to give the illusion of a line being drawn. The trick: set <code>stroke-dasharray</code> equal to the total path length, then animate <code>dashoffset</code> of total length to zero.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">line-chart — dashoffset technique</span>
+<span class="text-xs text-neutral-500 font-mono">templates/line-chart.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// 1. Calcular pontos do polyline</span>
+<span class="text-purple-400">const</span> points = data.<span class="text-blue-400">map</span>((d, i) =&gt;
+  `${x0 + i * xStep},${y0 - d.value * scale}`
+).<span class="text-blue-400">join</span>(<span class="text-emerald-400">" "</span>);
+
+<span class="text-neutral-500">// 2. Comprimento total (estimado ou via ref)</span>
+<span class="text-purple-400">const</span> totalLength = <span class="text-emerald-400">600</span>; <span class="text-neutral-500">// ou getTotalLength() em useRef</span>
+
+<span class="text-neutral-500">// 3. Animar o offset de comprimento a 0</span>
+<span class="text-purple-400">const</span> dashOffset = <span class="text-blue-400">interpolate</span>(
+  frame,
+  [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">60</span>],
+  [totalLength, <span class="text-emerald-400">0</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">return</span> &lt;polyline
+  points={points}
+  strokeDasharray={totalLength}
+  strokeDashoffset={dashOffset}
+  stroke=<span class="text-emerald-400">"#60a5fa"</span> strokeWidth=<span class="text-emerald-400">3</span> fill=<span class="text-emerald-400">"none"</span>
+/&gt;</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> The technique works with any SVG path</h3>
+<p class="text-neutral-300">Not just polyline — any <code>&lt;path&gt;</code>, <code>&lt;circle&gt;</code> with <code>stroke-dasharray</code> you can use this technique. It’s how you animate circular borders (circular-progress), cursive signatures, and any hand-drawn shape.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Technique</div><div class="text-xs text-neutral-400">dashoffset → 0</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Works in</div><div class="text-xs text-neutral-400">any SVG stroke</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Length</div><div class="text-xs text-neutral-400">getTotalLength()</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Easing</div><div class="text-xs text-neutral-400">easeInOut recommended</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🥧 pie-chart &amp; donut-chart — SVG arcs</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Pie and doughnut charts are the most requested charts in business videos. The technique uses <strong class="text-blue-400">SVG arc commands</strong> (<code>A</code>) calculated trigonometrically from each slice's percentage. The donut adds a white circle in the center to create the hole.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">slice calculation — helper function</span>
+<span class="text-xs text-neutral-500 font-mono">pie-chart helper</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// converte ângulo → ponto no círculo</span>
+<span class="text-purple-400">const</span> <span class="text-blue-400">polarToCartesian</span> = (cx, cy, r, angle) =&gt; ({
+  x: cx + r * Math.<span class="text-blue-400">cos</span>((angle - <span class="text-emerald-400">90</span>) * Math.PI / <span class="text-emerald-400">180</span>),
+  y: cy + r * Math.<span class="text-blue-400">sin</span>((angle - <span class="text-emerald-400">90</span>) * Math.PI / <span class="text-emerald-400">180</span>),
+});
+
+<span class="text-neutral-500">// gera o "d" de uma fatia</span>
+<span class="text-purple-400">const</span> <span class="text-blue-400">describeArc</span> = (cx, cy, r, start, end) =&gt; {
+  <span class="text-purple-400">const</span> s = <span class="text-blue-400">polarToCartesian</span>(cx, cy, r, start);
+  <span class="text-purple-400">const</span> e = <span class="text-blue-400">polarToCartesian</span>(cx, cy, r, end);
+  <span class="text-purple-400">const</span> flag = end - start &gt; <span class="text-emerald-400">180</span> ? <span class="text-emerald-400">1</span> : <span class="text-emerald-400">0</span>;
+  <span class="text-purple-400">return</span> `M ${cx} ${cy} L ${s.x} ${s.y} A ${r} ${r} 0 ${flag} 1 ${e.x} ${e.y} Z`;
+};</pre>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> The arc flag (large-arc-flag)</h3>
+<p class="text-neutral-300 text-sm mb-2">The fifth parameter of the command <code>A</code> é o <code>large-arc-flag</code>: <code>1</code> = uses the larger arc (more than 180°), <code>0</code> = uses the smaller one. Forgetting this makes slices larger than 50% draw on the wrong side.</p>
+<code class="font-mono text-sm text-blue-300">flag = endAngle - startAngle &gt; 180 ? 1 : 0</code>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">SVG command</div><div class="text-xs text-neutral-400">M L A Z</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Arc flag</div><div class="text-xs text-neutral-400">&gt;180° = 1</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Donut</div><div class="text-xs text-neutral-400">circle at the top</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Animation</div><div class="text-xs text-neutral-400">final angle × progress</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🔢 stat-counter — counter with a comma</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">stat-counter.tsx</code> is one of the most requested components in marketing and results videos: a large number that counts from 0 to the target value, formatted with a thousands separator. All with interpolate + Math.floor + toLocaleString.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">stat-counter — formatted number</span>
+<span class="text-xs text-neutral-500 font-mono">templates/stat-counter.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> targetValue = <span class="text-emerald-400">1234567</span>;
+
+<span class="text-purple-400">const</span> currentValue = <span class="text-blue-400">interpolate</span>(
+  frame,
+  [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">60</span>],
+  [<span class="text-emerald-400">0</span>, targetValue],
+  {
+    extrapolateRight: <span class="text-emerald-400">"clamp"</span>,
+    easing: Easing.<span class="text-blue-400">out</span>(Easing.quad),
+  }
+);
+
+<span class="text-neutral-500">// formatar com separador de milhar</span>
+<span class="text-purple-400">const</span> display = Math.<span class="text-blue-400">floor</span>(currentValue)
+  .<span class="text-blue-400">toLocaleString</span>(<span class="text-emerald-400">"pt-BR"</span>);
+
+<span class="text-purple-400">return</span> &lt;div&gt;{display}&lt;/div&gt;;</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Ease-out easing for counters</h3>
+<p class="text-neutral-300">Counters become more impactful with <code>Easing.out(Easing.quad)</code> — The count starts fast and slows as it approaches the final value, emphasizing the target number. Linear feels mechanical. ease-in does the opposite (slow-fast) and rarely works here.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Formula</div><div class="text-xs text-neutral-400">interpolate → floor → locale</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Easing</div><div class="text-xs text-neutral-400">ease-out quad</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Format</div><div class="text-xs text-neutral-400">toLocaleString()</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Suffix</div><div class="text-xs text-neutral-400">Optional K, M, %</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">⭕ circular-progress — ring with dashoffset</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">circular-progress.tsx</code> uses the same technique as line-chart applied to a <code>&lt;circle&gt;</code> SVG. The total circumference is <code>2πr</code>, and the dashoffset starts there and goes to zero as progress increases. In the center, an animated numerical metric with stat-counter.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">circular-progress — animated ring</span>
+<span class="text-xs text-neutral-500 font-mono">templates/circular-progress.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> radius = <span class="text-emerald-400">80</span>;
+<span class="text-purple-400">const</span> circumference = <span class="text-emerald-400">2</span> * Math.PI * radius; <span class="text-neutral-500">// ~502px</span>
+
+<span class="text-purple-400">const</span> progress = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">60</span>], [<span class="text-emerald-400">0</span>, targetPercent / <span class="text-emerald-400">100</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">const</span> dashOffset = circumference * (<span class="text-emerald-400">1</span> - progress);
+
+<span class="text-purple-400">return</span> &lt;circle
+  r={radius} cx={<span class="text-emerald-400">100</span>} cy={<span class="text-emerald-400">100</span>}
+  fill=<span class="text-emerald-400">"none"</span>
+  stroke=<span class="text-emerald-400">"#3b82f6"</span>
+  strokeWidth={<span class="text-emerald-400">12</span>}
+  strokeDasharray={circumference}
+  strokeDashoffset={dashOffset}
+  strokeLinecap=<span class="text-emerald-400">"round"</span>
+  transform=<span class="text-emerald-400">"rotate(-90 100 100)"</span> <span class="text-neutral-500">/* começa no topo */</span>
+/&gt;</pre>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Why rotate(-90)?</h3>
+<p class="text-neutral-300 text-sm">The SVG starts drawing circles at 3 o’clock (0°). The <code>transform="rotate(-90 cx cy)"</code> rotates the starting point to the top (12 o'clock), where we expect a progress ring to start. Without this, the ring starts on the right side.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Formula</div><div class="text-xs text-neutral-400">2πr = circumference</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Offset</div><div class="text-xs text-neutral-400">circum × (1 - progress)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Start</div><div class="text-xs text-neutral-400">rotate(-90) → top</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Center</div><div class="text-xs text-neutral-400">overlaid text</div></div>
+</div>
+</section>
+<!-- TÓPICO 7 — biblioteca completa -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">📚 Complete Library — Charts &amp; Data</h2>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+<div class="grid grid-cols-3 bg-dark-700/50 px-4 py-3 border-b border-dark-600 text-xs font-semibold text-neutral-400 uppercase tracking-wide">
+<span>Template</span><span>Description</span><span>SVG technique</span>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">chart-animation.tsx</span>
+<span class="text-neutral-300">SVG bars growing with stagger</span>
+<span class="text-neutral-400 font-mono text-xs">rect height</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">line-chart.tsx</span>
+<span class="text-neutral-300">Line drawn from the left</span>
+<span class="text-neutral-400 font-mono text-xs">dashoffset</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">pie-chart.tsx</span>
+<span class="text-neutral-300">Pie chart with animated slices</span>
+<span class="text-neutral-400 font-mono text-xs">arc path M L A Z</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">donut-chart.tsx</span>
+<span class="text-neutral-300">Donut chart with a central metric</span>
+<span class="text-neutral-400 font-mono text-xs">arc + circle overlay</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">area-chart.tsx</span>
+<span class="text-neutral-300">Area filled with a gradient</span>
+<span class="text-neutral-400 font-mono text-xs">closed path + linearGradient</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">progress-bars.tsx</span>
+<span class="text-neutral-300">Horizontal progress bars</span>
+<span class="text-neutral-400 font-mono text-xs">interpolated width%</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">stat-counter.tsx</span>
+<span class="text-neutral-300">Counter with Thousands Separator</span>
+<span class="text-neutral-400 font-mono text-xs">interpolate + toLocaleString</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">comparison-chart.tsx</span>
+<span class="text-neutral-300">Two groups side by side</span>
+<span class="text-neutral-400 font-mono text-xs">stagger by group</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">circular-progress.tsx</span>
+<span class="text-neutral-300">Progress ring with %</span>
+<span class="text-neutral-400 font-mono text-xs">circle dashoffset 2πr</span>
+</div>
+</div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Pure SVG with interpolate</strong><span class="text-neutral-400"> — no Chart.js, deterministic and controllable frame by frame.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Stagger = i × delay in inputRange</strong><span class="text-neutral-400"> — each bar/dot with independent timing.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">dashoffset for drawn lines</strong><span class="text-neutral-400"> — works on any SVG stroke.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Arc commands for pie and donut charts</strong><span class="text-neutral-400"> — large-arc-flag is critical for slices &gt;180°.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">stat-counter with ease-out</strong><span class="text-neutral-400"> — interpolate + floor + toLocaleString + easing quad.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Next module:</h3>
+<p class="text-neutral-300">2.3 — Content Animation: staggered lists, 3D card flips, countdown, particles, and rotating carousel.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="modulo-2-1.html">← Previous module</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="modulo-2-3.html">Next Module →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Remotion Course · Module 2.2 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

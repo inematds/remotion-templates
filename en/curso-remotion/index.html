@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Remotion — Programmatic Video with React | INEMA.CLUB Course</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            primary: '#FACC15',
+            dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' }
+          }
+        }
+      }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (todas as trilhas) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .group:hover .group-hover\:text-emerald-400 { color: #059669; }
+    html:not(.dark) .hover\:border-emerald-500\/30:hover { border-color: rgba(5,150,105,0.25); }
+
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .group:hover .group-hover\:text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:border-blue-500\/30:hover { border-color: rgba(37,99,235,0.25); }
+
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .group:hover .group-hover\:text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .hover\:border-purple-500\/30:hover { border-color: rgba(124,58,237,0.25); }
+
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .group:hover .group-hover\:text-amber-400 { color: #92400e; }
+    html:not(.dark) .hover\:border-amber-500\/30:hover { border-color: rgba(217,119,6,0.25); }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.25s} .wf-a:nth-child(3){animation-delay:.5s}
+      .wf-a:nth-child(4){animation-delay:.75s} .wf-a:nth-child(5){animation-delay:1s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../curso-remotion/" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="./" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../es/curso-remotion/" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="index.html">
+<span class="text-2xl">🎬</span>
+<span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="curso/trilha1/index.html">
+<span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="curso/trilha2/index.html">
+<span class="sm:hidden">T2</span><span class="hidden sm:inline">Resources</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="curso/trilha3/index.html">
+<span class="sm:hidden">T3</span><span class="hidden sm:inline">Combination</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="curso/trilha4/index.html">
+<span class="sm:hidden">T4</span><span class="hidden sm:inline">Projects</span>
+</a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20">
+<path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+</svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20">
+<path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path>
+</svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- HERO -->
+<header class="bg-gradient-to-br from-dark-800 via-dark-900 to-dark-900 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20">
+<span class="inline-block px-3 py-1 bg-primary/10 text-primary text-xs font-semibold rounded-full mb-5 border border-primary/40">FREE COURSE · 81 TEMPLATES</span>
+<h1 class="text-4xl sm:text-5xl font-bold mb-5 max-w-3xl leading-tight">Remotion — Programmatic Video with <span class="text-sky-400">React</span></h1>
+<p class="text-lg text-neutral-400 max-w-2xl mb-8">Learn to create videos with code: from the fundamental concept (the frame) to the complete library of 81 ready-to-use resources, and on to real projects that combine everything. No CSS keyframes, no animation libraries — just React.</p>
+<div class="flex flex-col sm:flex-row gap-4 max-w-lg">
+<a class="flex-1 text-center px-6 py-3 bg-primary text-dark-900 rounded-lg font-bold hover:bg-yellow-300 transition-colors" href="curso/trilha1/index.html">Start with the Fundamentals →</a>
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-200 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="curso/trilha2/index.html">Explore Resources</a>
+</div>
+<!-- Hero SVG: frame → função → pixels -->
+<div class="rounded-2xl border border-emerald-500/30 bg-dark-900/40 p-3 sm:p-4 mt-12 overflow-hidden">
+<svg aria-label="The current frame goes into a React function that returns the image for that instant; the sequence of images becomes a video" class="w-full h-auto" role="img" viewbox="0 0 1000 220">
+<defs>
+<lineargradient id="hero-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#34d399"></stop><stop offset="1" stop-color="#10b981"></stop></lineargradient>
+<filter height="180%" id="hero-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="hero-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#10b981" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="hero-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#34d399"></path></marker>
+<marker id="hero-ahc" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"></path></marker>
+</defs>
+<rect fill="url(#hero-grid)" height="220" width="1000" x="0" y="0"></rect>
+<!-- frame -->
+<g filter="url(#hero-glow)"><rect fill="#0e2018" height="64" rx="14" stroke="url(#hero-grad)" stroke-width="2.5" width="150" x="40" y="78"></rect></g>
+<text fill="#34d399" font-family="Inter,sans-serif" font-size="19" font-weight="600" text-anchor="middle" x="115" y="106">frame 42</text>
+<text fill="#a7f3d0" font-family="Inter,sans-serif" font-size="12.5" text-anchor="middle" x="115" y="126">the time (number)</text>
+<!-- arrow -->
+<path d="M190,110 L250,110" fill="none" marker-end="url(#hero-ah)" opacity="0.65" stroke="#34d399" stroke-width="2"></path>
+<!-- função -->
+<rect fill="#0e1622" height="80" rx="14" stroke="#60a5fa" stroke-width="2" width="190" x="258" y="70"></rect>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="16" font-weight="600" text-anchor="middle" x="353" y="100">React component</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="12.5" font-style="italic" text-anchor="middle" x="353" y="122">interpolate(frame…)</text>
+<path d="M448,110 L508,110" fill="none" marker-end="url(#hero-ah)" opacity="0.65" stroke="#34d399" stroke-width="2"></path>
+<!-- imagem do frame -->
+<rect fill="#0e1b26" height="72" rx="12" stroke="#38bdf8" stroke-width="2" width="150" x="516" y="74"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="15" font-weight="600" text-anchor="middle" x="591" y="105">1 image</text>
+<text fill="#9ad6ff" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="591" y="125">of that moment</text>
+<!-- empilhar em vídeo -->
+<g font-family="Inter,sans-serif" font-size="12.5" font-weight="600">
+<g class="wf-a"><rect fill="#0e1b26" height="26" rx="7" stroke="#38bdf8" stroke-width="1.8" width="150" x="724" y="56"></rect><text fill="#bfe6ff" text-anchor="middle" x="799" y="74">frame 41</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="26" rx="7" stroke="#38bdf8" stroke-width="1.8" width="150" x="734" y="88"></rect><text fill="#bfe6ff" text-anchor="middle" x="809" y="106">frame 42</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="26" rx="7" stroke="#38bdf8" stroke-width="1.8" width="150" x="744" y="120"></rect><text fill="#bfe6ff" text-anchor="middle" x="819" y="138">frame 43 …</text></g>
+</g>
+<path d="M666,110 C695,110 700,100 722,90" fill="none" marker-end="url(#hero-ahc)" opacity="0.5" stroke="#38bdf8" stroke-width="1.8"></path>
+<text fill="#34d399" font-family="Inter,sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="820" y="172">30 per second = video</text>
+</svg>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+<!-- O que você vai aprender -->
+<section class="mb-16">
+<h2 class="text-2xl font-bold mb-6">How the course is organized</h2>
+<p class="text-neutral-400 max-w-3xl mb-8">Three levels, from concept to finished project. You learn to <strong class="text-emerald-400">think in frames</strong>, then get to know <strong class="text-blue-400">each resource</strong> from the library, and finally <strong class="text-amber-400">combines everything</strong> into real pieces.</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<div class="text-3xl mb-3">🧠</div>
+<h3 class="font-bold text-lg mb-2">1. Fundamentals</h3>
+<p class="text-sm text-neutral-400">The 4 pieces that <em>all</em> the 81 templates use under the hood: the frame, <code class="text-emerald-400">interpolate</code>, <code class="text-emerald-400">spring</code> and composition.</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<div class="text-3xl mb-3">🧩</div>
+<h3 class="font-bold text-lg mb-2">2. Resources</h3>
+<p class="text-sm text-neutral-400">The entire library: 9 categories, each template explained—what it is, why to use it, and a real code example.</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<div class="text-3xl mb-3">🎬</div>
+<h3 class="font-bold text-lg mb-2">3. Projects</h3>
+<p class="text-sm text-neutral-400">Complete pieces that combine several features: channel intro, product video, data story, and Reels.</p>
+</div>
+</div>
+</section>
+<!-- Trilhas -->
+<section class="mb-16">
+<h2 class="text-2xl font-bold mb-6">The 4 tracks</h2>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<a class="group bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-dark-600 hover:border-emerald-500/30 p-6 transition-all" href="curso/trilha1/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full">TRACK 1</span>
+<span class="text-xs text-neutral-500">3 modules</span>
+</div>
+<h3 class="text-2xl font-bold mb-2 group-hover:text-emerald-400 transition-colors">🧠 Fundamentals</h3>
+<p class="text-neutral-400 text-sm mb-4">How Remotion thinks. The frame, <code class="text-emerald-400">interpolate</code>, <code class="text-emerald-400">spring</code>, <code class="text-emerald-400">Sequence</code>. Without this, the examples become magic copy-paste.</p>
+<span class="text-emerald-400 text-sm font-semibold">Start here →</span>
+</a>
+<a class="group bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-6 transition-all" href="curso/trilha2/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full">TRACK 2</span>
+<span class="text-xs text-neutral-500">9 modules · 81 templates</span>
+</div>
+<h3 class="text-2xl font-bold mb-2 group-hover:text-blue-400 transition-colors">🧩 Resource Library</h3>
+<p class="text-neutral-400 text-sm mb-4">All 9 categories: Text, Charts, Animation, Media, Backgrounds, Cinema, Transitions, Intro/Outro, Logo.</p>
+<span class="text-blue-400 text-sm font-semibold">Explore resources →</span>
+</a>
+<a class="group bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-dark-600 hover:border-purple-500/30 p-6 transition-all" href="curso/trilha3/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full">TRACK 3</span>
+<span class="text-xs text-neutral-500">3 modules</span>
+</div>
+<h3 class="text-2xl font-bold mb-2 group-hover:text-purple-400 transition-colors">🧬 Combination Patterns</h3>
+<p class="text-neutral-400 text-sm mb-4">How to fit 2-3 effects together without making a mess: timing, layers, and pacing between scenes.</p>
+<span class="text-purple-400 text-sm font-semibold">View patterns →</span>
+</a>
+<a class="group bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-6 transition-all" href="curso/trilha4/index.html">
+<div class="flex items-center justify-between mb-3">
+<span class="px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full">TRACK 4</span>
+<span class="text-xs text-neutral-500">4 modules</span>
+</div>
+<h3 class="text-2xl font-bold mb-2 group-hover:text-amber-400 transition-colors">🎬 Complete Projects</h3>
+<p class="text-neutral-400 text-sm mb-4">Real pieces combining everything: channel intro, product video, data story, and Reels/Shorts.</p>
+<span class="text-amber-400 text-sm font-semibold">Build projects →</span>
+</a>
+</div>
+</section>
+<!-- Stats -->
+<section class="mb-16">
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="bg-dark-800 rounded-lg p-5 border border-dark-600 text-center">
+<div class="text-3xl font-bold text-emerald-400">4</div>
+<div class="text-xs text-neutral-400 mt-1">Tracks</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-5 border border-dark-600 text-center">
+<div class="text-3xl font-bold text-blue-400">19</div>
+<div class="text-xs text-neutral-400 mt-1">Modules</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-5 border border-dark-600 text-center">
+<div class="text-3xl font-bold text-purple-400">81</div>
+<div class="text-xs text-neutral-400 mt-1">Templates</div>
+</div>
+<div class="bg-dark-800 rounded-lg p-5 border border-dark-600 text-center">
+<div class="text-3xl font-bold text-amber-400">100%</div>
+<div class="text-xs text-neutral-400 mt-1">React</div>
+</div>
+</div>
+</section>
+<!-- Pré-requisitos -->
+<section class="mb-8">
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Before you start</h3>
+<p class="text-neutral-300 text-sm">You need to know <strong>Basic React</strong> (components, props, JSX). You don't need to know anything about animation or video editing—the course teaches you from scratch. All code examples are in <code class="text-emerald-400">templates/*.tsx</code> in this repository.</p>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Remotion Course — Programmatic Video with React · 2026 · Templates by <a class="text-sky-400 hover:text-sky-300" href="https://www.reactvideoeditor.com/remotion-templates" target="_blank">RVE</a> · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden');
+      html.classList.remove('dark');
+    } else {
+      themeToggleLightIcon.classList.remove('hidden');
+    }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden');
+      themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark');
+      localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Trayecto 2 · Biblioteca de Recursos | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (blue T2) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .group:hover .group-hover\:text-blue-400 { color: #2563eb; }
+    html:not(.dark) .hover\:border-blue-500\/30:hover { border-color: rgba(37,99,235,0.25); }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.25s} .wf-a:nth-child(3){animation-delay:.5s}
+      .wf-a:nth-child(4){animation-delay:.75s} .wf-a:nth-child(5){animation-delay:1s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha2/" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha2/" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha2/" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha2/" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../../en/curso-remotion/curso/trilha2/" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="./" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span>
+<span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html">
+<span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html">
+<span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html">
+<span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinación</span>
+</a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html">
+<span class="sm:hidden">T4</span><span class="hidden sm:inline">Proyectos</span>
+</a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">TRILHA 2</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🧩 Biblioteca de recursos</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Los <strong class="text-blue-400">81 plantillas</strong> organizados en 9 categorías. Cada módulo desglosa una categoría con ejemplos de código real de los archivos <code class="text-blue-400">templates/*.tsx</code> — entiendes qué hace cada template, qué hook usa y cuándo elegirlo.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">9</div><div class="text-xs text-neutral-400">Módulos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">81</div><div class="text-xs text-neutral-400">Plantillas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">~6h</div><div class="text-xs text-neutral-400">Duración</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Inter</div><div class="text-xs text-neutral-400">Nivel</div></div>
+</div>
+<!-- Hero SVG - fan-out das 9 categorias -->
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mt-8 overflow-hidden">
+<svg aria-label="Una biblioteca central activa 9 categorías de plantillas que convergen en videos listos" class="w-full h-auto" role="img" viewbox="0 0 1000 240">
+<defs>
+<lineargradient id="t2h-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#3b82f6"></stop></lineargradient>
+<filter height="180%" id="t2h-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="t2h-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="t2h-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#60a5fa"></path></marker>
+<marker id="t2h-ahc" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"></path></marker>
+</defs>
+<rect fill="url(#t2h-grid)" height="240" width="1000" x="0" y="0"></rect>
+<!-- nó central: biblioteca -->
+<g filter="url(#t2h-glow)"><rect fill="#0e1622" height="52" rx="13" stroke="url(#t2h-grad)" stroke-width="2.5" width="140" x="30" y="94"></rect></g>
+<text fill="#60a5fa" font-family="Inter,sans-serif" font-size="14" font-weight="700" text-anchor="middle" x="100" y="116">81 plantillas</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="100" y="134">9 categorías</text>
+<!-- setas fan-out -->
+<g fill="none" opacity="0.55" stroke="#60a5fa" stroke-width="1.6">
+<path d="M170,120 C240,120 260,28 340,28" marker-end="url(#t2h-ah)"></path>
+<path d="M170,120 C240,120 260,58 340,58" marker-end="url(#t2h-ah)"></path>
+<path d="M170,120 C240,120 260,88 340,88" marker-end="url(#t2h-ah)"></path>
+<path d="M170,120 C240,120 260,118 340,118" marker-end="url(#t2h-ah)"></path>
+<path d="M170,120 C240,120 260,148 340,148" marker-end="url(#t2h-ah)"></path>
+<path d="M170,120 C240,120 260,178 340,178" marker-end="url(#t2h-ah)"></path>
+<path d="M170,120 C240,120 260,208 340,208" marker-end="url(#t2h-ah)"></path>
+</g>
+<!-- categorias -->
+<g font-family="Inter,sans-serif" font-size="11" font-weight="600">
+<g class="wf-a"><rect fill="#0e1622" height="28" rx="8" stroke="#38bdf8" stroke-width="1.6" width="130" x="340" y="14"></rect><text fill="#bfe6ff" text-anchor="middle" x="405" y="33">✍️ Texto</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="28" rx="8" stroke="#38bdf8" stroke-width="1.6" width="130" x="340" y="44"></rect><text fill="#bfe6ff" text-anchor="middle" x="405" y="63">📊 Charts</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="28" rx="8" stroke="#38bdf8" stroke-width="1.6" width="130" x="340" y="74"></rect><text fill="#bfe6ff" text-anchor="middle" x="405" y="93">🎞️ Contenido</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="28" rx="8" stroke="#38bdf8" stroke-width="1.6" width="130" x="340" y="104"></rect><text fill="#bfe6ff" text-anchor="middle" x="405" y="123">🎬 Transiciones</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="28" rx="8" stroke="#38bdf8" stroke-width="1.6" width="130" x="340" y="134"></rect><text fill="#bfe6ff" text-anchor="middle" x="405" y="153">🖼️ Imagen</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="28" rx="8" stroke="#38bdf8" stroke-width="1.6" width="130" x="340" y="164"></rect><text fill="#bfe6ff" text-anchor="middle" x="405" y="183">🌌 Fondos</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="28" rx="8" stroke="#38bdf8" stroke-width="1.6" width="130" x="340" y="194"></rect><text fill="#bfe6ff" text-anchor="middle" x="405" y="213">™️ Logo</text></g>
+</g>
+<!-- convergência -->
+<g fill="none" opacity="0.45" stroke="#38bdf8" stroke-width="1.6">
+<path d="M470,28 C560,28 570,120 660,120" marker-end="url(#t2h-ahc)"></path>
+<path d="M470,58 C560,58 570,120 660,120" marker-end="url(#t2h-ahc)"></path>
+<path d="M470,88 C555,88 565,120 660,120" marker-end="url(#t2h-ahc)"></path>
+<path d="M470,118 L660,120" marker-end="url(#t2h-ahc)"></path>
+<path d="M470,148 C555,148 565,120 660,120" marker-end="url(#t2h-ahc)"></path>
+<path d="M470,178 C560,178 570,120 660,120" marker-end="url(#t2h-ahc)"></path>
+<path d="M470,208 C560,208 570,120 660,120" marker-end="url(#t2h-ahc)"></path>
+</g>
+<!-- resultado -->
+<g filter="url(#t2h-glow)"><rect fill="#0e1622" height="64" rx="14" stroke="url(#t2h-grad)" stroke-width="2.5" width="150" x="668" y="88"></rect></g>
+<text fill="#60a5fa" font-family="Inter,sans-serif" font-size="14" font-weight="700" text-anchor="middle" x="743" y="115">Tu video</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="743" y="134">templates listos</text>
+<!-- arrow final -->
+<path d="M818,120 L870,120" fill="none" marker-end="url(#t2h-ah)" opacity="0.6" stroke="#60a5fa" stroke-width="2"></path>
+<g filter="url(#t2h-glow)"><rect fill="#0e1622" height="48" rx="12" stroke="url(#t2h-grad)" stroke-width="2" width="100" x="876" y="96"></rect></g>
+<text fill="#60a5fa" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="926" y="117">🎬 .mp4</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="926" y="133">renderizado</text>
+</svg>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- MAPA DA TRILHA -->
+<section class="mb-12">
+<h2 class="text-2xl font-bold mb-6">Mapa de la ruta</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all" href="#modulo-2-1">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.1</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">✍️ Animaciones de texto</h3>
+<p class="text-xs text-neutral-400">9 maneras de mover el texto</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all" href="#modulo-2-2">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.2</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">📊 Charts &amp; Datos</h3>
+<p class="text-xs text-neutral-400">SVG + datos animados</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all" href="#modulo-2-3">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.3</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🎞️ Animación de contenido</h3>
+<p class="text-xs text-neutral-400">Listas, carruseles y sonidos</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all" href="#modulo-2-4">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.4</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🖼️ Imagen y medios</h3>
+<p class="text-xs text-neutral-400">Galerías, sliders y marcos</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all" href="#modulo-2-5">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.5</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🌌 Fondos</h3>
+<p class="text-xs text-neutral-400">Backgrounds animados y generativos</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all" href="#modulo-2-6">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.6</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🎬 Cinemático</h3>
+<p class="text-xs text-neutral-400">Cámara, lente y lenguaje cinematográfico</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all" href="#modulo-2-7">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.7</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🔀 Transiciones</h3>
+<p class="text-xs text-neutral-400">9 cortes con identidad visual</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all" href="#modulo-2-8">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.8</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">🎬 Intro y outro</h3>
+<p class="text-xs text-neutral-400">Apertura, cierre y créditos</p>
+</a>
+<a class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all" href="#modulo-2-9">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.9</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">™️ Logo &amp; Branding</h3>
+<p class="text-xs text-neutral-400">Reveals de logo con estilo</p>
+</a>
+</div>
+</section>
+<h2 class="text-2xl font-bold mb-6">Contenido detallado</h2>
+<!-- MÓDULO 2.1 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-2-1">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.1</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="text-2xl font-bold mb-2">✍️ Animaciones de texto</h3>
+<p class="text-neutral-400 text-sm">9 plantillas para animar texto de formas radicalmente distintas: revelar carácter por carácter, rebotar con spring, parpadear en RGB, flotar en una onda senoidal, escribir con cursor y más. El módulo explica qué hook usa cada una y cuándo elegir cada estilo.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🔤</span>
+<div><span class="font-medium">animated-text</span><span class="text-neutral-500 text-sm ml-2">- reveal carácter por carácter</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Divide la cadena en un array de caracteres; cada carácter tiene un <code>from</code> escalado por índice. El resultado es un reveal de izquierda a derecha, letra por letra.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Patrón fundamental de stagger — la misma lógica se aplica a palabras, líneas y cualquier lista de elementos.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">interpolate con clamp · stagger por índice · Sequence por elemento.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">🏀</span>
+<div><span class="font-medium">bounce-text</span><span class="text-neutral-500 text-sm ml-2">- spring con overshoot</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Usa <code>spring()</code> con stiffness alta para darle ese «rebote» orgánico a la entrada del texto.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Demuestra cómo spring reemplaza el easing manual para lograr entradas físicas convincentes.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">spring({ fps, frame }) · stiffness / damping · multiplicar por scale o translateY.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">💻</span>
+<div><span class="font-medium">glitch-text</span><span class="text-neutral-500 text-sm ml-2">- RGB split</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Tres copias del texto con translateX aleatorio y canales de color red/green/blue separados, interpolados con pulsos irregulares.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Muestra cómo superponer elementos con position absolute y mix-blend-mode para efectos visuales sin biblioteca externa.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">random("seed") para la posición · mix-blend-mode · pulso con interpolate multi-keyframe.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🌊</span>
+<div><span class="font-medium">floating-bubble-text</span><span class="text-neutral-500 text-sm ml-2">- onda senoidal</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Cada carácter oscila con <code>Math.sin(frame / 10 + i * 0.5)</code>, creando una onda orgánica que recorre el texto.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Enseña cómo usar trigonometría directamente en el frame para crear movimientos periódicos sin keyframes.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">Math.sin(frame) · phase offset por índice · amplitud × seno.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">⌨️</span>
+<div><span class="font-medium">typewriter-subtitle</span><span class="text-neutral-500 text-sm ml-2">- cursor parpadeante</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Revela un carácter a la vez derivando el número de caracteres visibles de <code>Math.floor(frame / charsPerFrame)</code>. El cursor parpadea con interpolate.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Patrón clásico de subtítulos animados, ideal para tutoriales y presentaciones de código.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">slice dinámico · Math.floor · cursor con opacidad pulsante.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">📦</span>
+<div><span class="font-medium">bubble-pop / pulsing / popping / slide-text</span><span class="text-neutral-500 text-sm ml-2">- variaciones</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Cuatro variaciones: bubble-pop (scale 0→1.2→1 con spring), pulsing-text (respiración continua con seno), popping-text (cada palabra con scale-pop independiente), slide-text (translateX/Y con easing out).</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Compara cómo la misma intención ("texto que llama la atención") da como resultado un código completamente diferente según el estilo deseado.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">spring para un pop orgánico · seno para un loop continuo · interpolate+easing para un slide direccional.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-2-1')">Ver en modal</button>
+<a class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors" href="modulo-2-1.html">Ver completo</a>
+</div>
+</div>
+<!-- MÓDULO 2.2 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-2-2">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.2</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="text-2xl font-bold mb-2">📊 Charts &amp; Datos</h3>
+<p class="text-neutral-400 text-sm">9 plantillas que transforman números en elementos visuales animados: barras SVG que crecen, líneas trazadas, gráficos circulares segmentados, contadores numéricos y anillos de progreso. Todas usan SVG con interpolate, sin bibliotecas de gráficos externas.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">📊</span>
+<div><span class="font-medium">chart-animation</span><span class="text-neutral-500 text-sm ml-2">- barras SVG</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Cada barra tiene una altura calculada con <code>interpolate(frame, [i*3, 15+i*3], [0,1], {extrapolateRight:"clamp"})</code> — crecen en stagger y se detienen en el valor final.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Modelo canónico de stagger con SVG — patrón que se repite en line, area y donut chart.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">stagger por índice · SVG rect height · extrapolateRight clamp.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">📈</span>
+<div><span class="font-medium">line-chart</span><span class="text-neutral-500 text-sm ml-2">- polyline trazada</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Usa <code>stroke-dashoffset</code> animado para dar la ilusión de que se dibuja una línea de izquierda a derecha.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">La técnica de dashoffset funciona con cualquier path SVG — curvas, flechas y formas complejas.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">stroke-dasharray = longitud total · dashoffset de la longitud a 0 · getTotalLength().</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">🥧</span>
+<div><span class="font-medium">pie-chart &amp; donut-chart</span><span class="text-neutral-500 text-sm ml-2">- arcos SVG</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Porciones calculadas mediante <code>path d="M cx cy L x1 y1 A r r 0 flag 1 x2 y2 Z"</code>. El donut agrega un círculo blanco central con una métrica animada en el centro.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Enseña geometría SVG de arcos, el tipo de path más usado en charts complejos.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">ángulo por porcentaje · arc flag · donut hole con circle + metric text.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🔢</span>
+<div><span class="font-medium">stat-counter</span><span class="text-neutral-500 text-sm ml-2">- cuenta con coma</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Interpola de 0 al valor objetivo y formatea con <code>toLocaleString()</code> — muestra "1.234.567" contando frame a frame.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">El contador numérico es uno de los componentes más solicitados en videos de marketing y de resultados.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">interpolate → Math.floor → toLocaleString · easing ease-out · sufijo (K, M).</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">⭕</span>
+<div><span class="font-medium">circular-progress &amp; progress-bars</span><span class="text-neutral-500 text-sm ml-2">- progreso animado</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">circular-progress usa dashoffset en un círculo SVG; progress-bars usa width% con interpolate — ambos muestran el porcentaje de progreso.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Dos paradigmas de progreso: SVG circular frente a HTML lineal; cubre el 99% de los casos de uso.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">circumference = 2πr · dashoffset proporcional · width% con transition clamp.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">🏁</span>
+<div><span class="font-medium">comparison-chart &amp; area-chart</span><span class="text-neutral-500 text-sm ml-2">- comparativo visual</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">comparison-chart anima dos grupos lado a lado con un delay entre ellos; area-chart rellena debajo de la línea con un path cerrado y un gradiente SVG.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Demuestra la composición de múltiples elementos SVG con timing independiente en el mismo video.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">delay entre grupos · linearGradient SVG · path cerrado (Z) para el área.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-2-2')">Ver en modal</button>
+<a class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors" href="modulo-2-2.html">Ver completo</a>
+</div>
+</div>
+<!-- MÓDULO 2.3 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-2-3">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.3</span><span class="text-xs text-neutral-500">~45 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🎞️ Animación de contenido</h3>
+<p class="text-neutral-400 text-sm">9 plantillas para animar listas, cards, notificaciones, partículas y audio: desde stagger de listas hasta un carrusel 3D giratorio. Cada una enseña un patrón diferente de composición temporal.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">📋</span>
+<div><span class="font-medium">animated-list</span><span class="text-neutral-500 text-sm ml-2">- stagger de elementos</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Cada elemento de la lista entra con <code>from={i * delay}</code> — fade+slide en secuencia escalonada que da ritmo visual a las enumeraciones.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Stagger es el patrón de animación de listas más usado en cualquier video explicativo o de marketing.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">Sequence from escalado · delay = índice × constante · fade+translateY combinados.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">🃏</span>
+<div><span class="font-medium">card-flip</span><span class="text-neutral-500 text-sm ml-2">- rotación 3D</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Interpolación de rotateY de 0° a 180° con <code>perspective</code> en el padre. Las dos caras de la tarjeta se posicionan con <code>backfaceVisibility: "hidden"</code>.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Enseña el modelo de 3D CSS en Remotion —perspectiva, backface y flip—, reutilizable en flip-cards de productos y flashcards.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">perspective: 800px · rotateY · backfaceVisibility: hidden · dos hijos posicionados.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">⏳</span>
+<div><span class="font-medium">countdown-timer</span><span class="text-neutral-500 text-sm ml-2">- 5-4-3-2-1-GO</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Deriva el número actual con <code>Math.ceil(durationInFrames / fps - frame / fps)</code>. Cada número aparece con scale-pop y sale con fade-out para dar paso al siguiente.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Patrón de «estado derivado del frame» — el valor mostrado siempre es una función directa del tiempo, sin useState.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">Math.ceil(remaining) · frame local por Sequence · spring al entrar cada dígito.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🔔</span>
+<div><span class="font-medium">notification-pop</span><span class="text-neutral-500 text-sm ml-2">- toasts apilados</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Las notificaciones aparecen con spring (translateY + opacity) en horarios escalonados y se apilan verticalmente como notificaciones del sistema.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Muestra cómo simular UIs de sistemas operativos y apps reales en video — ideal para demos de producto.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">Sequence anidada · spring con delay · stack visual con translateY acumulado.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">💥</span>
+<div><span class="font-medium">particle-explosion</span><span class="text-neutral-500 text-sm ml-2">- físicas 2D</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Cada partícula tiene velocidad y ángulo con seed establecido mediante <code>random()</code> de Remotion: posición calculada frame a frame con una caída gravitacional simple.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Demuestra una simulación física determinística: gravedad, arrastre y rotación solo con aritmética de frames.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">random(seed) para reproducibilidad · vx/vy por frame · opacidad fade-out al final.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">🎵</span>
+<div><span class="font-medium">sound-wave &amp; rotating-carousel</span><span class="text-neutral-500 text-sm ml-2">- bucles y 3D</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">sound-wave: barras con altura = amplitud × Math.sin(frame × freq + i × phase). rotating-carousel: tarjetas posicionadas con <code>rotateY(i * 360/n)</code> y carrusel girando continuamente.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Dos casos de loops perpetuos —onda continua y rotación infinita— que no tienen un comienzo ni un final definidos en la timeline.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">seno con freq variable · 3D carousel con rotateY por slot · frame % período para loop.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-2-3')">Ver en modal</button>
+<a class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors" href="modulo-2-3.html">Ver completo</a>
+</div>
+</div>
+<!-- MÓDULO 2.4 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-2-4">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.4</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🖼️ Imagen y medios</h3>
+<p class="text-neutral-400 text-sm">9 plantillas que trabajan con imágenes estáticas y medios visuales: galerías, sliders comparativos, zoom reveal, mosaicos y marcos creativos. Cada una muestra cómo usar <code class="text-blue-400">Img</code>, <code class="text-blue-400">clip-path</code> y transformaciones CSS para dar vida a fotos en video.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🖼️</span>
+<div><span class="font-medium">gallery-grid</span><span class="text-neutral-500 text-sm ml-2">- cuadrícula de fotos animada</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Cuadrícula de imágenes donde cada celda aparece con scale + fade en stagger por índice, creando una galería que se arma progresivamente en pantalla.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Patrón de stagger aplicado a una cuadrícula — se transfiere directamente a cualquier colección de tarjetas o miniaturas.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">interpolate con from escalado por índice · CSS grid · spring al entrar cada celda.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">🎠</span>
+<div><span class="font-medium">image-carousel</span><span class="text-neutral-500 text-sm ml-2">- slideshow automático</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Las diapositivas cambian automáticamente con translateX derivado del índice actual calculado mediante <code>Math.floor(frame / slideDuration)</code>. Transición suave con interpolate entre slides.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Demuestra cómo derivar el estado de selección directamente del frame sin useState — patrón puro y determinístico.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">Math.floor(frame/dur) para la diapositiva activa · translateX por índice · overflow hidden en el contenedor.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">🔄</span>
+<div><span class="font-medium">image-comparison-slider</span><span class="text-neutral-500 text-sm ml-2">- antes/después revelado</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Dos imágenes superpuestas; la segunda tiene <code>clipPath: rect(0 X 100% 0)</code> donde X se anima con interpolate — crea el efecto de «abrir la cortina» entre el antes y el después.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Enseña clip-path rectangular animado, una técnica usada en decenas de efectos de reveal y wipe.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">clipPath CSS · interpolate 0→100% · divider line con absolutePosition.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🔍</span>
+<div><span class="font-medium">image-zoom-reveal</span><span class="text-neutral-500 text-sm ml-2">- zoom dramático</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">La imagen comienza con scale 1.4 y hace un zoom out suave hasta scale 1.0 mientras opacity pasa de 0 a 1: crea una entrada cinemática con profundidad.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Combina dos interpolates independientes (scale y opacity) en la misma propiedad de estilo — patrón de reveal de impacto.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">spring para scale · interpolate para opacity · overflow hidden + objectFit cover.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🧱</span>
+<div><span class="font-medium">masonry-gallery</span><span class="text-neutral-500 text-sm ml-2">- mosaico escalonado</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Cuadrícula masonry con columnas de altura variable; cada imagen aparece con translateY + fade y un delay proporcional a su columna, creando un mosaico que se llena de forma orgánica.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Muestra cómo manejar layouts de altura variable y stagger por columna vs. por índice lineal.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">column-count CSS · delay por columna · absolutePosition para posicionamiento dinámico.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">📸</span>
+<div><span class="font-medium">polaroid-frame</span><span class="text-neutral-500 text-sm ml-2">- marco con caída física</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Una foto en un marco tipo Polaroid cae en la pantalla con spring (translateY + una ligera rotación aleatoria) y aterriza con un overshoot realista. Varias fotos Polaroid se acumulan con stagger.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Demuestra spring con rotation para simular objetos físicos que caen — patrón aplicable a cartas, notas adhesivas y stickers.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">spring con damping bajo · random(seed) para el rotate inicial · box-shadow para dar profundidad.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-2-4')">Ver en modal</button>
+<a class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors" href="modulo-2-4.html">Ver completo</a>
+</div>
+</div>
+<!-- MÓDULO 2.5 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-2-5">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.5</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🌌 Fondos</h3>
+<p class="text-neutral-400 text-sm">9 fondos animados generados de forma programática: partículas, degradados fluidos, cuadrículas pulsantes, píxeles en transición, campo de estrellas y más. Ninguno usa una imagen estática: todo es matemática y canvas/SVG en tiempo real.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🌊</span>
+<div><span class="font-medium">gradient-shift</span><span class="text-neutral-500 text-sm ml-2">- gradiente en movimiento</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Gradiente lineal cuyo ángulo y paradas de color se derivan de <code>Math.sin(frame/30)</code> — crea un fondo que respira y cambia de tonalidad continuamente.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Enseña cómo interpolar valores dentro de strings CSS (como angle y hsl) usando seno para crear loops suaves.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">Math.sin para looping · hsl() con hue variable · backgroundImage interpolado.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">🌟</span>
+<div><span class="font-medium">starfield</span><span class="text-neutral-500 text-sm ml-2">- campo estelar en movimiento</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Array de estrellas con posición y velocidad inicializadas con seed, usando <code>random()</code>; en cada frame las estrellas avanzan y crean un efecto de velocidad warp. Las estrellas que salen de la pantalla reaparecen al principio.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Demuestra un sistema de partículas con reutilización (pooling) y movimiento continuo sin useState.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">random(seed+i) · posición = (basePos + frame×vel) % 1 · escala por profundidad.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">🟢</span>
+<div><span class="font-medium">matrix-rain</span><span class="text-neutral-500 text-sm ml-2">- lluvia de caracteres</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Columnas de texto con caracteres aleatorios que caen; la posición vertical de cada columna se deriva del frame con un offset con seed. Caracteres verdes con la cabeza más brillante.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Caso clásico de generación procedural de texto: reutiliza random con seed para obtener resultados determinísticos, pero visualmente aleatorios.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">random(col+row) para char · posY = (frame×speed + offset) % height · opacity por distancia del head.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🔲</span>
+<div><span class="font-medium">grid-pulse</span><span class="text-neutral-500 text-sm ml-2">- cuadrícula pulsante</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Cuadrícula de celdas donde cada celda pulsa con una opacidad basada en Math.sin y una fase derivada de la distancia al centro; crea una onda radial de luz.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Muestra cómo crear animaciones espaciales derivando la fase de la posición — patrón de "onda que viaja por la cuadrícula".</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">distancia al centro como phase offset · Math.sin(frame/20 + dist) · opacidad 0.1–1.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">💧</span>
+<div><span class="font-medium">liquid-wave</span><span class="text-neutral-500 text-sm ml-2">- onda líquida SVG</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Path SVG cuyos puntos de control se calculan con Math.sin en diferentes frecuencias: genera una forma de onda orgánica y fluida que evoluciona frame a frame.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">El path dinámico de SVG es la base de los visualizadores de audio, las ondas y las formas orgánicas. Enseña a construir strings "d" en tiempo real.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">construcción dinámica del path «M ... C ...» · suma de múltiples frecuencias · relleno con gradiente.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">🔷</span>
+<div><span class="font-medium">geometric-patterns</span><span class="text-neutral-500 text-sm ml-2">- formas geométricas en bucle</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Array de formas SVG (triángulos, hexágonos, rombos) con posición, tamaño y rotación inicializados con seed. Cada forma gira lentamente con una velocidad angular individual derivada de random(i).</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Combina random con seed con rotación continua — patrón de fondo decorativo reutilizable en cualquier estilo visual.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">rotate = frame × random(i) × speed · SVG polygon dinámico · opacity baja para un fondo sutil.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-2-5')">Ver en modal</button>
+<a class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors" href="modulo-2-5.html">Ver completo</a>
+</div>
+</div>
+<!-- MÓDULO 2.6 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-2-6">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.6</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🎬 Cinemático</h3>
+<p class="text-neutral-400 text-sm">9 plantillas que replican técnicas de cámara real: vibración, quemado de película, pan, parallax, letterbox, viñeta y zoom. Cada una emula el lenguaje cinematográfico usando CSS transforms e interpolaciones de Remotion.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">📷</span>
+<div><span class="font-medium">camera-shake</span><span class="text-neutral-500 text-sm ml-2">- vibración de cámara</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">El contenedor de la escena recibe translateX/Y y rotate con valores de <code>random(frame+"x")</code> e <code>random(frame+"y")</code> multiplicados por la intensidad: crean una vibración orgánica y no repetitiva.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Técnica de noise por frame usando random como sustituto de Perlin noise — reutilizable en cualquier efecto de cámara handheld.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">random(frame+seed) · multiplicador de intensidad · wrapper div para aislar el shake.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">🎞️</span>
+<div><span class="font-medium">film-burn</span><span class="text-neutral-500 text-sm ml-2">- quemado de película</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Overlay naranja/amarillo con radialGradient pulsante y grano noise simulan la quema de película analógica. El centro «se quema» con una escala creciente hasta cubrirlo todo.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Demuestra cómo componer múltiples capas (noise, gradiente, color overlay) mediante position absolute para crear efectos de textura.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">radialGradient animado · grano con random con seed · mix-blend-mode screen/multiply.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">🎥</span>
+<div><span class="font-medium">ken-burns</span><span class="text-neutral-500 text-sm ml-2">- zoom y pan lento en foto</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Imagen estática animada con zoom lento (scale 1→1.1) y desplazamiento diagonal (translateX/Y) usando interpolate con easing ease-in-out: el clásico efecto Ken Burns de los documentales.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Muestra cómo dar vida a fotos estáticas solo con transforms CSS — técnica estándar en la edición de video profesional.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">scale 1→1.1 con easing suave · translateX/Y simultáneo · objectFit cover para evitar bordes.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🖥️</span>
+<div><span class="font-medium">letterbox-reveal</span><span class="text-neutral-500 text-sm ml-2">- barras cinematográficas</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Dos barras negras (arriba y abajo) que entran desde fuera y se detienen en el formato 2.35:1 de cinemascope; transforma cualquier escena en formato de cine con interpolate.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Técnica de enmascaramiento dinámico con dos divs absolutas — base para cualquier efecto de letterbox, widescreen o aspect ratio animado.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">translateY de ±100% a 0 · dos elementos absolute arriba/abajo · spring para una entrada suave.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🌅</span>
+<div><span class="font-medium">parallax-pan</span><span class="text-neutral-500 text-sm ml-2">- capas en profundidad</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Varias capas (fondo, medio, frente) se mueven a distintas velocidades derivadas de <code>frame × layer.speed</code> — crea una ilusión de profundidad 3D con elementos 2D.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">El parallax es la técnica de profundidad más usada en motion design — aprende a replicarla con simples multiplicadores de velocidad.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">translateX = frame × speed · capas con z-index · overflow hidden en el stage.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">🔦</span>
+<div><span class="font-medium">spotlight-reveal</span><span class="text-neutral-500 text-sm ml-2">- foco dramático</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Overlay negro con radialGradient circular transparente en el centro que se expande con spring — revela el contenido de abajo como si se encendiera un reflector.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Técnica de reveal con gradiente radial animado — combina CSS gradient con una variable derivada de spring para transiciones dramáticas.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">radialGradient con radio animado · spring para la expansión · pointer-events none en el overlay.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-2-6')">Ver en modal</button>
+<a class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors" href="modulo-2-6.html">Ver completo</a>
+</div>
+</div>
+<!-- MÓDULO 2.7 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-2-7">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.7</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🔀 Transiciones</h3>
+<p class="text-neutral-400 text-sm">9 plantillas de transición entre escenas: disolvencia cruzada, wipe con persiana, iris circular, morph de formas, push direccional y más. Cada una usa <code class="text-blue-400">AbsoluteFill</code> con <code class="text-blue-400">clip-path</code> u opacidad para cambiar escenas con identidad visual.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🌫️</span>
+<div><span class="font-medium">cross-dissolve</span><span class="text-neutral-500 text-sm ml-2">- disolvencia cruzada clásica</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">La escena A pasa de opacity 1→0 mientras la escena B pasa de 0→1 con interpolate sincronizado: el crossfade más simple y versátil de todos.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">La disolvencia es la transición básica del vocabulario cinematográfico: entender sus parámetros (duración, curva) es fundamental para cualquier edición.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">dos AbsoluteFill · opacidad complementaria · easing ease-in-out para suavizar.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">🪟</span>
+<div><span class="font-medium">blinds-transition</span><span class="text-neutral-500 text-sm ml-2">- persiana veneciana</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">La escena B se divide en N franjas horizontales; cada franja se revela con scaleY de 0→1 en stagger: crea el efecto de una persiana veneciana que se abre.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Enseña cómo dividir una escena en franjas y animar cada una de forma independiente: un patrón aplicable para revelar cuadrículas, tablas y paneles.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">N divs con height=100%/N · scaleY con stagger · overflow hidden por franja.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">⭕</span>
+<div><span class="font-medium">iris-transition</span><span class="text-neutral-500 text-sm ml-2">- apertura circular</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Clip-path circular (circle()) crece del 0% al 150% desde el centro y revela la siguiente escena — transición de iris usada en películas mudas y animaciones clásicas.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Introduce clip-path circle() animado: la forma más sencilla de máscara animada, transferible directamente a revelados de logos y botones.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">clipPath: circle(R at 50% 50%) · R interpolado 0→150% · spring para una expansión orgánica.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">➡️</span>
+<div><span class="font-medium">push-transition</span><span class="text-neutral-500 text-sm ml-2">- empujón direccional</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">La escena A sale hacia la izquierda mientras la escena B entra por la derecha con el mismo translateX animado: como cambiar de diapositiva en una presentación física.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">La transición direccional es el patrón de navegación de apps y presentaciones; entender cómo sincronizar la entrada y la salida es esencial.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">translateX: 100%→0 (B) y 0→-100% (A) · overflow hidden en el stage · spring con damping alto.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">⬛</span>
+<div><span class="font-medium">fade-through-black</span><span class="text-neutral-500 text-sm ml-2">- transición por negro</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">La escena A hace fade a negro durante la primera mitad y la escena B emerge de la oscuridad durante la segunda: crea una pausa dramática entre escenas, un patrón de cortes de las películas de acción.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Demuestra cómo descomponer una transición en dos fases con interpolate multi-keyframe — se aplica a cualquier transición por un color intermedio.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">interpolate con 3 keyframes · AbsoluteFill negro en el medio · duración ajustable por fase.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">🔁</span>
+<div><span class="font-medium">zoom-through</span><span class="text-neutral-500 text-sm ml-2">- zoom infinito de escena</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">La escena A hace un zoom extremo (scale 1→5) mientras la escena B emerge del centro con scale 0.2→1: crea una transición de «sumergirse en» con perspectiva dramática.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">El zoom-through combina dos escalas sincronizadas — un patrón muy solicitado en videos de YouTube y marketing que requieren energía visual.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">scale A 1→5 · scale B 0.2→1 · timing exacto para que parezcan conectados · overflow hidden.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-2-7')">Ver en modal</button>
+<a class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors" href="modulo-2-7.html">Ver completo</a>
+</div>
+</div>
+<!-- MÓDULO 2.8 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-2-8">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.8</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="text-2xl font-bold mb-2">🎬 Intro y outro</h3>
+<p class="text-neutral-400 text-sm">9 plantillas para aperturas, cierres y elementos de identidad: títulos cinemáticos, countdown, créditos en rollo, lower third, tarjeta de suscripción y más. Cada una combina varios elementos de Remotion en composiciones impactantes.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">🎬</span>
+<div><span class="font-medium">cinematic-title-intro</span><span class="text-neutral-500 text-sm ml-2">- apertura de película</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">El título aparece con letterbox, fade in lento y texto con tracking creciente (letterSpacing animado) sobre fondo oscuro — intro al estilo blockbuster con múltiples elementos sincronizados.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Composición de 4+ elementos temporales (barras, fondo, texto, subtítulo) con Sequence anidadas — modelo de intro profesional.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">letterSpacing interpolado · Sequence anidada · múltiples elementos con timing independiente.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">⏱️</span>
+<div><span class="font-medium">countdown-intro</span><span class="text-neutral-500 text-sm ml-2">- cuenta regresiva</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Cuenta regresiva de 5→1, con cada número en su propia Sequence, spring de entrada y salida rápida. La línea circular de progreso se completa al llegar a "GO!"</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Combina Sequence con un SVG de circular-progress — muestra cómo sincronizar un elemento visual de progreso con contenido textual en paralelo.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">Secuencia por dígito · dashoffset proporcional al frame · spring al entrar cada número.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">📜</span>
+<div><span class="font-medium">credits-roll</span><span class="text-neutral-500 text-sm ml-2">- créditos en rollo</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Lista de créditos con translateY calculado linealmente por frame: sube desde la parte inferior hasta la superior a velocidad constante, como los créditos de una película.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Demuestra un desplazamiento determinístico sin useState — la posición siempre es <code>-frame × pixelsPerFrame</code>, haciendo que el resultado sea 100% reproducible.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">translateY = -frame × speed · overflow hidden · fade in/out en los bordes con gradiente.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">📺</span>
+<div><span class="font-medium">lower-third</span><span class="text-neutral-500 text-sm ml-2">- identificador de pantalla</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Barra de identificación en el tercio inferior de la pantalla: nombre y cargo aparecen con translateX y una barra de color que crece desde la izquierda. Entra con spring y sale con fade.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">El lower third es el componente más usado en cualquier video de entrevista, noticiero o presentación — aprender a construirlo desde cero es esencial.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">scaleX 0→1 en la barra · translateX en el texto · Sequence para entrada y salida automáticas.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">🔚</span>
+<div><span class="font-medium">end-card</span><span class="text-neutral-500 text-sm ml-2">- pantalla de cierre</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">End screen con CTA, enlaces a redes sociales y miniatura del próximo video: todos los elementos aparecen en stagger con spring, armando un cierre interactivo.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Composición de múltiples CTA con timing visual cuidadoso — modelo profesional de end card para YouTube y videos de producto.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">Secuencia por elemento CTA · spring con stagger · useCurrentFrame para el loop de pulsación en el botón.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">💬</span>
+<div><span class="font-medium">quote-card</span><span class="text-neutral-500 text-sm ml-2">- tarjeta de cita animada</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Card con comillas grandes, el texto de la cita revelado palabra por palabra en stagger y el autor aparece después con fade: crea un momento de pausa reflexiva en el video.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Stagger por palabra (split por " ") es diferente del stagger por carácter: muestra cómo adaptar el patrón a una granularidad diferente.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">split(" ") · Sequence por palabra con from escalado · comillas decorativas con pseudoelemento CSS.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-2-8')">Ver en modal</button>
+<a class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors" href="modulo-2-8.html">Ver completo</a>
+</div>
+</div>
+<!-- MÓDULO 2.9 -->
+<div class="bg-dark-800 rounded-xl border border-dark-600 mb-6" id="modulo-2-9">
+<div class="p-6 border-b border-dark-600">
+<div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.9</span><span class="text-xs text-neutral-500">~40 min</span></div>
+<h3 class="text-2xl font-bold mb-2">™️ Logo &amp; Branding</h3>
+<p class="text-neutral-400 text-sm">9 plantillas dedicadas exclusivamente a revelar logos de formas creativas: stroke draw, glitch, bounce drop, spin, scale-rotate, split y typewriter. Cada una enseña una técnica diferente de animación aplicada a la identidad visual.</p>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span>
+<span class="text-lg">✏️</span>
+<div><span class="font-medium">logo-stroke-draw</span><span class="text-neutral-500 text-sm ml-2">- logo dibujado a mano</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">SVG del logo con stroke-dashoffset animado desde la longitud total hasta 0: crea la ilusión de que el trazo se dibuja progresivamente. El fill aparece después de que se completa el stroke.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">La técnica de dashoffset en logos SVG es una de las más solicitadas por los clientes — funciona con cualquier path vectorial exportado de Illustrator o Figma.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">getTotalLength() · dashoffset interpolado · fill con delay mediante Sequence.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span>
+<span class="text-lg">💥</span>
+<div><span class="font-medium">logo-glitch-reveal</span><span class="text-neutral-500 text-sm ml-2">- reveal con efecto glitch</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">El logo aparece mediante un glitch progresivo: las copias de colores (cyan, magenta) desplazadas con translateX random van desapareciendo hasta converger en el logo estable: un reveal de identidad tecnológica.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Aplica glitch RGB split específicamente a logos: combina random por frame con interpolate de intensidad para controlar la atenuación.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">intensidad = interpolate(frame, [0, dur], [1, 0]) · random(frame) × intensidad · position absolute para capas.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span>
+<span class="text-lg">⬇️</span>
+<div><span class="font-medium">logo-bounce-drop</span><span class="text-neutral-500 text-sm ml-2">- caída con rebote</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">El logo cae desde arriba con un spring de alta stiffness y bajo damping: rebota varias veces antes de asentarse, con una sombra que se expande al aterrizar.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Spring con overshoot pronunciado para simular la física de una caída: un patrón de revelación de logo enérgico para marcas jóvenes y tecnológicas.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">spring({ stiffness: 200, damping: 10 }) · sombra inversamente proporcional al translateY · Sequence para la entrada.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span>
+<span class="text-lg">🌀</span>
+<div><span class="font-medium">logo-spin-reveal</span><span class="text-neutral-500 text-sm ml-2">- giro de 360° con entrada</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">El logo entra girando 360° con spring — la escala comienza en 0 y llega a 1 mientras la rotación completa el ciclo, creando una entrada rotacional enérgica.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Combina dos springs independientes (scale y rotate) con stiffness diferentes para lograr un timing asimétrico y orgánico.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">rotate spring con overshoot · scale spring simultáneo · transform-origin center para girar en su lugar.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span>
+<span class="text-lg">✂️</span>
+<div><span class="font-medium">logo-split-reveal</span><span class="text-neutral-500 text-sm ml-2">- logo dividido en partes</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Logo cortado en dos mitades (arriba/abajo o izquierda/derecha) con clip-path; las mitades llegan desde direcciones opuestas y encajan con spring — efecto de «armar» el logo.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Demuestra clip-path rect para enmascarar mitades de una imagen — técnica reutilizable en divisiones de pantalla, reveals de fotos y transiciones split.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">clipPath inset(0 0 50% 0) e inset(50% 0 0 0) · translateY con direcciones opuestas · spring para un ajuste preciso.</p></div>
+</div></div>
+</div>
+<div class="topic-item">
+<button class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left" onclick="toggleTopic(this)">
+<span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span>
+<span class="text-lg">⌨️</span>
+<div><span class="font-medium">logo-typewriter</span><span class="text-neutral-500 text-sm ml-2">- nombre escrito letra por letra</span></div>
+</button>
+<div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9">
+<div><span class="text-blue-400 font-semibold">Qué es:</span><p class="text-neutral-300 text-sm">Nombre de la marca escrito carácter por carácter con <code>Math.floor(frame / charsPerFrame)</code>; el ícono/símbolo aparece primero con spring y el cursor parpadea durante la escritura.</p></div>
+<div><span class="text-blue-400 font-semibold">Por qué aprender:</span><p class="text-neutral-300 text-sm">Versión de branding del typewriter: agrega un símbolo visual antes del texto y crea una narrativa de "construcción de marca" frame a frame.</p></div>
+<div><span class="text-blue-400 font-semibold">Conceptos clave:</span><p class="text-neutral-300 text-sm">slice(0, charsVisible) · cursor parpadeante con Math.floor(frame/10) % 2 · Sequence para el símbolo antes del texto.</p></div>
+</div></div>
+</div>
+</div>
+<div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+<button class="px-4 py-2 text-sm bg-dark-600 hover:bg-dark-500 rounded-lg transition-colors" onclick="openModal('modal-2-9')">Ver en modal</button>
+<a class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors" href="modulo-2-9.html">Ver completo</a>
+</div>
+</div>
+<!-- NAV INFERIOR -->
+<div class="flex flex-col sm:flex-row gap-4 mt-10">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="../trilha1/index.html">← Ruta anterior: Fundamentos</a>
+<a class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors" href="../trilha3/index.html">Próxima ruta: Combinación →</a>
+</div>
+</main>
+<!-- MODAIS -->
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-2-1" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.1</span><span class="font-semibold">✍️ Animaciones de texto</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-2-1.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-2-2" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.2</span><span class="font-semibold">📊 Charts &amp; Datos</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-2-2.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-2-3" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.3</span><span class="font-semibold">🎞️ Animación de contenido</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-2-3.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-2-4" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.4</span><span class="font-semibold">🖼️ Imagen y medios</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-2-4.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-2-5" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.5</span><span class="font-semibold">🌌 Fondos</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-2-5.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-2-6" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.6</span><span class="font-semibold">🎬 Cinemático</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-2-6.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-2-7" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.7</span><span class="font-semibold">🔀 Transiciones</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-2-7.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-2-8" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.8</span><span class="font-semibold">🎬 Intro y outro</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-2-8.html"></iframe>
+</div>
+</div>
+<div class="modal hidden fixed inset-0 z-50 flex items-center justify-center p-2 sm:p-4 bg-black/80" id="modal-2-9" onclick="if(event.target === this) closeModal()">
+<div class="bg-dark-800 rounded-xl w-full max-w-6xl h-[95vh] flex flex-col border border-dark-600">
+<div class="p-4 border-b border-dark-600 flex justify-between items-center flex-shrink-0">
+<div class="flex items-center space-x-3"><span class="text-blue-400 font-bold">2.9</span><span class="font-semibold">™️ Logo &amp; Branding</span></div>
+<button class="text-neutral-400 hover:text-white text-2xl leading-none" onclick="closeModal()">×</button>
+</div>
+<iframe class="flex-1 w-full rounded-b-xl" src="modulo-2-9.html"></iframe>
+</div>
+</div>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Curso de Remotion · Ruta 2 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    function toggleTopic(button) {
+      const topicItem = button.closest('.topic-item');
+      const explanation = topicItem.querySelector('.topic-explanation');
+      const moduleCard = button.closest('.bg-dark-800');
+      moduleCard.querySelectorAll('.topic-explanation.active').forEach(exp => { if (exp !== explanation) exp.classList.remove('active'); });
+      explanation.classList.toggle('active');
+    }
+    function openModal(modalId) { const m = document.getElementById(modalId); if (m) { m.classList.remove('hidden'); document.body.style.overflow = 'hidden'; } }
+    function closeModal() { document.querySelectorAll('.modal').forEach(m => m.classList.add('hidden')); document.body.style.overflow = 'auto'; }
+    document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

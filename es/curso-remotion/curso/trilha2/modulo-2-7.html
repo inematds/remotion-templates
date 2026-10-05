@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 2.7 — Transiciones · Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'dark': { 600: '#4b5563', 700: '#374151', 800: '#1f2937', 900: '#111827' },
+            'primary': '#60a5fa'
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f9fafb; color: #111827; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-700 { background-color: #e5e7eb; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-neutral-300 { color: #374151; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .text-white { color: #111827; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) .bg-dark-800\/50 { background-color: rgba(243,244,246,0.5); }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    /* Light mode - cores de acento (trilha blue) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    /* other-trilha nav hover */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #d97706; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* Light mode - remove gradientes */
+    html:not(.dark) .from-blue-900\/40 { --tw-gradient-from: rgba(37,99,235,0.08); }
+    html:not(.dark) .from-blue-900\/30 { --tw-gradient-from: rgba(37,99,235,0.06); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    /* SVG pulse */
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s}
+      .wf-a:nth-child(4){animation-delay:.9s} .wf-a:nth-child(5){animation-delay:1.2s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha2/modulo-2-7.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha2/modulo-2-7.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha2/modulo-2-7.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha2/modulo-2-7.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../../en/curso-remotion/curso/trilha2/modulo-2-7.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-2-7.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinación</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Proyectos</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Trayecto 2</a><span>/</span>
+<span class="text-blue-400">Módulo 2.7</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-2xl border border-blue-500/30 p-8">
+<div class="flex items-center space-x-3 mb-4">
+<span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-bold tracking-widest uppercase">MÓDULO 2.7</span>
+<span class="px-3 py-1 bg-dark-700 text-neutral-400 rounded-full text-xs">Trayecto 2 · Recursos</span>
+</div>
+<h1 class="text-4xl sm:text-5xl font-bold mb-4">🔀 Transiciones</h1>
+<p class="text-neutral-300 text-lg leading-relaxed mb-6">Explora los 9 templates de transición de Remotion: desde cortes secos hasta disolvencias cinematográficas, aprende cuándo y cómo usar cada efecto para crear videos fluidos y profesionales.</p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+<div class="text-blue-400 font-bold text-2xl">8</div>
+<div class="text-neutral-400 text-sm mt-1">Temas</div>
+</div>
+<div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+<div class="text-blue-400 font-bold text-2xl">35</div>
+<div class="text-neutral-400 text-sm mt-1">Minutos</div>
+</div>
+<div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+<div class="text-blue-400 font-bold text-2xl">Int</div>
+<div class="text-neutral-400 text-sm mt-1">Nivel</div>
+</div>
+<div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+<div class="text-blue-400 font-bold text-2xl">9</div>
+<div class="text-neutral-400 text-sm mt-1">Plantillas</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- DIVISOR -->
+<h2 class="text-sm font-semibold text-neutral-500 uppercase tracking-widest mb-8 pb-2 border-b border-dark-600">Contenido detallado</h2>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🗺️ Descripción general — cuándo usar transiciones</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Una transición no es solo un efecto visual: es <strong class="text-blue-400">lenguaje narrativo</strong>. El corte seco dice "continuidad inmediata"; el fade through black dice "pausa, salto en el tiempo". Elegir mal desinforma al espectador aunque técnicamente funcione.</p>
+<!-- SVG futurista — diagrama de fluxo de decisão de transição -->
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-4 mb-6 overflow-hidden">
+<svg aria-label="Diagrama de selección de transición" class="w-full h-auto" font-family="Inter,sans-serif" role="img" viewbox="0 0 780 200">
+<defs>
+<lineargradient id="m27-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#3b82f6"></stop></lineargradient>
+<filter height="180%" id="m27-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m27-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m27-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#60a5fa"></path></marker>
+<marker id="m27-ahc" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"></path></marker>
+</defs>
+<rect fill="url(#m27-grid)" height="200" width="780" x="0" y="0"></rect>
+<!-- cenas A e B -->
+<rect fill="#0e1622" filter="url(#m27-glow)" height="60" rx="10" stroke="#3b82f6" stroke-width="2" width="120" x="30" y="70"></rect>
+<text fill="#60a5fa" font-size="12" font-weight="600" text-anchor="middle" x="90" y="96">Escena A</text>
+<text fill="#93c5fd" font-size="10" text-anchor="middle" x="90" y="114">frame 0–59</text>
+<!-- seta -->
+<line marker-end="url(#m27-ah)" stroke="#60a5fa" stroke-width="2" x1="150" x2="210" y1="100" y2="100"></line>
+<!-- diamante decisão -->
+<polygon fill="#0e1622" points="260,70 310,100 260,130 210,100" stroke="#38bdf8" stroke-width="2"></polygon>
+<text fill="#38bdf8" font-size="10" font-weight="600" text-anchor="middle" x="260" y="97">Ritmo</text>
+<text fill="#38bdf8" font-size="10" text-anchor="middle" x="260" y="112">¿rápido?</text>
+<!-- sim/não -->
+<line marker-end="url(#m27-ah)" stroke="#60a5fa" stroke-width="1.5" x1="310" x2="380" y1="100" y2="68"></line>
+<text fill="#60a5fa" font-size="10" x="345" y="78">Sí</text>
+<line marker-end="url(#m27-ahc)" stroke="#38bdf8" stroke-width="1.5" x1="260" x2="260" y1="130" y2="158"></line>
+<text fill="#38bdf8" font-size="10" x="270" y="150">No</text>
+<!-- boxes resultado -->
+<rect class="wf-a" fill="#0e1622" height="48" rx="8" stroke="#3b82f6" stroke-width="1.5" width="140" x="380" y="44"></rect>
+<text fill="#60a5fa" font-size="11" font-weight="600" text-anchor="middle" x="450" y="65">Push / Slide Wipe</text>
+<text fill="#93c5fd" font-size="10" text-anchor="middle" x="450" y="82">recorte dinámico</text>
+<rect class="wf-a" fill="#0e1622" height="30" rx="8" stroke="#38bdf8" stroke-width="1.5" width="140" x="190" y="158"></rect>
+<text fill="#38bdf8" font-size="11" font-weight="600" text-anchor="middle" x="260" y="178">Cross-Dissolve / Iris</text>
+<!-- zoom through -->
+<rect class="wf-a" fill="#0e1622" height="48" rx="8" stroke="#3b82f6" stroke-width="1.5" width="140" x="560" y="44"></rect>
+<text fill="#60a5fa" font-size="11" font-weight="600" text-anchor="middle" x="630" y="65">Zoom Through</text>
+<text fill="#93c5fd" font-size="10" text-anchor="middle" x="630" y="82">transición épica</text>
+<line marker-end="url(#m27-ah)" stroke="#60a5fa" stroke-width="1.5" x1="520" x2="560" y1="68" y2="68"></line>
+<!-- cena B -->
+<rect fill="#0e1622" filter="url(#m27-glow)" height="48" rx="8" stroke="#60a5fa" stroke-width="2" width="140" x="560" y="128"></rect>
+<text fill="#60a5fa" font-size="12" font-weight="600" text-anchor="middle" x="630" y="150">Escena B</text>
+<text fill="#93c5fd" font-size="10" text-anchor="middle" x="630" y="168">frame 60+</text>
+<line marker-end="url(#m27-ah)" stroke="#60a5fa" stroke-dasharray="4,2" stroke-width="1.5" x1="450" x2="450" y1="92" y2="128"></line>
+<line marker-end="url(#m27-ah)" stroke="#3b82f6" stroke-dasharray="4,2" stroke-width="1.5" x1="630" x2="630" y1="92" y2="128"></line>
+</svg>
+</div>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🎯</span> Regla de oro</h3>
+<p class="text-neutral-300">La transición más imperceptible suele ser la mejor. Usa efectos llamativos solo cuando quieras que el espectador <em>siente</em> el cambio — salto en el tiempo, cambio de emoción, revelación de algo nuevo.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Corte seco</div><div class="text-neutral-400 text-xs">La ausencia de transición también es una elección</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Disolvencia</div><div class="text-neutral-400 text-xs">Suaviza la transición entre escenas</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Wipe</div><div class="text-neutral-400 text-xs">Direccional — mantiene un ritmo alto</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Morphing</div><div class="text-neutral-400 text-xs">Conecta elementos visualmente</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🪟 blinds-transition — efecto de persianas</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La plantilla <strong class="text-blue-400">blinds-transition</strong> divide la pantalla en N franjas verticales (8 por defecto) que giran como persianas, revelando la siguiente escena. El efecto está pasado de moda, pero funciona muy bien en contextos retro o de presentación corporativa.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Núcleo de la animación</span>
+<span class="text-xs text-neutral-500 font-mono">blinds-transition.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { useCurrentFrame, useVideoConfig, interpolate } <span class="text-purple-400">from</span> <span class="text-blue-400">"remotion"</span>;
+
+<span class="text-purple-400">const</span> blindCount = <span class="text-amber-400">8</span>;
+<span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> { fps } = <span class="text-blue-400">useVideoConfig</span>();
+
+<span class="text-neutral-500">// cada persiana abre com delay sequencial</span>
+blinds.<span class="text-blue-400">map</span>((_, i) =&gt; {
+  <span class="text-purple-400">const</span> delay = (i / blindCount) * (fps * <span class="text-amber-400">0.4</span>);
+  <span class="text-purple-400">const</span> rotation = <span class="text-blue-400">interpolate</span>(
+    frame - delay, [<span class="text-amber-400">0</span>, fps * <span class="text-amber-400">0.6</span>],
+    [<span class="text-amber-400">0</span>, <span class="text-amber-400">90</span>],
+    { extrapolateLeft: <span class="text-emerald-400">"clamp"</span>, extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+  );
+})</pre>
+</div>
+<!-- grid fazer vs evitar -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-5">
+<h4 class="text-emerald-400 font-semibold mb-3 flex items-center"><span class="mr-2">✓</span> Usa cuando</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Presentaciones corporativas con una estética limpia</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Videos con un tono nostálgico o retro</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Slideshow de productos con un corte por cada elemento</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5">
+<h4 class="text-red-400 font-semibold mb-3 flex items-center"><span class="mr-2">✗</span> Evita cuando</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>El contenido exige fluidez emocional (música, documental)</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Videos cortos: el efecto consume demasiados frames</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Más de 2× en el mismo video — cansa rápido</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">blindCount</div><div class="text-neutral-400 text-xs">Cantidad de porciones (por defecto 8)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">delay secuencial</div><div class="text-neutral-400 text-xs">Cada franja se abre con un offset de tiempo</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">rotateY</div><div class="text-neutral-400 text-xs">Gira de 0 a 90° y revela el fondo</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">perspective</div><div class="text-neutral-400 text-xs">Necesario para un efecto 3D convincente</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🕐 clock-wipe — barrido radial</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">clock-wipe</strong> usa un clip-path circular que barre de 0° a 360° como la manecilla de un reloj, revelando la nueva escena. La matemática detrás implica calcular el ángulo con <code class="text-blue-400">Math.atan2</code> y SVG <code class="text-blue-400">clipPath</code>.</p>
+<!-- tip box -->
+<div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">💡</span> Consejo práctico</h3>
+<p class="text-neutral-300">Combina <code>clock-wipe</code> con un <strong>countdown-intro</strong>: el anillo del countdown gira mientras cuenta 3-2-1 y, al llegar a GO, el clock-wipe revela la escena principal. Narrativa visual coherente sin una línea de código extra.</p>
+</div>
+<!-- timeline de passos -->
+<div class="space-y-4 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">1</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-1">Calcular el ángulo del frame</h4>
+<p class="text-sm text-neutral-400">Mapear <code class="font-mono text-blue-400">frame / durationInFrames</code> para grados (0–360) usando <code>interpolate</code>.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">2</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-1">Construir path del clipPath SVG</h4>
+<p class="text-sm text-neutral-400">Usando coordenadas polares → cartesianas para dibujar el sector circular que cubre la escena B.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">3</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-1">Aplicar clipPath en el div de la escena B</h4>
+<p class="text-sm text-neutral-400">La escena B queda "detrás" y solo aparece donde el sector se expandió — un efecto limpio sin composición adicional.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">clipPath SVG</div><div class="text-neutral-400 text-xs">Máscara circular progresiva</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">coordenadas polares</div><div class="text-neutral-400 text-xs">sin/cos para x,y del sector</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">0° = arriba</div><div class="text-neutral-400 text-xs">rotate(-90deg) en el SVG</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">largeLargeArc</div><div class="text-neutral-400 text-xs">Indicador del arco SVG &gt;180°</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🎭 cross-dissolve — el cross-fade clásico</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">cross-dissolve</strong> es el más simple y más usado: la escena A va de <code>opacity: 1</code> a <code>0</code> mientras la escena B recorre el camino inverso, ambas al mismo tiempo. El secreto está en la superposición simultánea — no en la ejecución en serie.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Implementación completa</span>
+<span class="text-xs text-neutral-500 font-mono">cross-dissolve.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> { fps } = <span class="text-blue-400">useVideoConfig</span>();
+
+<span class="text-purple-400">const</span> totalFrames = fps * <span class="text-amber-400">2.5</span>;
+<span class="text-purple-400">const</span> progress = Math.<span class="text-blue-400">min</span>(frame / totalFrames, <span class="text-amber-400">1</span>);
+
+<span class="text-neutral-500">// A sai enquanto B entra — simultâneo</span>
+<span class="text-purple-400">const</span> sceneAOpacity = <span class="text-amber-400">1</span> - progress;
+<span class="text-purple-400">const</span> sceneBOpacity = progress;</pre>
+</div>
+<!-- grid fazer vs evitar -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-5">
+<h4 class="text-emerald-400 font-semibold mb-3 flex items-center"><span class="mr-2">✓</span> Ideal para</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Transición entre clips de naturaleza similar</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Transición de tiempo fluida en documentales</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Slideshow emocional o narrativo</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5">
+<h4 class="text-red-400 font-semibold mb-3 flex items-center"><span class="mr-2">✗</span> No lo uses cuando</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Escenas con fondo blanco o muy claro (quedarán deslavadas)</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Cortes rápidos: un dissolve lento rompe el ritmo</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Cuando los elementos de A y B se superponen de forma extraña</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">progress lineal</div><div class="text-neutral-400 text-xs">Sin easing — intencionalmente lineal</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">position absolute</div><div class="text-neutral-400 text-xs">Ambas escenas ocupan el mismo espacio</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">2.5 × fps</div><div class="text-neutral-400 text-xs">Duración predeterminada: 2,5 segundos</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Math.min(..., 1)</div><div class="text-neutral-400 text-xs">Limita el valor para que no supere 1</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">⬛ fade-through-black — fundido a negro</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">fade-through-black</strong> (también llamado "dip to black") interpone un frame completamente negro entre dos escenas. A diferencia del cross-dissolve, las escenas nunca se superponen: la pantalla negra es el "separador" que le indica al espectador: <em>el cambio más grande ocurrió aquí</em>.</p>
+<!-- tip box -->
+<div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">💡</span> Consejo práctico</h3>
+<p class="text-neutral-300">Usa <code>fade-through-black</code> al inicio y al final de los videos de YouTube — <strong>fade in from black</strong> en la apertura y <strong>fade out to black</strong> en el cierre. Da una sensación cinematográfica que el público asocia con la calidad de producción.</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Dos etapas independientes</span>
+<span class="text-xs text-neutral-500 font-mono">fade-through-black.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// Estágio 1: cena A → preto</span>
+<span class="text-purple-400">const</span> fadeOutOpacity = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">0</span>, halfDuration], [<span class="text-amber-400">1</span>, <span class="text-amber-400">0</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);
+
+<span class="text-neutral-500">// Estágio 2: preto → cena B</span>
+<span class="text-purple-400">const</span> fadeInOpacity = <span class="text-blue-400">interpolate</span>(
+  frame, [halfDuration, totalDuration], [<span class="text-amber-400">0</span>, <span class="text-amber-400">1</span>],
+  { extrapolateLeft: <span class="text-emerald-400">"clamp"</span> }
+);</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">halfDuration</div><div class="text-neutral-400 text-xs">Punto de media transición</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">fondo negro absoluto</div><div class="text-neutral-400 text-xs">Div #000 en el z-index base</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">serial</div><div class="text-neutral-400 text-xs">Salida antes de la entrada (≠ disolver)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">salto temporal</div><div class="text-neutral-400 text-xs">Señal narrativa de un gran cambio</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🌀 zoom-through — reveal con zoom in/out</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">zoom-through</strong> es la plantilla más épica: la escena A hace zoom in hasta cubrir toda la pantalla (scale infinito), y la escena B aparece haciendo zoom out desde el infinito. Crea la sensación de «entrar» en un portal. Se usa mucho en tráileres e intros.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Zoom bidireccional con spring</span>
+<span class="text-xs text-neutral-500 font-mono">zoom-through.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { spring, interpolate, useCurrentFrame, useVideoConfig } <span class="text-purple-400">from</span> <span class="text-blue-400">"remotion"</span>;
+
+<span class="text-neutral-500">// Cena A cresce até sumir</span>
+<span class="text-purple-400">const</span> scaleA = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-amber-400">0</span>, halfFrames], [<span class="text-amber-400">1</span>, <span class="text-amber-400">8</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> });
+
+<span class="text-neutral-500">// Cena B começa grande e encolhe ao lugar</span>
+<span class="text-purple-400">const</span> scaleB = <span class="text-blue-400">interpolate</span>(frame, [halfFrames, totalFrames], [<span class="text-amber-400">8</span>, <span class="text-amber-400">1</span>],
+  { extrapolateLeft: <span class="text-emerald-400">"clamp"</span> });</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">scale 1→8</div><div class="text-neutral-400 text-xs">La escena A explota hacia afuera del cuadro</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">scale 8→1</div><div class="text-neutral-400 text-xs">La escena B «aterriza» desde el infinito</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">overflow hidden</div><div class="text-neutral-400 text-xs">El contenedor debe recortar el exceso</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">trailers/intros</div><div class="text-neutral-400 text-xs">Mejor uso: una vez por video</div></div>
+</div>
+</section>
+<!-- TÓPICO 7 — Biblioteca Completa -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">📚 Biblioteca completa de transiciones</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Todas las 9 plantillas de esta categoría están en <code class="text-blue-400">templates/</code>. Referencia rápida:</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">blinds-transition</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/blinds-transition.tsx</div>
+<div class="text-sm text-neutral-400">Las franjas verticales giran como persianas y revelan la escena B</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: interpolate + retraso secuencial</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">clock-wipe</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/clock-wipe.tsx</div>
+<div class="text-sm text-neutral-400">Barrido radial de 0° a 360° al estilo de las manecillas de un reloj</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: clipPath SVG + coordenadas polares</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">cross-dissolve</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/cross-dissolve.tsx</div>
+<div class="text-sm text-neutral-400">Fundido cruzado simultáneo clásico entre dos escenas</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: opacity A + B invertidos</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">fade-through-black</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/fade-through-black.tsx</div>
+<div class="text-sm text-neutral-400">Dip to black — escenas separadas por un fotograma negro</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: interpolate en dos etapas</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">iris-transition</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/iris-transition.tsx</div>
+<div class="text-sm text-neutral-400">Círculo que se expande desde el centro y revela la escena B</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: circle r animado vía clipPath</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">morph-transition</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/morph-transition.tsx</div>
+<div class="text-sm text-neutral-400">Scale + fade simultáneos conectan visualmente las escenas</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: spring scale + interpolate opacity</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">push-transition</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/push-transition.tsx</div>
+<div class="text-sm text-neutral-400">La escena B empuja la escena A fuera del cuadro</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: translateX spring empuja ambas</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">slide-wipe</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/slide-wipe.tsx</div>
+<div class="text-sm text-neutral-400">El panel se desliza con física de resorte (spring)</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: spring translateX con damping</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">zoom-through</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/zoom-through.tsx</div>
+<div class="text-sm text-neutral-400">Zoom de entrada/salida bidireccional — efecto portal</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: scale 1→8→1 interpolate</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">9 plantillas</div><div class="text-neutral-400 text-xs">Todas listas para usar y personalizar</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">clipPath</div><div class="text-neutral-400 text-xs">Técnica dominante en iris y clock-wipe</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">spring</div><div class="text-neutral-400 text-xs">Push y slide usan física de resorte</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">interpolate</div><div class="text-neutral-400 text-xs">Base de blinds, disolución y zoom</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Las transiciones son lenguaje narrativo</strong><span class="text-neutral-400"> — cada efecto comunica algo al espectador</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">blinds-transition</strong><span class="text-neutral-400"> — segmentos con delay secuencial, ideal para un contexto retro/corporativo</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">cross-dissolve</strong><span class="text-neutral-400"> — el más versátil: opacidades invertidas simultáneas</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">fade-through-black</strong><span class="text-neutral-400"> — dip to black para cambios temporales significativos</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">zoom-through</strong><span class="text-neutral-400"> — scale 1→8→1 para lograr el efecto de portal más épico</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Próximo módulo:</h3>
+<p class="text-neutral-300">2.8 — Intro y Outro: plantillas de apertura y cierre para tus videos</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Volver a la ruta 2</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="modulo-2-8.html">Próximo módulo →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Curso de Remotion · Módulo 2.7 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    // Theme toggle
+    const toggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+
+    function applyTheme(theme) {
+      if (theme === 'dark') {
+        html.classList.add('dark');
+        darkIcon.classList.add('hidden');
+        lightIcon.classList.remove('hidden');
+      } else {
+        html.classList.remove('dark');
+        darkIcon.classList.remove('hidden');
+        lightIcon.classList.add('hidden');
+      }
+    }
+
+    const saved = localStorage.getItem('theme') || 'dark';
+    applyTheme(saved);
+
+    toggle.addEventListener('click', () => {
+      const next = html.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem('theme', next);
+      applyTheme(next);
+    });
+  </script>
+</body>
+</html>

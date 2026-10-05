@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 4.2 · Video de producto | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha4/modulo-4-2.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha4/modulo-4-2.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha4/modulo-4-2.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha4/modulo-4-2.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../../en/curso-remotion/curso/trilha4/modulo-4-2.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-4-2.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinación</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10" href="index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Proyectos</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-amber-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-amber-400" href="index.html">Trayecto 4</a><span>/</span>
+<span class="text-amber-400">Módulo 4.2</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.2</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🛍️ Video de producto</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Combina <code class="text-amber-400">ken-burns</code> para la imagen del producto, <code class="text-amber-400">lower-third</code> animado para nombre/precio, <code class="text-amber-400">split-screen</code> para comparar, <code class="text-amber-400">stat-counter</code> para números y <code class="text-amber-400">end-card</code> para el CTA — todo en una serie de 30–60 s.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Temas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avanzado</div><div class="text-xs text-neutral-400">Nivel</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Proyecto</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SVG diagrama equação de produto -->
+<div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="ken-burns más lower-third más split-screen más stat-counter más end-card dan como resultado el video de producto completo" class="w-full h-auto" role="img" viewbox="0 0 1000 190">
+<defs>
+<lineargradient id="m42-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#f59e0b"></stop></lineargradient>
+<filter height="180%" id="m42-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m42-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#f59e0b" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m42-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#fbbf24"></path></marker>
+</defs>
+<rect fill="url(#m42-grid)" height="190" width="1000" x="0" y="0"></rect>
+<g class="wf-a"><rect fill="#1f1604" height="50" rx="10" stroke="#fbbf24" stroke-width="1.8" width="110" x="20" y="70"></rect><text fill="#fbbf24" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="75" y="93">ken-burns</text><text fill="#fde68a" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="75" y="109">zoom + pan</text></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="18" font-weight="700" x="140" y="100">+</text>
+<g class="wf-a"><rect fill="#1f1604" height="50" rx="10" stroke="#fbbf24" stroke-width="1.8" width="118" x="158" y="70"></rect><text fill="#fbbf24" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="217" y="93">lower-third</text><text fill="#fde68a" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="217" y="109">nombre + precio</text></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="18" font-weight="700" x="284" y="100">+</text>
+<g class="wf-a"><rect fill="#0e1b26" height="50" rx="10" stroke="#38bdf8" stroke-width="1.8" width="118" x="302" y="70"></rect><text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="361" y="93">split-screen</text><text fill="#93c5fd" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="361" y="109">antes/después</text></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="18" font-weight="700" x="428" y="100">+</text>
+<g class="wf-a"><rect fill="#1f1604" height="50" rx="10" stroke="#fbbf24" stroke-width="1.8" width="118" x="446" y="70"></rect><text fill="#fbbf24" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="505" y="93">stat-counter</text><text fill="#fde68a" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="505" y="109">4.8★ · 12k</text></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="18" font-weight="700" x="572" y="100">+</text>
+<g class="wf-a"><rect fill="#0e1b26" height="50" rx="10" stroke="#38bdf8" stroke-width="1.8" width="100" x="590" y="70"></rect><text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="640" y="93">end-card</text><text fill="#93c5fd" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="640" y="109">CTA</text></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="20" font-weight="700" x="696" y="100">=</text>
+<g filter="url(#m42-glow)"><rect fill="#1f1604" height="70" rx="14" stroke="url(#m42-grad)" stroke-width="2.5" width="260" x="720" y="60"></rect></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="16" font-weight="700" text-anchor="middle" x="850" y="93">video de producto</text>
+<text fill="#fde68a" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="850" y="113">30–60 s · persuasivo</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🎯 El proyecto y la estructura persuasiva</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Los videos de producto siguen una estructura clásica de marketing: <strong class="text-amber-400">atención → interés → deseo → acción</strong>. En Remotion esto se traduce directamente en escenas: el ken-burns capta la atención, el lower-third despierta el interés, la comparación crea deseo y el end-card invita a la acción.</p>
+<div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🛍️</span> Mapa de escenas del proyecto</h3>
+<div class="space-y-2 text-neutral-300">
+<div class="flex items-center space-x-3"><span class="text-amber-400 font-mono text-sm w-24">0–90f</span><span><strong>Hero:</strong> ken-burns en la imagen del producto, lower-third entra en el frame 30.</span></div>
+<div class="flex items-center space-x-3"><span class="text-amber-400 font-mono text-sm w-24">90–180f</span><span><strong>Comparación:</strong> split-screen revela el antes y el después del producto.</span></div>
+<div class="flex items-center space-x-3"><span class="text-amber-400 font-mono text-sm w-24">180–270f</span><span><strong>Prueba social:</strong> stat-counter de reseñas y ventas.</span></div>
+<div class="flex items-center space-x-3"><span class="text-amber-400 font-mono text-sm w-24">270–360f</span><span><strong>CTA:</strong> end-card con URL, precio final y llamada a la acción.</span></div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Total</div><div class="text-xs text-neutral-400">360 frames = 12 s</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">AIDA</div><div class="text-xs text-neutral-400">Estructura persuasiva</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Series</div><div class="text-xs text-neutral-400">4 escenas en secuencia</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Props</div><div class="text-xs text-neutral-400">productName, price, img</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">📸 Escena de apertura — ken-burns</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">ken-burns</strong> es la técnica de hacer zoom + pan suave en una imagen estática, creando movimiento cinematográfico sin cámara. En Remotion, simplemente se animan scale y translate con interpolate dentro de un contenedor con <code class="text-amber-400">overflow: hidden</code>.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Ken-burns con zoom y paneo</span>
+<span class="text-xs text-neutral-500 font-mono">ken-burns.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> { durationInFrames } = <span class="text-blue-400">useVideoConfig</span>();
+
+<span class="text-neutral-500">// zoom: 1.0 → 1.08 ao longo da cena</span>
+<span class="text-purple-400">const</span> scale = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">0</span>, durationInFrames],
+  [<span class="text-amber-400">1.0</span>, <span class="text-amber-400">1.08</span>],
+  { extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+);
+<span class="text-neutral-500">// pan: desloca 20px da esquerda para direita</span>
+<span class="text-purple-400">const</span> x = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">0</span>, durationInFrames],
+  [<span class="text-amber-400">0</span>, <span class="text-amber-400">-20</span>],
+  { extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">return</span> &lt;div style={{ overflow:<span class="text-amber-400">"hidden"</span>, width:<span class="text-amber-400">"100%"</span>, height:<span class="text-amber-400">"100%"</span> }}&gt;
+  &lt;img src={src} style={{
+    width: <span class="text-amber-400">"100%"</span>, height: <span class="text-amber-400">"100%"</span>, objectFit: <span class="text-amber-400">"cover"</span>,
+    transform: <span class="text-amber-400">`scale(${scale}) translateX(${x}px)`</span>
+  }} /&gt;
+&lt;/div&gt;;</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Consejo: escala máxima 1.10</h3>
+<p class="text-neutral-300">Un zoom por encima de 1.10 empieza a verse digital y artificial. Mantén el valor entre 1.03 y 1.10 para que el efecto parezca de una cámara real. Para el desplazamiento panorámico, 20–30 px en 90 frames es el punto ideal: se nota, pero no distrae.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Zoom</div><div class="text-xs text-neutral-400">1.0 → 1.08</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Pan</div><div class="text-xs text-neutral-400">0 → -20px</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">overflow</div><div class="text-xs text-neutral-400">hidden obligatorio</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">easing</div><div class="text-xs text-neutral-400">linear suave</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🏷️ Overlay — lower-third con nombre y precio</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">lower-third</strong> es un overlay que aparece sobre el ken-burns; no es una escena separada en el Series, sino un <code class="text-amber-400">Sequence</code> dentro de la misma escena hero. Se desliza desde abajo, muestra el nombre y el precio, y opcionalmente sale antes de que termine la escena.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+<h4 class="font-bold text-amber-400 mb-4">✓ Qué HACER</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Animar translateY de +80 → 0 en 20 frames (spring). Entrada rápida y firme.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Usar un fondo semitransparente (rgba 0,0,0,0.6) para que el texto sea legible sobre cualquier foto.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Iniciar con Sequence from={fps} da 1 s para que el espectador vea el producto antes del texto.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Qué NO hacer</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Texto blanco sin fondo sobre una foto clara: ilegible según la foto del producto.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Lower-third en el frame 0 — cubre el producto antes de que el espectador lo vea.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Precio en fuente pequeña: en dispositivos móviles (redes sociales) necesita al menos 36px.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Entrada</div><div class="text-xs text-neutral-400">spring de translateY</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Delay</div><div class="text-xs text-neutral-400">Sequence from=fps</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Fondo</div><div class="text-xs text-neutral-400">rgba 0,0,0,0.6</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Posición</div><div class="text-xs text-neutral-400">Inferior, tercio inferior</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">⚖️ Escena de comparación — split-screen</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La escena de comparación usa <code class="text-amber-400">split-screen.tsx</code> para mostrar dos imágenes lado a lado, o <code class="text-amber-400">image-comparison-slider.tsx</code> para revelar progresivamente el «después» sobre el «antes». Ambas usan <code>clip-path</code> animado para controlar la división.</p>
+<!-- Timeline de construção da cena -->
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Frame 0–15: entrada de las dos imágenes</h4>
+<p class="text-neutral-300 text-sm">La imagen de la izquierda se desliza desde la izquierda y la de la derecha, desde la derecha; ambas con opacity 0→1. El espectador ve aparecer las dos al mismo tiempo.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Frame 15–60: línea divisoria animada</h4>
+<p class="text-neutral-300 text-sm">Una línea vertical blanca separa ambos lados. En el slider, se mueve del 30% al 70%, revelando progresivamente el «después».</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Frame 60–90: aparecen las etiquetas</h4>
+<p class="text-neutral-300 text-sm">"Antes" y "Después" (o "Sin producto" / "Con producto") aparecen con spring, reforzando visualmente la comparación.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">clip-path</div><div class="text-xs text-neutral-400">inset(0 X% 0 0)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Slider</div><div class="text-xs text-neutral-400">30% → 70% en 45f</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Etiquetas</div><div class="text-xs text-neutral-400">spring en el frame 60</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Duración</div><div class="text-xs text-neutral-400">90 frames (3 s)</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">📊 Prueba social — stat-counter</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La escena de números usa <code class="text-amber-400">stat-counter.tsx</code> para animar contadores de 0 hasta el valor real del producto: reseñas, ventas, estrellas. El número «contando» capta la atención y hace que el dato sea más memorable que un texto estático.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Contador con easing</span>
+<span class="text-xs text-neutral-500 font-mono">stat-counter.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-purple-400">const</span> progress = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">0</span>, <span class="text-amber-400">60</span>], [<span class="text-amber-400">0</span>, <span class="text-amber-400">1</span>],
+  { easing: Easing.out(Easing.cubic), extrapolateRight: <span class="text-amber-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">const</span> value = Math.round(progress * targetValue);
+
+<span class="text-neutral-500">// Exemplo: targetValue = 12847 (vendas)</span>
+<span class="text-neutral-500">// frame 0 → "0", frame 30 → "6.424", frame 60 → "12.847"</span>
+
+<span class="text-purple-400">return</span> &lt;div&gt;
+  &lt;span&gt;{value.toLocaleString(<span class="text-amber-400">"pt-BR"</span>)}&lt;/span&gt;
+  &lt;span className="text-sm"&gt; vendas&lt;/span&gt;
+&lt;/div&gt;;</pre>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Datos recomendados para videos de productos</h3>
+<ul class="space-y-2 text-neutral-300">
+<li><strong>Evaluaciones:</strong> ⭐⭐⭐⭐⭐ 4.8/5 — efecto visual con estrellas que se rellenan</li>
+<li><strong>Volumen:</strong> "12.847 ventas" — una cifra grande impresiona</li>
+<li><strong>Satisfacción:</strong> "El 97 % lo recomienda" — el porcentaje se asimila rápido</li>
+<li><strong>Comparativa:</strong> "-40 % en comparación con la competencia" — ancla el precio</li>
+</ul>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Math.round</div><div class="text-xs text-neutral-400">progress × target</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Easing.out</div><div class="text-xs text-neutral-400">Cúbica — acelera al inicio</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">toLocaleString</div><div class="text-xs text-neutral-400">Formato automático</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">60 frames</div><div class="text-xs text-neutral-400">2 s para contar</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">📣 End-card y ritmo del video</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-amber-400">end-card</strong> es la última escena: presenta el logo, la URL, el precio final o el código QR. Todo lo que estaba repartido en las escenas anteriores converge aquí en un mensaje claro: <em>"dónde comprar"</em>. El ritmo general del video debe acelerarse ligeramente hacia el end-card.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+<h4 class="font-bold text-amber-400 mb-4">✓ End-card eficaz</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Logo centrado con spring: identidad final de la marca.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>URL o CTA en fuente grande y color contrastante.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Duración de 90–120 fotogramas (3–4 s): tiempo para leer y actuar.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ End-card que no convierte</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Demasiada información al mismo tiempo: el espectador no sabe dónde mirar.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Menos de 60 frames — no hay tiempo para asimilar la URL.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>El mismo fondo del video — la end card no se diferencia visualmente.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Logo</div><div class="text-xs text-neutral-400">spring en la entrada</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">CTA</div><div class="text-xs text-neutral-400">Fuente grande, contraste</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Duración</div><div class="text-xs text-neutral-400">90–120 frames</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Fondo</div><div class="text-xs text-neutral-400">A diferencia del video</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏁</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Estructura AIDA</strong><span class="text-neutral-400"> — 4 escenas en Series siguiendo la lógica persuasiva.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Ken-burns con overflow hidden</strong><span class="text-neutral-400"> — scale 1.0→1.08 + translateX sobre img con objectFit cover.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Lower-third como overlay</strong><span class="text-neutral-400"> — Sequence inside de la escena, from=fps, translateY spring.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Pantalla dividida mediante clip-path</strong><span class="text-neutral-400"> — inset animado para revelar el "después" progresivamente.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Stat-counter con Easing.out</strong><span class="text-neutral-400"> — Math.round(progress × target) + toLocaleString.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">End-card limpio</strong><span class="text-neutral-400"> — logo + CTA + duración ≥ 90 frames para asimilar el contenido.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-amber-400 mb-2">Próximo módulo:</h3>
+<p class="text-neutral-300">4.3 — Data-Story: gráficos animados + stat-counter + comparación + narrativa de datos.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="modulo-4-1.html">← Módulo 4.1</a>
+<a class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors" href="modulo-4-3.html">Próximo módulo →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Curso de Remotion · Módulo 4.2 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 1.1 · The Time Engine | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (emerald T1) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5,150,105,0.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* boxes de pesquisa/alerta */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha1/modulo-1-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha1/modulo-1-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha1/modulo-1-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha1/modulo-1-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-1-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../../es/curso-remotion/curso/trilha1/modulo-1-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10" href="index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Resources</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combination</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projects</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-emerald-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-emerald-400" href="index.html">Track 1</a><span>/</span>
+<span class="text-emerald-400">Module 1.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MODULE 1.1</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🕐 The Time Engine</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">In Remotion, there is no "play." There is a question repeated very quickly: <em>"what image to draw on frame N?"</em>. Understanding this mental shift is what unlocks all the other 80 templates.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Topics</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">40</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Basic</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Theory</div><div class="text-xs text-neutral-400">Type</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- Diagrama do conceito -->
+<div class="rounded-2xl border border-emerald-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="The timeline is a sequence of numbered frames; the renderer requests the image for one frame at a time and stacks the result into a video" class="w-full h-auto" role="img" viewbox="0 0 1000 210">
+<defs>
+<lineargradient id="m11-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#34d399"></stop><stop offset="1" stop-color="#10b981"></stop></lineargradient>
+<filter height="180%" id="m11-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m11-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#10b981" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m11-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#34d399"></path></marker>
+</defs>
+<rect fill="url(#m11-grid)" height="210" width="1000" x="0" y="0"></rect>
+<text fill="#a7f3d0" font-family="Inter,sans-serif" font-size="13" font-weight="600" x="40" y="40">timeline (durationInFrames = 90 · 30fps = 3s)</text>
+<!-- fita de frames -->
+<g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+<g class="wf-a"><rect fill="#0e1b26" height="48" rx="8" stroke="#38bdf8" stroke-width="1.8" width="64" x="40" y="60"></rect><text fill="#bfe6ff" text-anchor="middle" x="72" y="89">0</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="48" rx="8" stroke="#38bdf8" stroke-width="1.8" width="64" x="112" y="60"></rect><text fill="#bfe6ff" text-anchor="middle" x="144" y="89">1</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="48" rx="8" stroke="#38bdf8" stroke-width="1.8" width="64" x="184" y="60"></rect><text fill="#bfe6ff" text-anchor="middle" x="216" y="89">2</text></g>
+<g class="wf-a"><rect fill="#0e1b26" height="48" rx="8" stroke="#38bdf8" stroke-width="1.8" width="64" x="256" y="60"></rect><text fill="#bfe6ff" text-anchor="middle" x="288" y="89">3</text></g>
+</g>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="22" x="336" y="89">…</text>
+<g filter="url(#m11-glow)"><rect fill="#0e2018" height="56" rx="10" stroke="url(#m11-grad)" stroke-width="2.5" width="80" x="372" y="56"></rect></g>
+<text fill="#34d399" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="412" y="80">frame</text>
+<text fill="#34d399" font-family="Inter,sans-serif" font-size="16" font-weight="700" text-anchor="middle" x="412" y="98">42</text>
+<!-- função -->
+<path d="M452,84 L516,84" fill="none" marker-end="url(#m11-ah)" opacity="0.65" stroke="#34d399" stroke-width="2"></path>
+<rect fill="#0e1622" height="52" rx="12" stroke="#60a5fa" stroke-width="2" width="190" x="524" y="58"></rect>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="619" y="80">your component</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11.5" text-anchor="middle" x="619" y="98">draws frame 42</text>
+<path d="M714,84 L778,84" fill="none" marker-end="url(#m11-ah)" opacity="0.65" stroke="#34d399" stroke-width="2"></path>
+<g filter="url(#m11-glow)"><rect fill="#0e2018" height="60" rx="12" stroke="url(#m11-grad)" stroke-width="2.5" width="150" x="786" y="54"></rect></g>
+<text fill="#34d399" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="861" y="80">image</text>
+<text fill="#a7f3d0" font-family="Inter,sans-serif" font-size="11.5" text-anchor="middle" x="861" y="98">one video frame</text>
+<text fill="#a7f3d0" font-family="Inter,sans-serif" font-size="13" text-anchor="middle" x="500" y="160">Repeat for all 90 frames → the player combines everything into a 3-second video.</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="12" font-style="italic" text-anchor="middle" x="500" y="184">No frame depends on the previous one — each calculates itself independently.</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🕐 useCurrentFrame() — the clock</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">On a web page, you would use <code class="text-emerald-400">requestAnimationFrame</code> or a <code class="text-emerald-400">setInterval</code> and accumulate state. In Remotion, forget all that. You just ask: <strong class="text-emerald-400">"what frame am I on right now?"</strong> — e <code class="text-emerald-400">useCurrentFrame()</code> returns an integer that grows from 0 to the end of the video.</p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> The central idea</h3>
+<p class="text-neutral-300 mb-4">The frame is the <strong>entrance</strong> and the image is the <strong>output</strong>. When the frame changes, everything is recalculated from scratch. This hook is the starting point for practically every template in the library.</p>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>Returns a number: 0 at the beginning, then increases by 1 each time.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>The component is re-executed for every frame during rendering.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-1">•</span><span>You never “advance” time — Remotion does that for you.</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Minimal component</span>
+<span class="text-xs text-neutral-500 font-mono">MyVideo.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { useCurrentFrame } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+
+<span class="text-purple-400">export const</span> <span class="text-blue-400">MyVideo</span> = () =&gt; {
+  <span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();   <span class="text-neutral-500">// 0, 1, 2, 3 …</span>
+  <span class="text-purple-400">return</span> &lt;div&gt;Frame atual: {frame}&lt;/div&gt;;
+};</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Practical tip</h3>
+<p class="text-neutral-300">Want to try it? Open Remotion Studio and drag the timeline. The number that appears is exactly what <code>useCurrentFrame()</code> returns. Seeing the number change as you drag makes the concept concrete.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Return</div><div class="text-xs text-neutral-400">Integer ≥ 0</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Reactivity</div><div class="text-xs text-neutral-400">Recalculates per frame</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">No state</div><div class="text-xs text-neutral-400">Doesn’t accumulate anything</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Base of</div><div class="text-xs text-neutral-400">interpolate, spring</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">⚙️ fps and durationInFrames — the measuring stick</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The frame alone does not tell you how much time has passed. The one that sets the scale is the <strong class="text-emerald-400">fps</strong> (frames per second). At 30fps, frame 30 is "1 second." The <strong class="text-emerald-400">durationInFrames</strong> tells you how many frames the video has in total—it’s your time limit.</p>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Conversions you’ll use all the time</h3>
+<ul class="space-y-2 text-neutral-300">
+<li><strong>seconds × fps = frames</strong> — 2s at 30fps = 60 frames</li>
+<li><strong>frames ÷ fps = seconds</strong> — 90 frames at 30fps = 3s</li>
+<li><strong>30fps</strong> — web/social standard, lightweight to render</li>
+<li><strong>60fps</strong> — smoother, doubles render cost</li>
+</ul>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ What to DO</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Set fps and duration in <code>&lt;Composition&gt;</code>.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Derive timings from fps (<code>fps * 1.5</code> for 1.5s).</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Think of the animation within the durationInFrames window.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ What NOT to do</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Fixing "frame 45" without remembering that it changes if the fps changes.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Animate beyond durationInFrames (it disappears in the final render).</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Mix 30 and 60fps between scenes without converting.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">fps</div><div class="text-xs text-neutral-400">Frames per second</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">duration</div><div class="text-xs text-neutral-400">Total in frames</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Pattern</div><div class="text-xs text-neutral-400">30fps</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Rule</div><div class="text-xs text-neutral-400">s × fps = frames</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">📐 useVideoConfig() — dimensions and fps</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">How do you get the fps inside the component without hardcoding it? And the width, to center something? The <code class="text-emerald-400">useVideoConfig()</code> returns everything: <code>width</code>, <code>height</code>, <code>fps</code> e <code>durationInFrames</code> from the composition being rendered.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Format-responsive</span>
+<span class="text-xs text-neutral-500 font-mono">Centered.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> { width, height, fps } = <span class="text-blue-400">useVideoConfig</span>();
+<span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-neutral-500">// "1 segundo" funciona em 30 ou 60fps:</span>
+<span class="text-purple-400">const</span> apareceu = frame &gt; fps;
+<span class="text-neutral-500">// centralizar sem saber o tamanho exato:</span>
+<span class="text-purple-400">const</span> cx = width / <span class="text-emerald-400">2</span>;</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Why this matters</h3>
+<p class="text-neutral-300">The same component can run in 16:9 (1920×1080) and 9:16 (1080×1920) without changing a line—if you read width/height from <code>useVideoConfig()</code> instead of hard-coding numbers. That’s how a template becomes reusable across YouTube and Reels.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">width</div><div class="text-xs text-neutral-400">Width in px</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">height</div><div class="text-xs text-neutral-400">Height in px</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">fps</div><div class="text-xs text-neutral-400">No hardcoding</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Gain</div><div class="text-xs text-neutral-400">Multiformat</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🎯 The frame as the source of truth</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Here’s the golden rule: <strong class="text-emerald-400">the image of a frame depends ONLY on the frame number</strong>. No <code>useState</code> accumulating, no timers, no “how long has it been since I clicked.” Each frame is a pure function.</p>
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">The render requests frames out of order</h4>
+<p class="text-neutral-300 text-sm">To render quickly, Remotion renders multiple frames in parallel — it may calculate frame 80 before 20. This only works because each one is independent.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Real-time state breaks this</h4>
+<p class="text-neutral-300 text-sm">A <code>setInterval</code> assumes time runs continuously. That doesn’t happen in rendering — each frame is an isolated calculation. That’s why the animation comes from the frame, not timers.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-emerald-500/20 flex items-center justify-center"><span class="text-emerald-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Everything derives from an input</h4>
+<p class="text-neutral-300 text-sm">Position, opacity, color, scale — they’re all <em>frame functions</em>. When the frame changes, everything is recalculated. This discipline is what keeps the video consistent.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Pure function</div><div class="text-xs text-neutral-400">frame → pixels</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">No timers</div><div class="text-xs text-neutral-400">No setInterval</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Parallelizable</div><div class="text-xs text-neutral-400">Fast rendering</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Predictable</div><div class="text-xs text-neutral-400">Always the same</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🔁 Determinism — same frame, same image</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Direct consequence of the previous rule: rendering frame 42 today, tomorrow, or on another machine produces <strong class="text-emerald-400">exactly</strong> the same pixel. This is called determinism — and it has a clear enemy: unseeded randomness.</p>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Warning: what destroys determinism</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><code>Math.random()</code> — returns a different value on each calculation, making particles "blink".</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><code>Date.now()</code> / <code>new Date()</code> — changes with each run.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Any external data that changes between renders.</span></li>
+</ul>
+</div>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-3 flex items-center"><span class="mr-2">✅</span> The solution: seeded random()</h3>
+<p class="text-neutral-300 mb-4">Remotion offers <code>random("seed")</code>: given the same seed, it always returns the same number. You get visual “randomness” without losing reproducibility.</p>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { random } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+<span class="text-neutral-500">// mesma seed → mesmo valor, sempre:</span>
+<span class="text-purple-400">const</span> x = <span class="text-blue-400">random</span>(<span class="text-emerald-400">"particula-7"</span>) * width;</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Determinism</div><div class="text-xs text-neutral-400">Always reproducible</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Villain</div><div class="text-xs text-neutral-400">unseeded random</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Solution</div><div class="text-xs text-neutral-400">random("seed")</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Gain</div><div class="text-xs text-neutral-400">Parallel rendering OK</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">⏱️ Think in frames, not seconds</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The module’s final habit change: your unit of work becomes the <strong class="text-emerald-400">frame</strong>. “The title comes in within half a second” becomes “the title comes in within 15 frames.” Seconds only appear at the system boundary—when a human types in a value.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Frame mindset</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>"Appears from frame 0 to 15" — straight in the API.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Stagger: item N starts at frame N×5.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Convert seconds only at the start: <code>0.5 * fps</code>.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Second mindset</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Calculate "0.5s" in the middle of the entire animation over and over.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Mix seconds and frames in the same calculation.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Forgetting that changing the fps rescales everything in seconds.</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Rule of thumb</h3>
+<p class="text-neutral-300">At 30fps: <strong>15 frames = 0.5s</strong>, <strong>30 frames = 1s</strong>, <strong>45 frames = 1.5s</strong>. Memorize these three and you can estimate any timing in your head.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Unit</div><div class="text-xs text-neutral-400">The frame</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Seconds</div><div class="text-xs text-neutral-400">At the edge only</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Conversion</div><div class="text-xs text-neutral-400">× fps</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Decorate</div><div class="text-xs text-neutral-400">15 / 30 / 45</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">useCurrentFrame()</strong><span class="text-neutral-400"> — the current frame number is the only time input that matters.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">fps and durationInFrames</strong><span class="text-neutral-400"> — convert seconds to frames and define the video window.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">useVideoConfig()</strong><span class="text-neutral-400"> — provides width/height/fps without hardcoding, making the template multi-format.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Pure function and determinism</strong><span class="text-neutral-400"> — each frame calculates itself; use random("seed") for safe randomness.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Think in frames</strong><span class="text-neutral-400"> — frame is the unit; seconds only at the boundary.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-emerald-400 mb-2">Next module:</h3>
+<p class="text-neutral-300">1.2 — interpolate(): transform the frame number into opacity, position, and scale.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Back to Track</a>
+<a class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors" href="modulo-1-2.html">Next Module →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Remotion Course · Module 1.1 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

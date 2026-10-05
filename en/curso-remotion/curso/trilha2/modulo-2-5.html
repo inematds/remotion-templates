@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 2.5 · Backgrounds / Background | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (blue T2) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes m25-pulse { 0%,100% { opacity:.45 } 50% { opacity:.9 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .m25-a { animation: m25-pulse 3.2s ease-in-out infinite; }
+      .m25-a:nth-child(2){animation-delay:.5s} .m25-a:nth-child(3){animation-delay:1s} .m25-a:nth-child(4){animation-delay:1.5s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha2/modulo-2-5.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha2/modulo-2-5.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha2/modulo-2-5.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha2/modulo-2-5.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-2-5.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../../es/curso-remotion/curso/trilha2/modulo-2-5.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Resources</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combination</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projects</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Track 2</a><span>/</span>
+<span class="text-blue-400">Module 2.5</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MODULE 2.5</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🌌 Backgrounds / Background</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Animated backgrounds are the invisible environment that sets the mood for the entire video. Nine templates cover everything from organic bokeh to matrix rain — each with zero dependency on external assets and 100% deterministic rendering.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">8</div><div class="text-xs text-neutral-400">Topics</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">40</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Medium</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Practical</div><div class="text-xs text-neutral-400">Type</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SVG diagrama da categoria -->
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Background environment spectrum: from organic to geometric to cinematic" class="w-full h-auto" role="img" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="m25-grad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#38bdf8"></stop></lineargradient>
+<filter height="180%" id="m25-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m25-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.09" r="1.3"></circle></pattern>
+<marker id="m25-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"></path></marker>
+</defs>
+<rect fill="url(#m25-grid)" height="200" width="1000" x="0" y="0"></rect>
+<!-- eixo -->
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="500" y="30">Background environment spectrum</text>
+<line opacity="0.5" stroke="url(#m25-grad)" stroke-width="2" x1="60" x2="940" y1="100" y2="100"></line>
+<path d="M938,100 L940,100" fill="none" marker-end="url(#m25-ah)" stroke="#38bdf8" stroke-width="2"></path>
+<!-- Orgânico -->
+<g class="m25-a" filter="url(#m25-glow)"><circle cx="120" cy="100" fill="#0e1622" r="28" stroke="#60a5fa" stroke-width="2"></circle></g>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="10" font-weight="600" text-anchor="middle" x="120" y="96">bokeh</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="9" text-anchor="middle" x="120" y="110">noise-grain</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="120" y="148">Organic</text>
+<!-- Gradiente -->
+<g class="m25-a"><rect fill="#0e1622" height="56" rx="10" stroke="#38bdf8" stroke-width="1.8" width="120" x="220" y="72"></rect></g>
+<text fill="#bae6fd" font-family="Inter,sans-serif" font-size="10" font-weight="600" text-anchor="middle" x="280" y="96">gradient-shift</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="9" text-anchor="middle" x="280" y="110">liquid-wave</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="280" y="148">Fluid</text>
+<!-- Geométrico -->
+<g class="m25-a"><rect fill="#0e1622" height="64" rx="10" stroke="#60a5fa" stroke-width="1.8" width="130" x="390" y="68"></rect></g>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="10" font-weight="600" text-anchor="middle" x="455" y="92">geometric-patterns</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="9" text-anchor="middle" x="455" y="107">grid-pulse</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="455" y="148">Geometric</text>
+<!-- Digital -->
+<g class="m25-a"><rect fill="#0e1622" height="56" rx="10" stroke="#38bdf8" stroke-width="1.8" width="120" x="570" y="72"></rect></g>
+<text fill="#bae6fd" font-family="Inter,sans-serif" font-size="10" font-weight="600" text-anchor="middle" x="630" y="96">matrix-rain</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="9" text-anchor="middle" x="630" y="110">pixel-transition</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="630" y="148">Digital</text>
+<!-- Espacial -->
+<g class="m25-a" filter="url(#m25-glow)"><circle cx="810" cy="100" fill="#0e1622" r="32" stroke="#60a5fa" stroke-width="2"></circle></g>
+<text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="10" font-weight="600" text-anchor="middle" x="810" y="96">starfield</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="9" text-anchor="middle" x="810" y="110">bokeh-circles</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="810" y="148">Spatial</text>
+<text fill="#6b7280" font-family="Inter,sans-serif" font-size="11" font-style="italic" text-anchor="middle" x="500" y="182">All: no external assets · deterministic rendering</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🗺️ Overview — backgrounds as emotional context</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">An animated background doesn’t compete with the content — it <em>sets the mood</em>. Starfield says "technology and scale." Bokeh says "elegance and depth." Noise-grain says "cinema and texture." The right choice goes unnoticed and amplifies the message; the wrong one distracts.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Selection criteria</h3>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Video tone:</strong> institutional → <code class="text-blue-400">geometric-patterns</code> or <code class="text-blue-400">grid-pulse</code>; emotional → <code class="text-blue-400">bokeh-circles</code> or <code class="text-blue-400">gradient-shift</code>.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Visual complexity of the content:</strong> a lot of text → use subtle backgrounds (noise-grain, gradient-shift); little text → you can use matrix-rain or starfield.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Render cost:</strong> starfield (80 elements) and matrix-rain are heavier than gradient-shift (pure CSS). Consider this for long renders.</span></li>
+</ul>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Composition tip</h3>
+<p class="text-neutral-300">Reduce the background opacity to 0.3–0.6 when there is content on top. Use <code>position: absolute; inset: 0; opacity: 0.4</code> in the background container and the main content at a higher z-index. This preserves the atmosphere without making the text harder to read.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">9 templates</div><div class="text-xs text-neutral-400">In this category</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">0 assets</div><div class="text-xs text-neutral-400">Everything in code</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">sin/cos</div><div class="text-xs text-neutral-400">Recurring pattern</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">random()</div><div class="text-xs text-neutral-400">Deterministic seed</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🫧 bokeh-circles — soft drifting circles</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">bokeh-circles</code> generates semi-transparent circles of varying sizes that float slowly across the screen. Each circle has a deterministic position, speed, and size — based on its index as a seed — creating organic motion without Math.random().</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Deterministic variation by index</span>
+<span class="text-xs text-neutral-500 font-mono">bokeh-circles.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> t = frame / fps;
+<span class="text-neutral-500">// posição inicial baseada no índice (sem Math.random)</span>
+<span class="text-purple-400">const</span> baseX = ((i * <span class="text-blue-400">137.508</span>) % <span class="text-blue-400">100</span>);
+<span class="text-purple-400">const</span> baseY = ((i * <span class="text-blue-400">97.3</span>)  % <span class="text-blue-400">100</span>);
+<span class="text-neutral-500">// deriva suave com ondas periódicas</span>
+<span class="text-purple-400">const</span> x = baseX + Math.<span class="text-blue-400">sin</span>(t * speed + i) * driftAmp;
+<span class="text-purple-400">const</span> y = baseY + Math.<span class="text-blue-400">cos</span>(t * speed + i) * driftAmp;</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Why 137.508?</h3>
+<p class="text-neutral-300">This is the <strong>golden angle</strong> in degrees (φ ≈ 137,5°). Multiplying the index by it distributes the points almost uniformly without clustering, creating the natural appearance of "balanced dispersion" characteristic of the template.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">✓ What to DO</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Adjust the circles’ opacity between 0.05 and 0.2 for a subtle background.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Use blur via CSS <code>filter: blur()</code> for the real bokeh effect.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Vary the radius between 20px and 120px for visual depth.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ What NOT to do</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Use Math.random() without a seed—the circles "flicker" on every render.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Add more than 30 circles without reducing the blur — rendering gets heavy.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>High opacity with text—the circles compete with readability.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">File</div><div class="text-xs text-neutral-400">bokeh-circles.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Technique</div><div class="text-xs text-neutral-400">sin/cos drift</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Seed</div><div class="text-xs text-neutral-400">137.508 golden ratio</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Elegance · calm</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🌈 gradient-shift — rotating ambient gradient</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">gradient-shift</code> is the library’s lightest background template. It uses only a <code>linear-gradient</code> with angle and colors that evolve via <strong class="text-blue-400">sine waves</strong> based on <code>frame / fps</code>. Zero DOM elements beyond a single <code>&lt;div&gt;</code>.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Angle and colors via sine waves</span>
+<span class="text-xs text-neutral-500 font-mono">gradient-shift.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> t = frame / fps;
+<span class="text-neutral-500">// fases defasadas para transição suave de cores</span>
+<span class="text-purple-400">const</span> phase1 = Math.<span class="text-blue-400">sin</span>(t * <span class="text-blue-400">0.3</span>) * <span class="text-blue-400">0.5</span> + <span class="text-blue-400">0.5</span>;
+<span class="text-purple-400">const</span> phase2 = Math.<span class="text-blue-400">sin</span>(t * <span class="text-blue-400">0.3</span> + <span class="text-blue-400">2</span>) * <span class="text-blue-400">0.5</span> + <span class="text-blue-400">0.5</span>;
+<span class="text-neutral-500">// rotação lenta do ângulo</span>
+<span class="text-purple-400">const</span> angle = (frame * <span class="text-blue-400">0.5</span>) % <span class="text-blue-400">360</span>;
+<span class="text-neutral-500">// render: linear-gradient(${angle}deg, ${color1}, ${color2}, ${color3})</span></pre>
+</div>
+<!-- Timeline de personalização -->
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Color cycle speed</h4>
+<p class="text-neutral-300 text-sm">The multiplier <code>0.3</code> in <code>sin(t * 0.3)</code> controls the color-change frequency. Lower values = slower cycle; higher values = faster pulsing. For most backgrounds, 0.15–0.4 is ideal.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Color palette</h4>
+<p class="text-neutral-300 text-sm">The template uses a palette of 4 colors based on deep blues. Replace the array <code>colors</code> to adapt it to your tone. Keep hues close to avoid abrupt transitions.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Angle rotation speed</h4>
+<p class="text-neutral-300 text-sm"><code>frame * 0.5</code> makes the gradient rotate 180° over 360 frames (12s at 30fps). Reduce to <code>frame * 0.2</code> for nearly imperceptible rotation — ideal for long presentations.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">File</div><div class="text-xs text-neutral-400">gradient-shift.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Hook</div><div class="text-xs text-neutral-400">useCurrentFrame</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Cost</div><div class="text-xs text-neutral-400">Very slight</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Universal background</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">💻 matrix-rain — falling code columns</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">matrix-rain</code> is the library’s most thematic background: green characters falling in columns, evoking the iconic look of the movie Matrix. Each column has a deterministic speed and position, and the color can be adapted to any palette.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🖥️</span> Column mechanics</h3>
+<p class="text-neutral-300 mb-3">Each column is an array of characters. Each character's Y position is calculated from the frame to create the "falling trail" effect. The newest character is brightest; older ones gradually fade.</p>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed bg-dark-800 rounded-lg p-4"><span class="text-neutral-500">// posição y de cada caractere na coluna k</span>
+<span class="text-purple-400">const</span> speed = <span class="text-blue-400">1</span> + (k * <span class="text-blue-400">7</span> % <span class="text-blue-400">3</span>);   <span class="text-neutral-500">// 1, 2 ou 3 (determinístico)</span>
+<span class="text-purple-400">const</span> headY = (frame * speed * charH) % (height + trailLength);
+<span class="text-purple-400">const</span> charOpacity = <span class="text-blue-400">interpolate</span>(j, [<span class="text-blue-400">0</span>, trailLength], [<span class="text-blue-400">0.9</span>, <span class="text-blue-400">0</span>]);</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">✓ What to DO</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Change the column colors to blue or cyan for different branding.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Reduce the overall opacity to use as an overlay background.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Vary the characters—use hexadecimal digits for a "hack" theme.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ What NOT to do</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Use as a background for serious/corporate presentations—wrong context.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Increase the number of columns beyond 40 without measuring the render FPS.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Mix with green text — same hue, no contrast.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">File</div><div class="text-xs text-neutral-400">matrix-rain.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Technique</div><div class="text-xs text-neutral-400">frame % height</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Cost</div><div class="text-xs text-neutral-400">Moderate</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Tech · cyberpunk</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🌠 starfield — flight through space</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">starfield</code> simulates the hyperspace travel effect: stars emerge from the center and expand toward the edges as the frame advances. Each star’s size and opacity increase with radial progress, creating a sense of speed and perspective.</p>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> The illusion of perspective</h3>
+<p class="text-neutral-300">Each star starts tiny in the center and grows as it moves away. <code>size = baseSize * (1 + progress * 2)</code> ensures that the farther away, the larger it is. This simulates the "vanishing point" effect of 3D perspective using only 2D math.</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Deterministic radial trajectory</span>
+<span class="text-xs text-neutral-500 font-mono">starfield.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// ângulo determinístico por índice (ângulo áureo)</span>
+<span class="text-purple-400">const</span> seedAngle = ((i * <span class="text-blue-400">137.508</span>) % <span class="text-blue-400">360</span>) * (Math.<span class="text-blue-400">PI</span> / <span class="text-blue-400">180</span>);
+<span class="text-purple-400">const</span> cycleLength = fps * <span class="text-blue-400">5</span>;
+<span class="text-purple-400">const</span> progress = ((frame * speed + i * <span class="text-blue-400">15</span>) % cycleLength) / cycleLength;
+<span class="text-purple-400">const</span> radius = seedRadius * <span class="text-blue-400">20</span> + progress * maxRadius;
+<span class="text-purple-400">const</span> x = cx + Math.<span class="text-blue-400">cos</span>(seedAngle) * radius;
+<span class="text-purple-400">const</span> y = cy + Math.<span class="text-blue-400">sin</span>(seedAngle) * radius;</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">File</div><div class="text-xs text-neutral-400">starfield.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Pattern</div><div class="text-xs text-neutral-400">80 stars · loop</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Technique</div><div class="text-xs text-neutral-400">frame % cycle</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Tech · space</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🎨 geometric-patterns vs. grid-pulse — when to use each</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Both templates use repetitive geometric shapes, but with different intentions. The <code class="text-blue-400">geometric-patterns</code> features large rotating shapes — sophisticated visuals for intros. The <code class="text-blue-400">grid-pulse</code> uses a grid of dots with ripple waves — an “active system” or “heat map” atmosphere.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">geometric-patterns</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Rotating and scaling shapes — polygons, hexagons, diamonds.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Ideal for brand intros and strong visual identity.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Hook: <code>interpolate(frame, [0,dur], [0, 360])</code> for continuous rotation.</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h4 class="font-bold text-neutral-300 mb-4">grid-pulse</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Grid of dots where a ripple wave expands from the center.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Ideal for dashboards, real-time data, and technical contexts.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Hook: <code>distância_do_ponto_ao_centro - frame * velocidade</code> for the wave.</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Golden rule</h3>
+<p class="text-neutral-300">If the main content has right angles and aligned text → use <code>grid-pulse</code> (parallel forces, reinforcing the structure). If the content is fluid and organic → use <code>geometric-patterns</code> (complementary contrast).</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">geometric</div><div class="text-xs text-neutral-400">Rotation + scale</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">grid-pulse</div><div class="text-xs text-neutral-400">Ripple wave</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Context</div><div class="text-xs text-neutral-400">Brand vs. data</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Hook</div><div class="text-xs text-neutral-400">interpolate</div></div>
+</div>
+</section>
+<!-- TÓPICO 7 — Biblioteca completa -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">📚 Complete Library — all 9 templates</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Quick reference for all background templates. Use it as a lookup when you need to choose quickly.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+<div class="grid grid-cols-3 gap-0 bg-dark-700 px-4 py-3 text-xs font-semibold text-neutral-400 uppercase tracking-wide">
+<span>Template</span><span>File</span><span>Technique / hook</span>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">bokeh-circles</span>
+<span class="font-mono text-xs text-neutral-400">bokeh-circles.tsx</span>
+<span class="text-xs text-neutral-300">sin/cos drift · golden angle</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">geometric-patterns</span>
+<span class="font-mono text-xs text-neutral-400">geometric-patterns.tsx</span>
+<span class="text-xs text-neutral-300">interpolate · continuous rotation</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">gradient-shift</span>
+<span class="font-mono text-xs text-neutral-400">gradient-shift.tsx</span>
+<span class="text-xs text-neutral-300">sin waves · rotating angle</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">grid-pulse</span>
+<span class="font-mono text-xs text-neutral-400">grid-pulse.tsx</span>
+<span class="text-xs text-neutral-300">radial distance · ripple</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">liquid-wave</span>
+<span class="font-mono text-xs text-neutral-400">liquid-wave.tsx</span>
+<span class="text-xs text-neutral-300">SVG path · sine point by point</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">matrix-rain</span>
+<span class="font-mono text-xs text-neutral-400">matrix-rain.tsx</span>
+<span class="text-xs text-neutral-300">frame % height · trail opacity</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">noise-grain</span>
+<span class="font-mono text-xs text-neutral-400">noise-grain.tsx</span>
+<span class="text-xs text-neutral-300">SVG feTurbulence · subtle focus</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">pixel-transition</span>
+<span class="font-mono text-xs text-neutral-400">pixel-transition.tsx</span>
+<span class="text-xs text-neutral-300">interpolate · pixelated reveal grid</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">starfield</span>
+<span class="font-mono text-xs text-neutral-400">starfield.tsx</span>
+<span class="text-xs text-neutral-300">radial loop · 2D perspective</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Total</div><div class="text-xs text-neutral-400">9 templates</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Lighter</div><div class="text-xs text-neutral-400">gradient-shift</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Heavier</div><div class="text-xs text-neutral-400">matrix-rain</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Pattern</div><div class="text-xs text-neutral-400">sin/cos waves</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Emotional context</strong><span class="text-neutral-400"> — choose the background by tone: organic, fluid, geometric, digital, or space-themed.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">bokeh-circles</strong><span class="text-neutral-400"> — the golden angle (137.508°) distributes points evenly without true randomness.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">gradient-shift</strong><span class="text-neutral-400"> — the lightest template: one div, sin waves, zero DOM elements.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">starfield</strong><span class="text-neutral-400"> — 2D perspective with <code>frame % ciclo</code> for an infinite star loop.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Composition</strong><span class="text-neutral-400"> — reduce the background opacity to 0.3–0.6 when there is content on top.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Next module:</h3>
+<p class="text-neutral-300">2.6 — Cinematic: nine templates that mimic cinematic camera and post-production techniques.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="modulo-2-4.html">← Module 2.4</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="modulo-2-6.html">Next Module →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Remotion Course · Module 2.5 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

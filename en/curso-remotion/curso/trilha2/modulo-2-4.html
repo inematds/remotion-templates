@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 2.4 · Image &amp; Media | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (blue T2) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* boxes */
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes m24-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .m24-a { animation: m24-pulse 2.8s ease-in-out infinite; }
+      .m24-a:nth-child(2){animation-delay:.4s} .m24-a:nth-child(3){animation-delay:.8s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha2/modulo-2-4.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha2/modulo-2-4.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha2/modulo-2-4.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha2/modulo-2-4.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-2-4.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../../es/curso-remotion/curso/trilha2/modulo-2-4.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Resources</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combination</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projects</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Track 2</a><span>/</span>
+<span class="text-blue-400">Module 2.4</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MODULE 2.4</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🖼️ Image &amp; Media</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Nine templates that transform still images into dynamic sequences: staggered galleries, center-focus carousels, before-and-after comparisons, and much more. Choose the right pattern for the right context.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">8</div><div class="text-xs text-neutral-400">Topics</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">45</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Medium</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Practical</div><div class="text-xs text-neutral-400">Type</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SVG diagrama da categoria -->
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Image and media template pipeline: static image enters, hook transforms it, rendered output frame" class="w-full h-auto" role="img" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="m24-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#3b82f6"></stop></lineargradient>
+<filter height="180%" id="m24-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m24-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.10" r="1.3"></circle></pattern>
+<marker id="m24-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#60a5fa"></path></marker>
+</defs>
+<rect fill="url(#m24-grid)" height="200" width="1000" x="0" y="0"></rect>
+<!-- Fonte: imagem -->
+<g filter="url(#m24-glow)">
+<rect fill="#0e1622" height="80" rx="12" stroke="url(#m24-grad)" stroke-width="2.5" width="160" x="40" y="60"></rect>
+</g>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="120" y="95">image / src</text>
+<text fill="#60a5fa" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="120" y="114">staticFile()</text>
+<!-- seta -->
+<path d="M200,100 L260,100" fill="none" marker-end="url(#m24-ah)" opacity="0.7" stroke="#60a5fa" stroke-width="2"></path>
+<!-- Hook / transform -->
+<rect fill="#0e1622" height="88" rx="12" stroke="#38bdf8" stroke-width="2" width="210" x="268" y="56"></rect>
+<text fill="#bae6fd" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="373" y="88">interpolate / spring</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="373" y="108">translate · scale · opacity</text>
+<text fill="#7dd3fc" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="373" y="126">clip-path · stagger delay</text>
+<!-- seta -->
+<path d="M478,100 L538,100" fill="none" marker-end="url(#m24-ah)" opacity="0.7" stroke="#60a5fa" stroke-width="2"></path>
+<!-- Templates grid -->
+<g class="m24-a"><rect fill="#0e1622" height="40" rx="8" stroke="#38bdf8" stroke-width="1.8" width="100" x="546" y="58"></rect><text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="11" font-weight="600" text-anchor="middle" x="596" y="83">gallery-grid</text></g>
+<g class="m24-a"><rect fill="#0e1622" height="40" rx="8" stroke="#38bdf8" stroke-width="1.8" width="100" x="654" y="58"></rect><text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="11" font-weight="600" text-anchor="middle" x="704" y="83">carousel</text></g>
+<g class="m24-a"><rect fill="#0e1622" height="40" rx="8" stroke="#38bdf8" stroke-width="1.8" width="110" x="762" y="58"></rect><text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="11" font-weight="600" text-anchor="middle" x="817" y="83">comparison</text></g>
+<g class="m24-a"><rect fill="#0e1622" height="40" rx="8" stroke="#60a5fa" stroke-width="1.8" width="100" x="546" y="106"></rect><text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="11" font-weight="600" text-anchor="middle" x="596" y="131">masonry</text></g>
+<g class="m24-a"><rect fill="#0e1622" height="40" rx="8" stroke="#60a5fa" stroke-width="1.8" width="100" x="654" y="106"></rect><text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="11" font-weight="600" text-anchor="middle" x="704" y="131">polaroid</text></g>
+<g class="m24-a"><rect fill="#0e1622" height="40" rx="8" stroke="#60a5fa" stroke-width="1.8" width="110" x="762" y="106"></rect><text fill="#bfdbfe" font-family="Inter,sans-serif" font-size="11" font-weight="600" text-anchor="middle" x="817" y="131">split-screen</text></g>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="500" y="178">9 templates · each one solves a different visual pattern</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🗂️ Overview — when to use image templates</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Image and media templates solve a very common problem: you have photos or static assets and need to bring them to life in a video. Choosing the right template depends on <strong class="text-blue-400">how many items</strong> you have, if you want <strong class="text-blue-400">focus on one element</strong> or an ensemble narrative, and whether the content is comparative or sequential.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Quick decision map</h3>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Too many photos with equal weight</strong> → <code class="text-blue-400">gallery-grid</code> or <code class="text-blue-400">masonry-gallery</code></span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>One featured photo at a time</strong> → <code class="text-blue-400">image-carousel</code> or <code class="text-blue-400">image-zoom-reveal</code></span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Before and after</strong> → <code class="text-blue-400">image-comparison-slider</code></span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Nostalgic aesthetic / frame</strong> → <code class="text-blue-400">polaroid-frame</code> or <code class="text-blue-400">photo-stack</code></span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Two subjects at once</strong> → <code class="text-blue-400">split-screen</code></span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400 mt-1">•</span><span><strong>Main content + context</strong> → <code class="text-blue-400">picture-in-picture</code></span></li>
+</ul>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> File tip</h3>
+<p class="text-neutral-300">All templates use <code>staticFile()</code> from Remotion for referencing local assets. Put your images in <code>public/</code> at the project root and use <code>staticFile("foto.jpg")</code> — Remotion resolves the path in both Studio and the final render.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">9 templates</div><div class="text-xs text-neutral-400">In this category</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">staticFile()</div><div class="text-xs text-neutral-400">Local assets</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">spring/interp</div><div class="text-xs text-neutral-400">Main hooks</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">stagger</div><div class="text-xs text-neutral-400">Recurring pattern</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">📐 gallery-grid — 2×3 grid with stagger</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">gallery-grid</code> arranges up to six images in a 2×3 grid where each card enters with a progressively longer delay (<em>stagger</em>). The result is that "cascade reveal" effect that adds rhythm without requiring any manual keyframes.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">⚙️</span> How stagger works</h3>
+<p class="text-neutral-300 mb-3">Each item gets a delay proportional to its index. The spring starts earlier for the first item and later for the last, creating an entrance wave.</p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>Item 0 starts at frame 0; item 5 starts at frame 25 (delay = index × 5).</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span><code>spring({ frame: Math.max(frame - delay, 0), fps })</code> — the trick of <code>Math.max</code> prevents negative frames.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">•</span><span>The spring responds with 0→1; multiply by scale or opacity freely.</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Stagger by index</span>
+<span class="text-xs text-neutral-500 font-mono">gallery-grid.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { spring, useCurrentFrame, useVideoConfig } <span class="text-purple-400">from</span> <span class="text-blue-400">"remotion"</span>;
+
+<span class="text-neutral-500">// dentro do .map((item, i) =&gt; ...)</span>
+<span class="text-purple-400">const</span> delay = i * <span class="text-blue-400">5</span>;
+<span class="text-purple-400">const</span> s = <span class="text-blue-400">spring</span>({
+  frame: Math.<span class="text-blue-400">max</span>(frame - delay, <span class="text-blue-400">0</span>),
+  fps,
+  config: { damping: <span class="text-blue-400">12</span>, stiffness: <span class="text-blue-400">100</span> },
+});
+<span class="text-purple-400">const</span> scale = <span class="text-blue-400">0.8</span> + s * <span class="text-blue-400">0.2</span>;</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">✓ What to DO</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Use images with the same aspect ratio to keep the grid uniform.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Adjust the delay per item to control the wave speed.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Combine with captions that enter alongside each card.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ What NOT to do</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Set the delay too high (&gt;10/item) — the last card may never appear in the video.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Mix image aspect ratios without <code>objectFit: "cover"</code>.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Use more than 9 items without adjusting the grid layout.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">File</div><div class="text-xs text-neutral-400">gallery-grid.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Hook</div><div class="text-xs text-neutral-400">spring + stagger</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Layout</div><div class="text-xs text-neutral-400">2×3 grid</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Portfolio · photos</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🎠 image-carousel — horizontal slide with centered focus</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">image-carousel</code> features slides in a horizontal row where only the centered item is at scale 1.0 — adjacent items progressively shrink. The frame determines where we are in the cycle, creating a continuous, smooth transition.</p>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> The secret to central focus</h3>
+<p class="text-neutral-300">The position of each slide is calculated as <code>offset = índice - progress</code>. When <code>offset = 0</code>, the item is exactly in the center and reaches maximum scale. The function <code>interpolate(|offset|, [0,1,2], [1,0.75,0.55])</code> applies the gradual reduction to neighboring items.</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Positioning by offset</span>
+<span class="text-xs text-neutral-500 font-mono">image-carousel.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> cycleLength = fps * <span class="text-blue-400">2</span>;
+<span class="text-purple-400">const</span> progress = (frame % (cycleLength * slides.length)) / cycleLength;
+
+slides.<span class="text-blue-400">map</span>((slide, i) =&gt; {
+  <span class="text-purple-400">const</span> offset = i - progress;
+  <span class="text-purple-400">const</span> translateX = offset * <span class="text-blue-400">280</span>;
+  <span class="text-purple-400">const</span> scale = <span class="text-blue-400">interpolate</span>(
+    Math.<span class="text-blue-400">abs</span>(offset), [<span class="text-blue-400">0</span>, <span class="text-blue-400">1</span>, <span class="text-blue-400">2</span>], [<span class="text-blue-400">1</span>, <span class="text-blue-400">0.75</span>, <span class="text-blue-400">0.55</span>],
+    { extrapolateRight: <span class="text-blue-400">"clamp"</span> }
+  );
+});</pre>
+</div>
+<!-- Timeline de passos de customização -->
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Adjust the cycle speed</h4>
+<p class="text-neutral-300 text-sm">Change <code>fps * 2</code> to <code>fps * 3</code> for slower slides, or <code>fps * 1</code> for faster scrolling. Each cycle corresponds to the time a slide stays in the center.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Control the spacing between slides</h4>
+<p class="text-neutral-300 text-sm">The value <code>280</code> in <code>translateX = offset * 280</code> sets the distance between centers. Reduce it for more overlapping slides; increase it for more spaced-out slides.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Add z-index based on the offset</h4>
+<p class="text-neutral-300 text-sm">The center slide should sit above the side slides. Use <code>zIndex: Math.round(10 - Math.abs(offset) * 3)</code> for automatic stacking.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">File</div><div class="text-xs text-neutral-400">image-carousel.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Hook</div><div class="text-xs text-neutral-400">interpolate · %</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Visual</div><div class="text-xs text-neutral-400">Central focus</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Products · slides</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">↔️ image-comparison-slider — before and after</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">image-comparison-slider</code> splits the screen vertically with a divider that moves over time, revealing the “after” image from bottom to top while the “before” image remains visible on the left. It’s the ideal template for showing edits, product transformations, or design comparisons.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🔀</span> Clip-path technique</h3>
+<p class="text-neutral-300 mb-3">The "after" image is overlaid with <code>position: absolute</code> and a <code>clipPath</code> that limits the visible area to a fraction of the total width. The frame controls this fraction via <code>interpolate</code>:</p>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed bg-dark-800 rounded-lg p-4"><span class="text-purple-400">const</span> clipWidth = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-blue-400">0</span>, durationInFrames], [<span class="text-blue-400">0</span>, <span class="text-blue-400">100</span>], { extrapolateRight: <span class="text-blue-400">"clamp"</span> });
+<span class="text-neutral-500">// style da imagem "depois":</span>
+clipPath: <span class="text-blue-400">`inset(0 ${100 - clipWidth}% 0 0)`</span></pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">✓ What to DO</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Use images that are exactly the same size for perfect alignment.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Add a vertical divider as a visual indicator.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Combine with “Before” / “After” text that fades out during the reveal.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ What NOT to do</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Images with different aspect ratios — the clip is off-center.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Reveal too quickly — it loses the impact of the comparison.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Apply to subjective comparisons without textual context.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">File</div><div class="text-xs text-neutral-400">image-comparison-slider.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Hook</div><div class="text-xs text-neutral-400">interpolate</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Technique</div><div class="text-xs text-neutral-400">clipPath inset</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Before/after</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🔍 image-zoom-reveal — zoom-out with focus</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">image-zoom-reveal</code> starts with the image highly zoomed in and progressively pulls back to its normal scale, creating a cinematic "pull back" effect. It feels like revealing the context around the initial detail.</p>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Why start enlarged</h3>
+<p class="text-neutral-300">Starting with a detail grabs attention immediately — the viewer doesn’t know what they’re looking at. The gradual pullback builds tension, and the reveal of the full object makes an impact. Use long durations (fps × 3 or more) to maximize the dramatic effect.</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Smoothed zoom-out with spring</span>
+<span class="text-xs text-neutral-500 font-mono">image-zoom-reveal.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> { fps, durationInFrames } = <span class="text-blue-400">useVideoConfig</span>();
+<span class="text-purple-400">const</span> s = <span class="text-blue-400">spring</span>({ frame, fps, config: { damping: <span class="text-blue-400">20</span>, stiffness: <span class="text-blue-400">30</span> } });
+<span class="text-neutral-500">// começa em 2.5×, chega a 1.0×</span>
+<span class="text-purple-400">const</span> scale = <span class="text-blue-400">interpolate</span>(s, [<span class="text-blue-400">0</span>, <span class="text-blue-400">1</span>], [<span class="text-blue-400">2.5</span>, <span class="text-blue-400">1.0</span>]);
+<span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-blue-400">0</span>, <span class="text-blue-400">15</span>], [<span class="text-blue-400">0</span>, <span class="text-blue-400">1</span>], { extrapolateRight: <span class="text-blue-400">"clamp"</span> });</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">File</div><div class="text-xs text-neutral-400">image-zoom-reveal.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Hook</div><div class="text-xs text-neutral-400">spring + interpolate</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Start</div><div class="text-xs text-neutral-400">Scale 2.5×</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Dramatic reveal</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🃏 masonry-gallery — Pinterest-style with spring</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">masonry-gallery</code> distributes blocks of varying heights across three columns, mimicking a Pinterest-style layout. Each block has its own spring delay, creating a sequence of pop-ins that feels deep and organic.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🏗️</span> Three-column architecture</h3>
+<p class="text-neutral-300 mb-3">The blocks are grouped by column before rendering. Each column is a <code>flex-direction: column</code> with <code>gap</code>. The blocks have different percentage heights to create the characteristic irregular masonry look.</p>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed bg-dark-800 rounded-lg p-4"><span class="text-neutral-500">// Blocos com delay e altura variável por coluna</span>
+<span class="text-purple-400">const</span> blocks = [
+  { col: <span class="text-blue-400">0</span>, height: <span class="text-blue-400">"45%"</span>, delay: <span class="text-blue-400">0</span>  },
+  { col: <span class="text-blue-400">1</span>, height: <span class="text-blue-400">"55%"</span>, delay: <span class="text-blue-400">3</span>  },
+  { col: <span class="text-blue-400">2</span>, height: <span class="text-blue-400">"40%"</span>, delay: <span class="text-blue-400">5</span>  },
+];</pre>
+</div>
+<!-- Grid fazer vs evitar -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">✓ What to DO</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Distribute blocks of very different heights across columns for an organic effect.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Stagger the delays so each column feels independent.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">✓</span><span>Use gradients instead of images for quick prototypes.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ What NOT to do</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Use the same height for every block—you lose the masonry effect.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Set all delays to the same value — it looks like an ordinary grid.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Exceeding 3 columns without adjusting the parent container.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">File</div><div class="text-xs text-neutral-400">masonry-gallery.tsx</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Hook</div><div class="text-xs text-neutral-400">spring per block</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Layout</div><div class="text-xs text-neutral-400">3 flex columns</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Varied portfolio</div></div>
+</div>
+</section>
+<!-- TÓPICO 7 — Biblioteca completa -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">📚 Complete Library — all 9 templates</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Quick reference for all templates in this category. Each row includes the name, the file in <code>templates/</code>, a descriptive line and the main hook used.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+<div class="grid grid-cols-3 gap-0 bg-dark-700 px-4 py-3 text-xs font-semibold text-neutral-400 uppercase tracking-wide">
+<span>Template</span><span>File</span><span>Main hook</span>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">gallery-grid</span>
+<span class="font-mono text-xs text-neutral-400">gallery-grid.tsx</span>
+<span class="text-xs text-neutral-300">spring + stagger delay</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">image-carousel</span>
+<span class="font-mono text-xs text-neutral-400">image-carousel.tsx</span>
+<span class="text-xs text-neutral-300">interpolate · cycle offset %</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">image-comparison-slider</span>
+<span class="font-mono text-xs text-neutral-400">image-comparison-slider.tsx</span>
+<span class="text-xs text-neutral-300">interpolate · clipPath inset</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">image-zoom-reveal</span>
+<span class="font-mono text-xs text-neutral-400">image-zoom-reveal.tsx</span>
+<span class="text-xs text-neutral-300">spring · scale 2.5→1</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">masonry-gallery</span>
+<span class="font-mono text-xs text-neutral-400">masonry-gallery.tsx</span>
+<span class="text-xs text-neutral-300">spring per block · 3 columns</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">photo-stack</span>
+<span class="font-mono text-xs text-neutral-400">photo-stack.tsx</span>
+<span class="text-xs text-neutral-300">spring · rotate + translateY</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">picture-in-picture</span>
+<span class="font-mono text-xs text-neutral-400">picture-in-picture.tsx</span>
+<span class="text-xs text-neutral-300">spring · corner position</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">polaroid-frame</span>
+<span class="font-mono text-xs text-neutral-400">polaroid-frame.tsx</span>
+<span class="text-xs text-neutral-300">spring · drop-in rotate</span>
+</div>
+<div class="grid grid-cols-3 gap-0 px-4 py-4 hover:bg-blue-500/10 transition-colors">
+<span class="text-blue-400 font-semibold text-sm">split-screen</span>
+<span class="font-mono text-xs text-neutral-400">split-screen.tsx</span>
+<span class="text-xs text-neutral-300">interpolate · two translateX panels</span>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Total</div><div class="text-xs text-neutral-400">9 templates</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Base</div><div class="text-xs text-neutral-400">templates/</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Hooks</div><div class="text-xs text-neutral-400">spring · interpolate</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Pattern</div><div class="text-xs text-neutral-400">stagger delay</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Decision map</strong><span class="text-neutral-400"> — choose the template by the number of items and the type of narrative (set vs. highlight).</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">gallery-grid</strong><span class="text-neutral-400"> — stagger with <code>Math.max(frame - delay, 0)</code> creates a wave of reveals without manual keyframes.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">image-carousel</strong><span class="text-neutral-400"> — <code>offset = índice - progress</code> positions each slide relative to the center.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">image-comparison-slider</strong><span class="text-neutral-400"> — <code>clipPath: inset()</code> progressively reveals the image "afterward".</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">masonry-gallery</strong><span class="text-neutral-400"> — blocks of varying heights in 3 columns with independent springs.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">staticFile()</strong><span class="text-neutral-400"> — always use this to reference local assets instead of absolute paths.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Next module:</h3>
+<p class="text-neutral-300">2.5 — Backgrounds: nine animated background templates to set the context for any scene.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Back to Track</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="modulo-2-5.html">Next Module →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Remotion Course · Module 2.4 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

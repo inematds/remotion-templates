@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 3.1 · Timing &amp; Sincronización | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (purple T3) */
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,0.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* boxes de pesquisa/alerta */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha3/modulo-3-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha3/modulo-3-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha3/modulo-3-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha3/modulo-3-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../../en/curso-remotion/curso/trilha3/modulo-3-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-3-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10" href="index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinación</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Proyectos</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-purple-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-purple-400" href="index.html">Trayecto 3</a><span>/</span>
+<span class="text-purple-400">Módulo 3.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MÓDULO 3.1</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">⏱️ Timing &amp; Sincronización</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">La diferencia entre una escena caótica y una coreografiada está en el timing. Aquí aprendes a escalonar las entradas con <code class="text-purple-400">Sequence from=</code>, crear un stagger con <code class="text-purple-400">index * N</code> y sincronizar elementos para que cada uno tenga su momento.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Temas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Intermedio</div><div class="text-xs text-neutral-400">Nivel</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Práctica</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SVG ilustrativo do módulo -->
+<div class="rounded-2xl border border-purple-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Línea de tiempo que muestra el stagger: el elemento 0 empieza en el frame 0, el elemento 1 en el frame 5 y el elemento 2 en el frame 10, creando una cascada de entradas" class="w-full h-auto" role="img" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="m31-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#c084fc"></stop><stop offset="1" stop-color="#a855f7"></stop></lineargradient>
+<filter height="180%" id="m31-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m31-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#a855f7" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m31-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#c084fc"></path></marker>
+</defs>
+<rect fill="url(#m31-grid)" height="200" width="1000" x="0" y="0"></rect>
+<!-- eixo do tempo -->
+<line stroke="#4b5563" stroke-width="2" x1="60" x2="960" y1="170" y2="170"></line>
+<path d="M960,170 L968,166 L968,174 Z" fill="#4b5563"></path>
+<text fill="#6b7280" font-family="Inter,sans-serif" font-size="12" x="975" y="175">frames</text>
+<!-- marcadores de frame -->
+<g fill="#6b7280" font-family="Inter,sans-serif" font-size="11">
+<text x="60" y="185">0</text><line stroke="#4b5563" stroke-width="1.5" x1="60" x2="60" y1="168" y2="173"></line>
+<text x="205" y="185">5</text><line stroke="#4b5563" stroke-width="1.5" x1="210" x2="210" y1="168" y2="173"></line>
+<text x="348" y="185">10</text><line stroke="#4b5563" stroke-width="1.5" x1="360" x2="360" y1="168" y2="173"></line>
+<text x="498" y="185">15</text><line stroke="#4b5563" stroke-width="1.5" x1="510" x2="510" y1="168" y2="173"></line>
+<text x="800" y="185">→ duración total</text>
+</g>
+<!-- barras de stagger -->
+<g class="wf-a">
+<rect fill="#1a1230" height="28" rx="6" stroke="#c084fc" stroke-width="2" width="500" x="60" y="40"></rect>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="13" font-weight="600" x="75" y="59">item 0 · from={0}</text>
+</g>
+<g class="wf-a">
+<rect fill="#1a1230" height="28" rx="6" stroke="#a855f7" stroke-width="2" width="450" x="210" y="80"></rect>
+<text fill="#a855f7" font-family="Inter,sans-serif" font-size="13" font-weight="600" x="225" y="99">item 1 · from={5}</text>
+</g>
+<g class="wf-a">
+<rect fill="#1a1230" height="28" rx="6" stroke="#38bdf8" stroke-width="2" width="400" x="360" y="120"></rect>
+<text fill="#38bdf8" font-family="Inter,sans-serif" font-size="13" font-weight="600" x="375" y="139">item 2 · from={10}</text>
+</g>
+<!-- seta stagger label -->
+<text fill="#e9d5ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" x="60" y="22">Stagger: cada elemento entra N frames después → cascada natural</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🎬 Sequence from= — el offset de tiempo</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La prop <code class="text-purple-400">from</code> de la <code class="text-purple-400">Sequence</code> es simple: indica en qué frame del video este bloque empieza a existir. Antes de ese frame, el componente hijo simplemente no se renderiza. Después, el frame local empieza en cero, como si el reloj se reiniciara para ese elemento.</p>
+<div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🎯</span> La idea central</h3>
+<p class="text-neutral-300 mb-4">Dentro de una Sequence, <code>useCurrentFrame()</code> devuelve 0 en el frame <code>from</code>, 1 en el frame <code>from+1</code>, y así sucesivamente. Esto significa que las animaciones dentro de Sequences son siempre <strong>relativas a su inicio</strong> — no al inicio del video.</p>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>El elemento secundario no existe antes del frame <code>from</code> — no se renderiza ni ocupa espacio.</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>El frame local dentro de Sequence siempre empieza en 0.</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>Combinar con <code>durationInFrames</code> también limita el fin de la existencia.</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Sequence con from= básico</span>
+<span class="text-xs text-neutral-500 font-mono">StaggedEntry.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { Sequence, useCurrentFrame, spring, useVideoConfig } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+
+<span class="text-purple-400">export const</span> <span class="text-blue-400">StaggedEntry</span> = () =&gt; {
+  <span class="text-purple-400">const</span> { fps } = <span class="text-blue-400">useVideoConfig</span>();
+
+  <span class="text-purple-400">return</span> (
+    &lt;&gt;
+      <span class="text-neutral-500">{/* Título aparece imediatamente */}</span>
+      &lt;<span class="text-blue-400">Sequence</span> from={0}&gt;
+        &lt;<span class="text-blue-400">Title</span> /&gt;
+      &lt;/<span class="text-blue-400">Sequence</span>&gt;
+
+      <span class="text-neutral-500">{/* Subtítulo entra 15 frames depois */}</span>
+      &lt;<span class="text-blue-400">Sequence</span> from={15}&gt;
+        &lt;<span class="text-blue-400">Subtitle</span> /&gt;
+      &lt;/<span class="text-blue-400">Sequence</span>&gt;
+
+      <span class="text-neutral-500">{/* Lista entra após 30 frames */}</span>
+      &lt;<span class="text-blue-400">Sequence</span> from={30}&gt;
+        &lt;<span class="text-blue-400">ItemList</span> /&gt;
+      &lt;/<span class="text-blue-400">Sequence</span>&gt;
+    &lt;/&gt;
+  );
+};</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Consejo práctico</h3>
+<p class="text-neutral-300">Arrastra la barra de tiempo de Remotion Studio hasta el frame 14: Subtitle aún no existe. Ve al 15: aparece. Este control visual directo es la mejor manera de calibrar tus offsets.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">from=</div><div class="text-xs text-neutral-400">Delay en frames</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Frame local</div><div class="text-xs text-neutral-400">Se reinicia en 0</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Antes de from</div><div class="text-xs text-neutral-400">No renderiza</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Base de</div><div class="text-xs text-neutral-400">Todo stagger</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🪜 Stagger con index * N</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El patrón de stagger es el más común en listas, menús y grids animados: cada elemento recibe un <code class="text-purple-400">from</code> basado en su índice multiplicado por una constante N. El resultado es la sensación de «cascada»: los elementos entran uno después del otro de forma natural.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Qué HACER</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Usar <code>from={index * N}</code> donde N = 4 a 8 frames.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Combinar con spring() local para cada entrada suave.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Usar valores pequeños de N para listas largas (evitar una espera larga).</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Qué NO hacer</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Un N demasiado grande (&gt;15) hace que la lista tarde demasiado en completarse.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Stagger en elementos que el espectador no sigue en orden.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Olvidar sumar el offset a <code>from</code> del grupo padre.</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Stagger clásico con spring</span>
+<span class="text-xs text-neutral-500 font-mono">StaggeredList.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> items = [<span class="text-emerald-400">"React"</span>, <span class="text-emerald-400">"Remotion"</span>, <span class="text-emerald-400">"TypeScript"</span>, <span class="text-emerald-400">"Vite"</span>];
+<span class="text-purple-400">const</span> STAGGER = <span class="text-emerald-400">6</span>; <span class="text-neutral-500">// frames entre cada entrada</span>
+
+<span class="text-purple-400">return</span> (
+  &lt;&gt;
+    {items.<span class="text-blue-400">map</span>((item, index) =&gt; (
+      &lt;<span class="text-blue-400">Sequence</span> key={item} from={index * STAGGER}&gt;
+        &lt;<span class="text-blue-400">AnimatedItem</span> text={item} /&gt;
+      &lt;/<span class="text-blue-400">Sequence</span>&gt;
+    ))}
+  &lt;/&gt;
+);
+
+<span class="text-neutral-500">// Dentro de AnimatedItem:</span>
+<span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>(); <span class="text-neutral-500">// começa em 0 para cada item</span>
+<span class="text-purple-400">const</span> { fps } = <span class="text-blue-400">useVideoConfig</span>();
+<span class="text-purple-400">const</span> scale = <span class="text-blue-400">spring</span>({ frame, fps, config: { damping: 14 } });
+<span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">8</span>], [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>], { extrapolateRight: <span class="text-emerald-400">"clamp"</span> });</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">N ideal</div><div class="text-xs text-neutral-400">4–8 frames</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Lista de 4 elementos</div><div class="text-xs text-neutral-400">N=6 → 18 frames</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">spring local</div><div class="text-xs text-neutral-400">Empieza en 0</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Efecto</div><div class="text-xs text-neutral-400">Cascada natural</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 — Timeline -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🔗 Sincronizar el final con el inicio — overlap</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Una de las técnicas de timing más eficaces es hacer que el elemento B empiece <em>mientras</em> la A todavía está saliendo. Esta superposición intencional elimina el «hueco» de pantalla vacía y dirige suavemente la atención del espectador de un elemento al otro.</p>
+<!-- Timeline de passos -->
+<div class="space-y-4 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">1</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Calcula el from del elemento A</h4>
+<p class="text-neutral-300 text-sm">Ej.: <code>TITLE_START = 0</code>, <code>TITLE_DUR = 60</code> (frames durante los que el título queda visible).</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">2</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Define el overlap deseado</h4>
+<p class="text-neutral-300 text-sm">Por lo general, 8–12 frames. Un overlap demasiado largo crea confusión; demasiado corto no genera fluidez.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">3</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Deriva el from de B</h4>
+<p class="text-neutral-300 text-sm"><code>LIST_START = TITLE_START + TITLE_DUR - OVERLAP</code> — B empieza antes de que A termine.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">4</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Prueba en Studio</h4>
+<p class="text-neutral-300 text-sm">Arrastra el playhead por los frames del overlap y verifica que ninguno de los dos elementos "compita" visualmente: uno debe dominar.</p>
+</div>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Consejo práctico</h3>
+<p class="text-neutral-300">Si el elemento A tiene un fade-out animado (opacidad 1→0 en los últimos 10 frames), activa B exactamente cuando A empieza ese fade. El espectador percibe la transición, pero no siente el corte.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Overlap</div><div class="text-xs text-neutral-400">8–12 frames</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Fórmula</div><div class="text-xs text-neutral-400">from_A + dur_A - N</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Efecto</div><div class="text-xs text-neutral-400">Sin pantalla vacía</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Límite</div><div class="text-xs text-neutral-400">1 elemento domina</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🧮 Constantes con nombre — sin magic numbers</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Un código de timing limpio declara todos los offsets como constantes con nombre al inicio del componente. Así, cuando necesitas ajustar «el título tarda un poco más», solo cambias <code class="text-purple-400">TITLE_DUR</code> — y todos los elementos que dependen de él se recalculan automáticamente.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Constantes derivadas</span>
+<span class="text-xs text-neutral-500 font-mono">TimedScene.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// ✅ Constantes no topo — fáceis de ajustar</span>
+<span class="text-purple-400">const</span> TITLE_START  = <span class="text-emerald-400">0</span>;
+<span class="text-purple-400">const</span> TITLE_DUR    = <span class="text-emerald-400">45</span>;
+<span class="text-purple-400">const</span> OVERLAP      = <span class="text-emerald-400">10</span>;
+<span class="text-purple-400">const</span> SUBTITLE_START = TITLE_START + TITLE_DUR - OVERLAP; <span class="text-neutral-500">// 35</span>
+<span class="text-purple-400">const</span> LIST_START   = SUBTITLE_START + <span class="text-emerald-400">30</span>;               <span class="text-neutral-500">// 65</span>
+
+<span class="text-neutral-500">// ❌ Magic numbers — impossível de manter</span>
+<span class="text-neutral-500">// &lt;Sequence from={35}&gt; ← por que 35? ninguém sabe</span>
+<span class="text-neutral-500">// &lt;Sequence from={65}&gt; ← muda TITLE_DUR e quebra</span></pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Ventajas de las constantes</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cambiar 1 número se propaga a todos los elementos dependientes.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Código autodocumentado: SUBTITLE_START se explica por sí mismo.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Fácil de extraer a props y hacer que la plantilla sea configurable.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Problema de los números mágicos</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Cambiar una duración requiere buscar y calcular todas las siguientes.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span><code>from={47}</code> — es imposible saber de dónde vino sin depurar.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Error frecuente: dos elementos que deberían sincronizarse quedan desincronizados.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Patrón</div><div class="text-xs text-neutral-400">Constantes en la parte superior</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Derivar</div><div class="text-xs text-neutral-400">A + B = C</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Evitar</div><div class="text-xs text-neutral-400">Números sueltos</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Ganancia</div><div class="text-xs text-neutral-400">Mantenimiento fácil</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">👁️ Evitar que todo aparezca en el frame 0</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El error más común al empezar a combinar elementos es no usar <code class="text-purple-400">from=</code> en ninguno de ellos — resultado: todos aparecen al mismo tiempo en el frame 0. Para el espectador, es como recibir un grito en vez de una presentación.</p>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Qué sucede sin timing</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>El título, el subtítulo, el ícono y la lista se animan juntos en el frame 0 — congestión visual.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>El spring de cada elemento compite por la atención en el mismo instante.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>La jerarquía visual desaparece — el espectador no sabe qué es importante.</span></li>
+</ul>
+</div>
+<div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-3 flex items-center"><span class="mr-2">✅</span> Regla de prioridades</h3>
+<p class="text-neutral-300 mb-3">Ordena los elementos por importancia y define un <code>from</code> creciente para cada:</p>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-purple-400">1.</span><span>Frame 0: el elemento más importante (logo, título principal).</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400">2.</span><span>Frame 10–15: elemento de apoyo (subtítulo, descripción).</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400">3.</span><span>Frame 20+: elementos secundarios (lista, íconos, decoración).</span></li>
+</ul>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Frame 0</div><div class="text-xs text-neutral-400">Solo lo principal</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Frame 10-15</div><div class="text-xs text-neutral-400">Soporte</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Frame 20+</div><div class="text-xs text-neutral-400">Detalles</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Resultado</div><div class="text-xs text-neutral-400">Jerarquía clara</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">⚡ Timing con spring dentro de Sequence</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La combinación de Sequence + spring es el patrón de entrada más natural de Remotion. Como el frame local de cada Sequence empieza en 0, el spring "se activa desde cero" para cada elemento — independientemente de cuándo se haya abierto la Sequence en la línea de tiempo.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Stagger completo con spring</span>
+<span class="text-xs text-neutral-500 font-mono">StaggerSpring.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> <span class="text-blue-400">Item</span> = ({ label }: { label: string }) =&gt; {
+  <span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>(); <span class="text-neutral-500">// sempre 0 no primeiro frame do item</span>
+  <span class="text-purple-400">const</span> { fps } = <span class="text-blue-400">useVideoConfig</span>();
+
+  <span class="text-purple-400">const</span> progress = <span class="text-blue-400">spring</span>({
+    frame,
+    fps,
+    config: { damping: <span class="text-emerald-400">12</span>, stiffness: <span class="text-emerald-400">120</span> },
+  });
+
+  <span class="text-purple-400">return</span> (
+    &lt;div style={{
+      opacity: progress,
+      transform: <span class="text-emerald-400">`translateY(${(1 - progress) * 20}px)`</span>,
+    }}&gt;
+      {label}
+    &lt;/div&gt;
+  );
+};
+
+<span class="text-neutral-500">// No componente pai — stagger automático:</span>
+{[<span class="text-emerald-400">"A"</span>, <span class="text-emerald-400">"B"</span>, <span class="text-emerald-400">"C"</span>].<span class="text-blue-400">map</span>((l, i) =&gt; (
+  &lt;<span class="text-blue-400">Sequence</span> key={l} from={i * <span class="text-emerald-400">5</span>}&gt;
+    &lt;<span class="text-blue-400">Item</span> label={l} /&gt;
+  &lt;/<span class="text-blue-400">Sequence</span>&gt;
+))}</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Por qué esto es poderoso</h3>
+<p class="text-neutral-300">Cada Item es completamente independiente: puedes reordenar el array, agregar o quitar elementos, y el stagger se recalcula automáticamente. No hay código que dependa de la posición absoluta de ningún elemento en la línea de tiempo.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Frame local</div><div class="text-xs text-neutral-400">0 en cada entrada</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">spring</div><div class="text-xs text-neutral-400">Resorte independiente</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Reutilización</div><div class="text-xs text-neutral-400">Componente genérico</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Uso</div><div class="text-xs text-neutral-400">70% de las plantillas</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Sequence from=</strong><span class="text-neutral-400"> — delay en frames; el frame local se reinicia en 0 dentro de cada Sequence.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Stagger index * N</strong><span class="text-neutral-400"> — N = 4–8 fotogramas para una cascada natural en listas y grids.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Overlap controlado</strong><span class="text-neutral-400"> — iniciar B antes de que A termine elimina la pantalla vacía y crea fluidez.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Constantes con nombre</strong><span class="text-neutral-400"> — nunca uses magic numbers; deriva los offsets a partir de las constantes base.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">spring + Sequence</strong><span class="text-neutral-400"> — combinación estándar de entrada escalonada usada en el 70% de las plantillas.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-purple-400 mb-2">Próximo módulo:</h3>
+<p class="text-neutral-300">3.2 — Capas y composición visual: AbsoluteFill apilado, orden de las capas y cómo mantener la legibilidad.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Volver a la ruta 3</a>
+<a class="flex-1 text-center px-6 py-3 bg-purple-600 text-white rounded-lg font-semibold hover:bg-purple-500 transition-colors" href="modulo-3-2.html">Próximo módulo →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Curso de Remotion · Módulo 3.1 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

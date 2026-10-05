@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 2.1 · Text Animations | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha2/modulo-2-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha2/modulo-2-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha2/modulo-2-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha2/modulo-2-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-2-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../../es/curso-remotion/curso/trilha2/modulo-2-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Resources</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combination</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projects</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Track 2</a><span>/</span>
+<span class="text-blue-400">Module 2.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MODULE 2.1</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">✍️ Text Animations</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">9 templates, 9 different ways to move text. From revealing letters one by one with stagger to sine waves and RGB glitch—each template teaches a pattern that recurs in dozens of real-world situations.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">9</div><div class="text-xs text-neutral-400">Templates</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">40</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Inter</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Practical</div><div class="text-xs text-neutral-400">Type</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SVG conceitual -->
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Text is split into characters, each gets a delay based on its index, and they all animate in a stagger, resulting in a smooth reveal" class="w-full h-auto" role="img" viewbox="0 0 1000 180">
+<defs>
+<lineargradient id="m21-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#3b82f6"></stop></lineargradient>
+<filter height="180%" id="m21-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m21-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m21-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#60a5fa"></path></marker>
+</defs>
+<rect fill="url(#m21-grid)" height="180" width="1000" x="0" y="0"></rect>
+<!-- string de entrada -->
+<g filter="url(#m21-glow)"><rect fill="#0e1622" height="44" rx="11" stroke="url(#m21-grad)" stroke-width="2.5" width="160" x="30" y="70"></rect></g>
+<text fill="#60a5fa" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="110" y="89">string</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="110" y="106">"REMOTION"</text>
+<!-- seta -->
+<path d="M190,92 L248,92" fill="none" marker-end="url(#m21-ah)" opacity="0.6" stroke="#60a5fa" stroke-width="2"></path>
+<!-- chars individuais com stagger visual -->
+<g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+<g class="wf-a"><rect fill="#0e1622" height="44" rx="8" stroke="#38bdf8" stroke-width="1.6" width="36" x="254" y="70"></rect><text fill="#bfe6ff" text-anchor="middle" x="272" y="97">R</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="44" rx="8" stroke="#38bdf8" stroke-width="1.6" width="36" x="296" y="70"></rect><text fill="#bfe6ff" text-anchor="middle" x="314" y="97">E</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="44" rx="8" stroke="#38bdf8" stroke-width="1.6" width="36" x="338" y="70"></rect><text fill="#bfe6ff" text-anchor="middle" x="356" y="97">M</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="44" rx="8" stroke="#38bdf8" stroke-width="1.6" width="36" x="380" y="70"></rect><text fill="#bfe6ff" text-anchor="middle" x="398" y="97">O</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="44" rx="8" stroke="#38bdf8" stroke-width="1.6" width="36" x="422" y="70"></rect><text fill="#bfe6ff" text-anchor="middle" x="440" y="97">T</text></g>
+<g class="wf-a"><rect fill="#0e1622" height="44" rx="8" stroke="#38bdf8" stroke-width="1.6" width="36" x="464" y="70"></rect><text fill="#bfe6ff" text-anchor="middle" x="482" y="97">I</text></g>
+</g>
+<!-- delay labels -->
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="272" y="128">+0</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="314" y="128">+3</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="356" y="128">+6</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="398" y="128">+9</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="440" y="128">+12</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="482" y="128">+15</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="370" y="152">delay = i × 3 frames (stagger)</text>
+<!-- resultado final -->
+<path d="M518,92 L576,92" fill="none" marker-end="url(#m21-ah)" opacity="0.6" stroke="#60a5fa" stroke-width="2"></path>
+<g filter="url(#m21-glow)"><rect fill="#0e1622" height="60" rx="13" stroke="url(#m21-grad)" stroke-width="2.5" width="180" x="582" y="62"></rect></g>
+<text fill="#60a5fa" font-family="Inter,sans-serif" font-size="18" font-weight="700" text-anchor="middle" x="672" y="87">REMOTION</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="672" y="108">character-by-character reveal</text>
+<!-- seta resultado -->
+<path d="M762,92 L820,92" fill="none" marker-end="url(#m21-ah)" opacity="0.6" stroke="#60a5fa" stroke-width="2"></path>
+<g filter="url(#m21-glow)"><rect fill="#0e1622" height="44" rx="11" stroke="url(#m21-grad)" stroke-width="2" width="130" x="826" y="70"></rect></g>
+<text fill="#60a5fa" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="891" y="89">video</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="891" y="106">animated</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">✍️ Overview — The Text category</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Animated text isn’t optional in video—it’s the primary vehicle for information. The Text category in the library covers <strong class="text-blue-400">9 distinct patterns</strong>, from revealing letters one at a time to a sine wave and RGB glitch. Knowing which one to use in each context is what separates a shallow video from one with a visual identity.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> When to use text animation</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div>
+<p class="text-neutral-300 text-sm font-semibold mb-2">Reveal information progressively:</p>
+<ul class="space-y-1 text-neutral-400 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>animated-text or typewriter for data that “arrives”</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>slide-text for directional entrances (slide-in)</span></li>
+</ul>
+</div>
+<div>
+<p class="text-neutral-300 text-sm font-semibold mb-2">Draw attention to existing text:</p>
+<ul class="space-y-1 text-neutral-400 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>pulsing-text for gentle, continuous breathing</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>glitch-text for a retro/hacker style</span></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ When text animates well</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Pacing aligned with narration or background music.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Duration proportional to the length of the text.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Animation style consistent with the video’s tone.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ When it hurts</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Animation faster than reading—the text disappears before it can be read.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Glitch or bounce in a serious corporate context.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Multiple different animations in the same scene.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">9 templates</div><div class="text-xs text-neutral-400">Text Category</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">3 families</div><div class="text-xs text-neutral-400">Stagger / Physics / Effect</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Base hook</div><div class="text-xs text-neutral-400">interpolate + spring</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Pattern</div><div class="text-xs text-neutral-400">Split → stagger → animate</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🔤 animated-text — letter-by-letter stagger</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The template <code class="text-blue-400">animated-text.tsx</code> splits the text into an array of characters and applies a <strong class="text-blue-400">Sequence with from scaled by index</strong>. Each letter comes in with a slight delay after the previous one, creating the effect of “fast typing” without using setTimeout or state.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">animated-text.tsx — stagger core</span>
+<span class="text-xs text-neutral-500 font-mono">templates/animated-text.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> chars = text.<span class="text-blue-400">split</span>(<span class="text-emerald-400">""</span>);
+
+<span class="text-purple-400">return</span> (
+  &lt;div style={{ display: <span class="text-emerald-400">"flex"</span> }}&gt;
+    {chars.<span class="text-blue-400">map</span>((char, i) =&gt; {
+      <span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(
+        frame,
+        [i * <span class="text-emerald-400">2</span>, i * <span class="text-emerald-400">2</span> + <span class="text-emerald-400">8</span>],
+        [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>],
+        { extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+      );
+      <span class="text-purple-400">return</span> &lt;span key={i} style={{ opacity }}&gt;{char}&lt;/span&gt;;
+    })}
+  &lt;/div&gt;
+);</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Why i * 2 instead of a fixed value?</h3>
+<p class="text-neutral-300">O <code>i * 2</code> is the delay: each letter starts 2 frames after the previous one. Change it to <code>i * 4</code> and the reveal is slower; <code>i * 1</code> makes it almost simultaneous. The <code>+ 8</code> sets the duration of each individual fade — the time it takes for opacity to go from 0 to 1.</p>
+</div>
+<!-- timeline -->
+<div class="space-y-4 mb-6">
+<h3 class="font-semibold text-white mb-3">Execution timeline (text "OLÁ"):</h3>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">F0</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+<h4 class="font-semibold text-white text-sm mb-1">Frame 0 — "O" starts to appear</h4>
+<p class="text-neutral-400 text-xs">The “O” opacity goes from 0→1 over frames 0-8. “L” and “Á” are still invisible (opacity=0).</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">F2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+<h4 class="font-semibold text-white text-sm mb-1">Frame 2 — "L" begins its fade</h4>
+<p class="text-neutral-400 text-xs">"O" still animating; "L" starts interpolation from 0→1 on frames 2-10.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-sm">F8</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+<h4 class="font-semibold text-white text-sm mb-1">Frame 8 — full text visible</h4>
+<p class="text-neutral-400 text-xs">All characters at opacity=1. Animation complete.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Pattern</div><div class="text-xs text-neutral-400">split + map + interpolate</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Stagger</div><div class="text-xs text-neutral-400">i × delay</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Extrapolate</div><div class="text-xs text-neutral-400">clamp (required)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Reuse in</div><div class="text-xs text-neutral-400">Words, lines, lists</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🏀 bounce-text — spring with overshoot</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">bounce-text.tsx</code> uses <code>spring()</code> instead of <code>interpolate()</code>. The visual difference is huge: instead of moving up linearly, the text “bounces”—overshoots its destination and comes back, like an object with mass and damping.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">bounce-text — spring with parameters</span>
+<span class="text-xs text-neutral-500 font-mono">templates/bounce-text.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> { fps } = <span class="text-blue-400">useVideoConfig</span>();
+<span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-purple-400">const</span> scale = <span class="text-blue-400">spring</span>({
+  fps,
+  frame,
+  config: {
+    damping: <span class="text-emerald-400">8</span>,     <span class="text-neutral-500">// baixo = mais quique</span>
+    stiffness: <span class="text-emerald-400">120</span>, <span class="text-neutral-500">// alto = mais rápido</span>
+    mass: <span class="text-emerald-400">1</span>,
+  },
+});
+
+<span class="text-purple-400">return</span> &lt;div style={{ transform: `scale(${scale})` }}&gt;{text}&lt;/div&gt;;</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ Spring: when to use it</h4>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Hero titles that need visual impact.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>CTAs and buttons that "call out" to the viewer.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Emojis and expressive icons.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ Interpolate: when to use it</h4>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">→</span><span>Fades—spring doesn’t control opacity precisely.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">→</span><span>Exact horizontal movement (precise slide).</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">→</span><span>Any timing that can't overshoot.</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Spring parameter table</h3>
+<div class="overflow-x-auto">
+<table class="w-full text-sm text-neutral-300">
+<thead><tr class="text-blue-400 border-b border-dark-600"><th class="text-left py-2 pr-4">Parameter</th><th class="text-left py-2 pr-4">Low value</th><th class="text-left py-2">High value</th></tr></thead>
+<tbody class="divide-y divide-dark-600/50">
+<tr><td class="py-2 pr-4 font-mono text-blue-300">damping</td><td class="py-2 pr-4 text-neutral-400">elastic, oscillates too much</td><td class="py-2">snaps quickly, no bounce</td></tr>
+<tr><td class="py-2 pr-4 font-mono text-blue-300">stiffness</td><td class="py-2 pr-4 text-neutral-400">slow, lazy</td><td class="py-2">fast, aggressive</td></tr>
+<tr><td class="py-2 pr-4 font-mono text-blue-300">mass</td><td class="py-2 pr-4 text-neutral-400">light, fast</td><td class="py-2">heavy, high inertia</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Returns</div><div class="text-xs text-neutral-400">0 → ~1 (with overshoot)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Uses fps</div><div class="text-xs text-neutral-400">always pass fps</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Combine</div><div class="text-xs text-neutral-400">× scale or translateY</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Stagger</div><div class="text-xs text-neutral-400">frame - i * delay</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">💻 glitch-text — RGB split without a library</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The glitch effect is achieved with <strong class="text-blue-400">three overlapping copies of the same text</strong>, each colored in one channel (red, green, blue) and shifted horizontally by a different amount. All with <code>random()</code> seeded and <code>interpolate</code> multi-keyframe for the pulses.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">glitch-text — RGB split</span>
+<span class="text-xs text-neutral-500 font-mono">templates/glitch-text.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// deslocamento pulsante para canal vermelho</span>
+<span class="text-purple-400">const</span> glitchX = <span class="text-blue-400">interpolate</span>(
+  frame % <span class="text-emerald-400">12</span>,                    <span class="text-neutral-500">// pulso periódico</span>
+  [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">2</span>, <span class="text-emerald-400">4</span>, <span class="text-emerald-400">6</span>, <span class="text-emerald-400">12</span>],
+  [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">-4</span>, <span class="text-emerald-400">3</span>, <span class="text-emerald-400">-2</span>, <span class="text-emerald-400">0</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">return</span> (
+  &lt;div style={{ position: <span class="text-emerald-400">"relative"</span> }}&gt;
+    <span class="text-neutral-500">{/* cópia vermelha */}</span>
+    &lt;span style={{ color:<span class="text-emerald-400">"red"</span>, position:<span class="text-emerald-400">"absolute"</span>,
+      transform:`translateX(${glitchX}px)`,
+      mixBlendMode: <span class="text-emerald-400">"screen"</span> }}&gt;{text}&lt;/span&gt;
+    <span class="text-neutral-500">{/* cópia ciano e texto original */}</span>
+  &lt;/div&gt;
+);</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> mix-blend-mode: screen</h3>
+<p class="text-neutral-300">With <code>mixBlendMode: "screen"</code>, where red and cyan overlap to produce white—creating the characteristic visual artifact of CRT glitch. Without the blend mode, the colors simply cover each other.</p>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> Don’t use Math.random() here</h3>
+<p class="text-neutral-300 text-sm">The glitch displacement needs to be deterministic—use <code>random("glitch-r")</code> from Remotion for fixed per-channel amplitudes. <code>Math.random()</code> will make the glitch flash differently on each render, breaking the video in parallel rendering.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Technique</div><div class="text-xs text-neutral-400">3 overlapping copies</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Blend</div><div class="text-xs text-neutral-400">mixBlendMode: screen</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Pulse</div><div class="text-xs text-neutral-400">frame % period</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Seed</div><div class="text-xs text-neutral-400">deterministic random()</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🌊 floating-bubble-text — sine wave</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Instead of interpolate or spring, the <code class="text-blue-400">floating-bubble-text.tsx</code> uses directly <code>Math.sin()</code> with the frame as an argument. Each character oscillates with a <strong class="text-blue-400">phase difference</strong> relative to the previous one, creating a wave that travels continuously across the text — with no beginning or end.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">sine wave per character</span>
+<span class="text-xs text-neutral-500 font-mono">templates/floating-bubble-text.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+{text.<span class="text-blue-400">split</span>(<span class="text-emerald-400">""</span>).<span class="text-blue-400">map</span>((char, i) =&gt; {
+  <span class="text-purple-400">const</span> y = Math.<span class="text-blue-400">sin</span>(
+    frame / <span class="text-emerald-400">12</span>       <span class="text-neutral-500">// velocidade da onda</span>
+    + i * <span class="text-emerald-400">0.5</span>     <span class="text-neutral-500">// fase por índice</span>
+  ) * <span class="text-emerald-400">8</span>;           <span class="text-neutral-500">// amplitude em px</span>
+
+  <span class="text-purple-400">return</span> (
+    &lt;span key={i} style={{ display:<span class="text-emerald-400">"inline-block"</span>,
+      transform: `translateY(${y}px)` }}&gt;
+      {char}
+    &lt;/span&gt;
+  );
+})}</pre>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> Adjusting the behavior</h3>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-neutral-300">
+<div><code class="text-blue-300">frame / 12</code> — speed: higher number = slower</div>
+<div><code class="text-blue-300">i * 0.5</code> — phase offset: lower = more synchronized</div>
+<div><code class="text-blue-300">* 8</code> — amplitude: vertical displacement in pixels</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Technique</div><div class="text-xs text-neutral-400">Math.sin(frame)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Loop</div><div class="text-xs text-neutral-400">Automatic periodic</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Phase</div><div class="text-xs text-neutral-400">i × offset</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Backgrounds and decoration</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">⌨️ typewriter-subtitle — blinking cursor</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">typewriter-subtitle.tsx</code> emulates real typing: progressively reveals more characters of the text using <code>text.slice(0, visibleChars)</code>, where <code>visibleChars</code> comes directly from the frame. The cursor blinks with multi-keyframe interpolation.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">typewriter + blinking cursor</span>
+<span class="text-xs text-neutral-500 font-mono">templates/typewriter-subtitle.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> charsPerFrame = <span class="text-emerald-400">0.3</span>; <span class="text-neutral-500">// velocidade de digitação</span>
+
+<span class="text-purple-400">const</span> visibleChars = Math.<span class="text-blue-400">floor</span>(frame * charsPerFrame);
+<span class="text-purple-400">const</span> displayText = text.<span class="text-blue-400">slice</span>(<span class="text-emerald-400">0</span>, visibleChars);
+
+<span class="text-neutral-500">// cursor pisca a cada ~15 frames</span>
+<span class="text-purple-400">const</span> cursorOpacity = <span class="text-blue-400">interpolate</span>(
+  frame % <span class="text-emerald-400">20</span>,
+  [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">10</span>, <span class="text-emerald-400">20</span>],
+  [<span class="text-emerald-400">1</span>, <span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>]
+);</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Adjusting the speed</h3>
+<p class="text-neutral-300"><code>charsPerFrame = 0.3</code> types ~9 chars/sec at 30fps. To type faster: increase to <code>0.5</code>. For slow, terminal-style typing: <code>0.15</code>. The formula <code>Math.floor(frame * rate)</code> is the universal pattern for “how many elements to show so far.”</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Technique</div><div class="text-xs text-neutral-400">slice(0, frame×rate)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Cursor</div><div class="text-xs text-neutral-400">frame % period</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Speed</div><div class="text-xs text-neutral-400">charsPerFrame</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Usage</div><div class="text-xs text-neutral-400">Captions, code, tutorials</div></div>
+</div>
+</section>
+<!-- TÓPICO 7 — biblioteca completa -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">📚 Complete Library — Text Category</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">All 9 templates in the category, with the file, a one-line description, and the main hook used.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+<div class="grid grid-cols-3 bg-dark-700/50 px-4 py-3 border-b border-dark-600 text-xs font-semibold text-neutral-400 uppercase tracking-wide">
+<span>Template</span><span>Description</span><span>Main hook</span>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">animated-text.tsx</span>
+<span class="text-neutral-300">Character-by-character reveal with stagger</span>
+<span class="text-neutral-400 font-mono text-xs">interpolate</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">bounce-text.tsx</span>
+<span class="text-neutral-300">Entrance with elastic overshoot</span>
+<span class="text-neutral-400 font-mono text-xs">spring</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">bubble-pop-text.tsx</span>
+<span class="text-neutral-300">Scale 0→1.2→1 per word</span>
+<span class="text-neutral-400 font-mono text-xs">spring</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">floating-bubble-text.tsx</span>
+<span class="text-neutral-300">Sine wave per character</span>
+<span class="text-neutral-400 font-mono text-xs">Math.sin</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">glitch-text.tsx</span>
+<span class="text-neutral-300">RGB split with irregular pulse</span>
+<span class="text-neutral-400 font-mono text-xs">interpolate + random</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">popping-text.tsx</span>
+<span class="text-neutral-300">Independent pop scale per word</span>
+<span class="text-neutral-400 font-mono text-xs">spring stagger</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">pulsing-text.tsx</span>
+<span class="text-neutral-300">Continuous opacity breathing</span>
+<span class="text-neutral-400 font-mono text-xs">Math.sin loop</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">slide-text.tsx</span>
+<span class="text-neutral-300">Directional slide with easing out</span>
+<span class="text-neutral-400 font-mono text-xs">interpolate + easing</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">typewriter-subtitle.tsx</span>
+<span class="text-neutral-300">Typing with a blinking cursor</span>
+<span class="text-neutral-400 font-mono text-xs">slice + frame%</span>
+</div>
+</div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Stagger = split + map + i × delay</strong><span class="text-neutral-400"> — the universal pattern for revealing elements in sequence.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">spring for an organic pop</strong><span class="text-neutral-400"> — low damping = bounce, high damping = firm.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Math.sin(frame) for perpetual loops</strong><span class="text-neutral-400"> — wave, breathing, and any cyclical movement.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Glitch = 3 copies + mixBlendMode</strong><span class="text-neutral-400"> — complex visual effect without an external library.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">seeded random()</strong><span class="text-neutral-400"> — visual randomness without breaking deterministic rendering.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Next module:</h3>
+<p class="text-neutral-300">2.2 — Charts &amp; Data: animated SVG with interpolate, dashoffset, arcs, and numeric counters.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Back to Track</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="modulo-2-2.html">Next Module →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Remotion Course · Module 2.1 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

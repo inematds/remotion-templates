@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 4.1 · Apertura de canal | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (amber T4) */
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(217,119,6,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(217,119,6,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(217,119,6,0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    /* boxes de pesquisa/alerta */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha4/modulo-4-1.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha4/modulo-4-1.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha4/modulo-4-1.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha4/modulo-4-1.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../../en/curso-remotion/curso/trilha4/modulo-4-1.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-4-1.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinación</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10" href="index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Proyectos</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-amber-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-amber-400" href="index.html">Trayecto 4</a><span>/</span>
+<span class="text-amber-400">Módulo 4.1</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">MÓDULO 4.1</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">📺 Apertura de canal</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Un bumper completo de 10–15 segundos que combina fondo starfield, animación del logo con spring, entrada cinemática del título y transición iris de salida — todo dentro de un único <code class="text-amber-400">Series</code>.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Temas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">45</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Avanzado</div><div class="text-xs text-neutral-400">Nivel</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Proyecto</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- Diagrama do conceito -->
+<div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Cuatro escenas en Series: el starfield de fondo, el logo con spring, el título en stagger y el iris de salida forman la apertura completa" class="w-full h-auto" role="img" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="m41-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fbbf24"></stop><stop offset="1" stop-color="#f59e0b"></stop></lineargradient>
+<filter height="180%" id="m41-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m41-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#f59e0b" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m41-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#fbbf24"></path></marker>
+<marker id="m41-ahc" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"></path></marker>
+</defs>
+<rect fill="url(#m41-grid)" height="200" width="1000" x="0" y="0"></rect>
+<!-- cenas sequenciais -->
+<g class="wf-a"><rect fill="#0e1b26" height="52" rx="11" stroke="#38bdf8" stroke-width="1.8" width="140" x="30" y="76"></rect><text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="100" y="100">starfield</text><text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="100" y="117">fondo animado</text></g>
+<path d="M170,102 L220,102" fill="none" marker-end="url(#m41-ah)" opacity="0.6" stroke="#fbbf24" stroke-width="2"></path>
+<g class="wf-a"><rect fill="#1f1604" height="52" rx="11" stroke="#fbbf24" stroke-width="1.8" width="140" x="226" y="76"></rect><text fill="#fbbf24" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="296" y="100">logo-spin</text><text fill="#fde68a" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="296" y="117">spring</text></g>
+<path d="M366,102 L416,102" fill="none" marker-end="url(#m41-ah)" opacity="0.6" stroke="#fbbf24" stroke-width="2"></path>
+<g class="wf-a"><rect fill="#1f1604" height="52" rx="11" stroke="#fbbf24" stroke-width="1.8" width="156" x="422" y="76"></rect><text fill="#fbbf24" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="500" y="100">cinematic-title</text><text fill="#fde68a" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="500" y="117">stagger por letra</text></g>
+<path d="M578,102 L628,102" fill="none" marker-end="url(#m41-ah)" opacity="0.6" stroke="#fbbf24" stroke-width="2"></path>
+<g class="wf-a"><rect fill="#0e1b26" height="52" rx="11" stroke="#38bdf8" stroke-width="1.8" width="140" x="634" y="76"></rect><text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="704" y="100">iris-transition</text><text fill="#93c5fd" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="704" y="117">clip-path</text></g>
+<path d="M774,102 L824,102" fill="none" marker-end="url(#m41-ah)" opacity="0.6" stroke="#fbbf24" stroke-width="2"></path>
+<g filter="url(#m41-glow)"><rect fill="#1f1604" height="60" rx="13" stroke="url(#m41-grad)" stroke-width="2.5" width="140" x="830" y="72"></rect></g>
+<text fill="#fbbf24" font-family="Inter,sans-serif" font-size="15" font-weight="700" text-anchor="middle" x="900" y="99">apertura</text>
+<text fill="#fde68a" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="900" y="118">10–15 s</text>
+<!-- label Series -->
+<text fill="#d97706" font-family="Inter,sans-serif" font-size="12" opacity="0.75" text-anchor="middle" x="500" y="170">Series orquesta el orden — sin calcular offsets manualmente</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🎯 El proyecto y su estructura de escenas</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Una apertura de canal es un video de <strong class="text-amber-400">identidad</strong>: presenta la marca antes del contenido. En Remotion modelamos esto como una secuencia de escenas en <code class="text-amber-400">Series</code> — cada escena es un componente independiente con su propio timing; Series las apila sin aritmética manual de offsets.</p>
+<div class="bg-gradient-to-br from-amber-900/30 to-dark-800 rounded-xl border border-amber-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-amber-400 mb-4 flex items-center"><span class="mr-2">🎬</span> Las 4 escenas de la apertura</h3>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">1.</span><span><strong>Fondo</strong> — starfield o gradient-shift desde el frame 0 hasta el final, siempre en la capa inferior.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">2.</span><span><strong>Logo</strong> — entra con spring en el centro, permanece durante ~2 s y luego retrocede ligeramente.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">3.</span><span><strong>Título</strong> — el nombre del canal y el tagline aparecen en stagger justo después de que el logo se estabiliza.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400 mt-1">4.</span><span><strong>Salida</strong> — iris o fade-through-black cierra la apertura antes del contenido principal.</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Esqueleto del componente raíz</span>
+<span class="text-xs text-neutral-500 font-mono">ChannelOpening.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { Series, AbsoluteFill } <span class="text-purple-400">from</span> <span class="text-amber-400">"remotion"</span>;
+<span class="text-purple-400">import</span> { Starfield }       <span class="text-purple-400">from</span> <span class="text-amber-400">"./templates/starfield"</span>;
+<span class="text-purple-400">import</span> { LogoSpinReveal }  <span class="text-purple-400">from</span> <span class="text-amber-400">"./templates/logo-spin-reveal"</span>;
+<span class="text-purple-400">import</span> { CinematicTitle }  <span class="text-purple-400">from</span> <span class="text-amber-400">"./templates/cinematic-title-intro"</span>;
+<span class="text-purple-400">import</span> { IrisTransition }  <span class="text-purple-400">from</span> <span class="text-amber-400">"./templates/iris-transition"</span>;
+
+<span class="text-purple-400">export const</span> <span class="text-blue-400">ChannelOpening</span> = () =&gt; (
+  &lt;AbsoluteFill&gt;
+    &lt;Starfield /&gt;          <span class="text-neutral-500">{/* sempre ativo — z=0 */}</span>
+    &lt;Series&gt;
+      &lt;Series.Sequence durationInFrames={<span class="text-amber-400">60</span>}&gt;
+        &lt;LogoSpinReveal logo="./logo.svg" /&gt;
+      &lt;/Series.Sequence&gt;
+      &lt;Series.Sequence durationInFrames={<span class="text-amber-400">75</span>}&gt;
+        &lt;CinematicTitle title="Meu Canal" tagline="Design em Movimento" /&gt;
+      &lt;/Series.Sequence&gt;
+      &lt;Series.Sequence durationInFrames={<span class="text-amber-400">30</span>}&gt;
+        &lt;IrisTransition /&gt;
+      &lt;/Series.Sequence&gt;
+    &lt;/Series&gt;
+  &lt;/AbsoluteFill&gt;
+);</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Total</div><div class="text-xs text-neutral-400">~165 fotogramas = 5,5 s</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Fondo</div><div class="text-xs text-neutral-400">Paralelo al Series</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Series</div><div class="text-xs text-neutral-400">Sin offset manual</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Props</div><div class="text-xs text-neutral-400">logo, title, tagline</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">✨ Escena de fondo — starfield y gradient-shift</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El fondo no entra en Series: vive en un <code class="text-amber-400">AbsoluteFill</code> separado que existe durante todo el video. El <strong class="text-amber-400">starfield</strong> genera estrellas con <code>random()</code> sembrado y las desplaza levemente por frame, creando profundidad sin costo de cámara.</p>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🌌</span> Cómo funciona el starfield</h3>
+<ul class="space-y-2 text-neutral-300">
+<li><strong>random("star-x-N")</strong> — genera la posición X determinista para la estrella N</li>
+<li><strong>random("star-y-N")</strong> — posición Y también con semilla: siempre igual por frame</li>
+<li><strong>translateY mediante interpolate</strong> — la estrella desciende 20px a lo largo de todo el video</li>
+<li><strong>opacity pulsante</strong> — Math.sin(frame * 0.05 + seed) crea un parpadeo suave</li>
+</ul>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+<h4 class="font-bold text-amber-400 mb-4">✓ Qué HACER</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Usar <code>random()</code> de Remotion con seed: nunca <code>Math.random()</code>.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Dejar el fondo en AbsoluteFill independiente de Series.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span>Mantén la opacity de las estrellas entre 0.3–0.9 para que no compitan con el logo.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Qué NO hacer</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar <code>Math.random()</code> — las estrellas "parpadean" entre frames en el render.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Poner el fondo dentro de Series — desaparecerá cuando termine la escena.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar un color de estrella igual al del logo: se pierde el contraste en el frame crítico.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">random()</div><div class="text-xs text-neutral-400">Con seed, determinístico</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">AbsoluteFill</div><div class="text-xs text-neutral-400">z=0, siempre activo</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Paralaje</div><div class="text-xs text-neutral-400">translateY lento</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Destello</div><div class="text-xs text-neutral-400">Math.sin + seed</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🔵 Escena del logo — spin-reveal y stroke-draw</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El logo es la escena más impactante: aparece con un <strong class="text-amber-400">spring</strong> calibrado para lograr ese «pop» sin exagerar. Puedes usar <code class="text-amber-400">logo-spin-reveal.tsx</code> (gira y escala) o <code class="text-amber-400">logo-stroke-draw.tsx</code> (traza progresivamente el contorno SVG).</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Logo con spring calibrado</span>
+<span class="text-xs text-neutral-500 font-mono">logo-spin-reveal.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> { fps } = <span class="text-blue-400">useVideoConfig</span>();
+
+<span class="text-neutral-500">// spring: pop rápido, sem bounce excessivo</span>
+<span class="text-purple-400">const</span> progress = <span class="text-blue-400">spring</span>({ frame, fps,
+  config: { damping: <span class="text-amber-400">14</span>, stiffness: <span class="text-amber-400">180</span>, mass: <span class="text-amber-400">1</span> }
+});
+
+<span class="text-purple-400">const</span> scale   = <span class="text-blue-400">interpolate</span>(progress, [<span class="text-amber-400">0</span>,<span class="text-amber-400">1</span>], [<span class="text-amber-400">0.3</span>,<span class="text-amber-400">1</span>]);
+<span class="text-purple-400">const</span> rotate  = <span class="text-blue-400">interpolate</span>(progress, [<span class="text-amber-400">0</span>,<span class="text-amber-400">1</span>], [<span class="text-amber-400">-180</span>,<span class="text-amber-400">0</span>]);
+<span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(progress, [<span class="text-amber-400">0</span>,<span class="text-amber-400">0.3</span>], [<span class="text-amber-400">0</span>,<span class="text-amber-400">1</span>],
+  { extrapolateRight: <span class="text-amber-400">"clamp"</span> });
+
+<span class="text-purple-400">return</span> &lt;AbsoluteFill style={{ display:<span class="text-amber-400">"flex"</span>, alignItems:<span class="text-amber-400">"center"</span>, justifyContent:<span class="text-amber-400">"center"</span> }}&gt;
+  &lt;img src={logo} style={{ transform: <span class="text-amber-400">`scale(${scale}) rotate(${rotate}deg)`</span>, opacity }} /&gt;
+&lt;/AbsoluteFill&gt;;</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Spring vs. interpolate para el logo</h3>
+<p class="text-neutral-300">Usa <strong>spring</strong> para la escala y la rotación — el overshoot natural del spring le da personalidad. Usa <strong>interpolate</strong> con clamp para la opacidad — necesitas controlar exactamente cuándo aparece el logo. La combinación de ambos es lo que hace que la animación parezca viva.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">damping 14</div><div class="text-xs text-neutral-400">Ligero overshoot</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">stiffness 180</div><div class="text-xs text-neutral-400">Animación rápida</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">-180° → 0°</div><div class="text-xs text-neutral-400">Media vuelta de entrada</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Timing</div><div class="text-xs text-neutral-400">~0–30 frames</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🔤 Escena de título — cinematic-title y title-split</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El título aparece justo después de que el logo se estabiliza. <code class="text-amber-400">cinematic-title-intro.tsx</code> usa letter-spacing animado (expansión de las letras) mientras <code class="text-amber-400">title-split.tsx</code> divide el texto en dos mitades que convergen desde el centro. El stagger por letra/palabra es lo que hace que el título sea visualmente atractivo.</p>
+<!-- Timeline de construção do título -->
+<div class="space-y-6 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">1</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Frame 0–10: fade-in del contenedor</h4>
+<p class="text-neutral-300 text-sm">El fondo detrás del título (un cuadro oscuro semitransparente) hace opacity 0→1. Esto prepara el contraste antes de que aparezcan las letras.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">2</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Frame 5–35: stagger de las letras</h4>
+<p class="text-neutral-300 text-sm">Cada letra tiene un <code>Sequence from={i * 2}</code> — la letra 0 empieza en el frame 5, la letra 1 en el frame 7, y así sucesivamente. El efecto cascada es automático.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">3</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Frame 35–75: título estático</h4>
+<p class="text-neutral-300 text-sm">El título permanece completamente visible durante ~1,3 s — tiempo suficiente para que el espectador lea y asimile el nombre del canal.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-amber-500/20 flex items-center justify-center"><span class="text-amber-400 font-bold">4</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-6 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Frame 75–90: salida suave</h4>
+<p class="text-neutral-300 text-sm">Opacidad de 1→0 en los últimos 15 frames de la escena. La transición de salida (iris) comienza mientras el título todavía está saliendo — se superponen con fluidez.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Stagger</div><div class="text-xs text-neutral-400">from={i * 2}</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Meseta</div><div class="text-xs text-neutral-400">~1,3 s visible</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Salida</div><div class="text-xs text-neutral-400">15 fotogramas de fade-out</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Overlap</div><div class="text-xs text-neutral-400">Con transición de iris</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🌀 Escena de salida — iris-transition y fade-through-black</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">La transición de salida es el elemento que hace que la apertura <em>profesional</em>. <code class="text-amber-400">iris-transition.tsx</code> usa un clip-path circular que se abre o se cierra — desde el centro o desde una esquina. <code class="text-amber-400">fade-through-black.tsx</code> es más simple: fundido a negro antes de llegar al contenido.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Iris mediante clip-path animado</span>
+<span class="text-xs text-neutral-500 font-mono">iris-transition.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> { width, height } = <span class="text-blue-400">useVideoConfig</span>();
+
+<span class="text-neutral-500">// raio máximo = diagonal da tela</span>
+<span class="text-purple-400">const</span> maxR = Math.sqrt(width**<span class="text-amber-400">2</span> + height**<span class="text-amber-400">2</span>) / <span class="text-amber-400">2</span>;
+<span class="text-purple-400">const</span> radius = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-amber-400">0</span>,<span class="text-amber-400">30</span>], [maxR, <span class="text-amber-400">0</span>],
+  { extrapolateRight: <span class="text-amber-400">"clamp"</span> });
+
+<span class="text-purple-400">return</span> &lt;AbsoluteFill style={{
+  clipPath: <span class="text-amber-400">`circle(${radius}px at center)`</span>,
+  background: <span class="text-amber-400">"black"</span>
+}} /&gt;;</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Elige la transición según el tono del canal</h3>
+<p class="text-neutral-300">Iris que se cierra = estilo clásico/cinematográfico. Fade-through-black = limpio y moderno. Para canales de tecnología, prefiere el fade. Para canales de estilo de vida o cultura, el iris aporta más personalidad.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">clip-path</div><div class="text-xs text-neutral-400">circle(r px at cx cy)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Diagonal</div><div class="text-xs text-neutral-400">Radio máximo del frame</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">30 frames</div><div class="text-xs text-neutral-400">Duración de la transición</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Origen</div><div class="text-xs text-neutral-400">centro o posición del logo.</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-amber-500/20 text-amber-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🎛️ Montaje final — timing y ritmo</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Con todas las escenas listas, el trabajo final es <strong class="text-amber-400">calibrar el ritmo</strong>. Una apertura de canal debe parecer rápida, pero no ansiosa: lo bastante para reconocer el logo y leer el título. La regla práctica: nunca menos de 5 s ni más de 15 s.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-amber-900/20 rounded-xl border border-amber-500/30 p-6">
+<h4 class="font-bold text-amber-400 mb-4">✓ Timing recomendado (30fps)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span><strong>Logo:</strong> 60 frames (2 s) — tiempo para reconocer la marca.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span><strong>Título:</strong> 75 frames (2,5 s) — tiempo para leer el nombre + tagline.</span></li>
+<li class="flex items-start space-x-2"><span class="text-amber-400">✓</span><span><strong>Transición:</strong> 30 frames (1 s) — lo bastante rápida para no cansar.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Errores comunes de ritmo</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>El logo permanece más de 3 s antes de que aparezca el título — parece que se trabó.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>El título sale antes de estar completamente legible — corte brusco.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Transición demasiado larga: la apertura compite con el propio contenido.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Total ideal</div><div class="text-xs text-neutral-400">5–10 s</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Logo</div><div class="text-xs text-neutral-400">2 s = 60 fotogramas</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Título</div><div class="text-xs text-neutral-400">2,5 s = 75 fotogramas</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-amber-400 font-bold text-sm mb-1">Salida</div><div class="text-xs text-neutral-400">1 s = 30 fotogramas</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-amber-900/40 via-dark-800 to-dark-800 rounded-xl border border-amber-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🏁</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Series orquesta las escenas</strong><span class="text-neutral-400"> — sin calcular offsets, cada escena declara su duración.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Fondo en AbsoluteFill paralelo</strong><span class="text-neutral-400"> — starfield/gradient-shift no entran en el Series.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Spring para el logo</strong><span class="text-neutral-400"> — damping 14, stiffness 180 dan el pop perfecto.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Stagger de letras</strong><span class="text-neutral-400"> — Sequence from={i*2} dentro del componente del título.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Iris mediante clip-path</strong><span class="text-neutral-400"> — circle(r px at center) con r interpolado de maxR hasta 0.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-amber-400 mt-1">✓</span><div><strong class="text-white">Timing: 5–10 s en total</strong><span class="text-neutral-400"> — logo 2 s + título 2,5 s + transición 1 s.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-amber-400 mb-2">Próximo módulo:</h3>
+<p class="text-neutral-300">4.2 — Video de producto: ken-burns + lower-third + stat-counter + end-card.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Volver a la ruta 4</a>
+<a class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors" href="modulo-4-2.html">Próximo módulo →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Curso de Remotion · Módulo 4.1 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

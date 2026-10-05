@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 2.8 — Intro &amp; Outro · Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          colors: {
+            'dark': { 600: '#4b5563', 700: '#374151', 800: '#1f2937', 900: '#111827' },
+            'primary': '#60a5fa'
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f9fafb; color: #111827; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-700 { background-color: #e5e7eb; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .text-neutral-300 { color: #374151; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .text-white { color: #111827; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    html:not(.dark) .bg-dark-800\/50 { background-color: rgba(243,244,246,0.5); }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    /* Light mode - cores de acento (trilha blue) */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    /* other-trilha nav hover */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #d97706; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* Light mode - remove gradientes */
+    html:not(.dark) .from-blue-900\/40 { --tw-gradient-from: rgba(37,99,235,0.08); }
+    html:not(.dark) .from-blue-900\/30 { --tw-gradient-from: rgba(37,99,235,0.06); }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    /* SVG pulse */
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s}
+      .wf-a:nth-child(4){animation-delay:.9s} .wf-a:nth-child(5){animation-delay:1.2s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha2/modulo-2-8.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha2/modulo-2-8.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha2/modulo-2-8.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha2/modulo-2-8.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-2-8.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../../es/curso-remotion/curso/trilha2/modulo-2-8.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Resources</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combination</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projects</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Track 2</a><span>/</span>
+<span class="text-blue-400">Module 2.8</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-10">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-2xl border border-blue-500/30 p-8">
+<div class="flex items-center space-x-3 mb-4">
+<span class="px-3 py-1 bg-blue-500/20 text-blue-400 rounded-full text-xs font-bold tracking-widest uppercase">MODULE 2.8</span>
+<span class="px-3 py-1 bg-dark-700 text-neutral-400 rounded-full text-xs">Track 2 · Resources</span>
+</div>
+<h1 class="text-4xl sm:text-5xl font-bold mb-4">🎬 Intro &amp; Outro</h1>
+<p class="text-neutral-300 text-lg leading-relaxed mb-6">Intros that grab attention and outros that convert: the 9 templates in this category cover everything from dramatic countdowns to animated subscribe cards for YouTube and social media.</p>
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+<div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+<div class="text-blue-400 font-bold text-2xl">8</div>
+<div class="text-neutral-400 text-sm mt-1">Topics</div>
+</div>
+<div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+<div class="text-blue-400 font-bold text-2xl">40</div>
+<div class="text-neutral-400 text-sm mt-1">Minutes</div>
+</div>
+<div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+<div class="text-blue-400 font-bold text-2xl">Int</div>
+<div class="text-neutral-400 text-sm mt-1">Level</div>
+</div>
+<div class="bg-dark-800/60 rounded-xl p-4 text-center border border-dark-600">
+<div class="text-blue-400 font-bold text-2xl">9</div>
+<div class="text-neutral-400 text-sm mt-1">Templates</div>
+</div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<!-- DIVISOR -->
+<h2 class="text-sm font-semibold text-neutral-500 uppercase tracking-widest mb-8 pb-2 border-b border-dark-600">Detailed content</h2>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🗺️ Overview — intros, outros, and lower thirds</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Intros and outros are the <strong class="text-blue-400">first and last</strong> frames the viewer sees. A weak intro loses views in the first 5 seconds. An outro without a call to action loses subscriptions and clicks. These templates solve both sides.</p>
+<!-- SVG — linha temporal de um vídeo: intro → conteúdo → outro -->
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-4 mb-6 overflow-hidden">
+<svg aria-label="A video’s timeline structure: intro, content, outro" class="w-full h-auto" font-family="Inter,sans-serif" role="img" viewbox="0 0 760 140">
+<defs>
+<lineargradient id="m28-grad" x1="0" x2="1" y1="0" y2="0"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#38bdf8"></stop></lineargradient>
+<filter height="180%" id="m28-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m28-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.12" r="1.3"></circle></pattern>
+</defs>
+<rect fill="url(#m28-grid)" height="140" width="760" x="0" y="0"></rect>
+<!-- barra de tempo base -->
+<rect fill="#0e1622" height="30" rx="6" stroke="#374151" stroke-width="1.5" width="680" x="40" y="55"></rect>
+<!-- intro -->
+<rect class="wf-a" fill="#1e3a5f" filter="url(#m28-glow)" height="30" rx="6" stroke="#3b82f6" stroke-width="2" width="120" x="40" y="55"></rect>
+<text fill="#60a5fa" font-size="12" font-weight="600" text-anchor="middle" x="100" y="76">INTRO</text>
+<!-- conteúdo -->
+<rect fill="#0e1622" height="30" rx="4" stroke="#374151" stroke-width="1.5" width="430" x="165" y="55"></rect>
+<text fill="#6b7280" font-size="12" text-anchor="middle" x="380" y="76">main content</text>
+<!-- outro -->
+<rect class="wf-a" fill="#1e3a5f" filter="url(#m28-glow)" height="30" rx="6" stroke="#38bdf8" stroke-width="2" width="120" x="600" y="55"></rect>
+<text fill="#38bdf8" font-size="12" font-weight="600" text-anchor="middle" x="660" y="76">OUTRO</text>
+<!-- labels abaixo -->
+<text fill="#60a5fa" font-size="10" text-anchor="middle" x="100" y="110">cinematic-title</text>
+<text fill="#60a5fa" font-size="10" text-anchor="middle" x="100" y="123">countdown · chapter</text>
+<text fill="#38bdf8" font-size="10" text-anchor="middle" x="660" y="110">end-card · credits</text>
+<text fill="#38bdf8" font-size="10" text-anchor="middle" x="660" y="123">subscribe · quote</text>
+<!-- lower-third label em cima -->
+<text fill="#93c5fd" font-size="11" font-weight="600" text-anchor="middle" x="380" y="35">lower-third floats over the main content</text>
+<line stroke="#93c5fd" stroke-dasharray="3,2" stroke-width="1.5" x1="380" x2="380" y1="40" y2="52"></line>
+</svg>
+</div>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">🎯</span> Core concept</h3>
+<p class="text-neutral-300">All these templates use the same pattern: <strong class="text-blue-400">spring()</strong> for entrances with natural physics + <strong class="text-blue-400">interpolate()</strong> for smooth exits. The difference is in the <em>what</em> animates — text, underlines, rings, particles.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Opening hook</div><div class="text-neutral-400 text-xs">The first 5s determine retention</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Lower-third</div><div class="text-neutral-400 text-xs">Overlay over content during the video</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Final CTA</div><div class="text-neutral-400 text-xs">Other = conversion: sign up / click</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Chapter title</div><div class="text-neutral-400 text-xs">Splits long content into chapters</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">🎞️ cinematic-title-intro — spring + underline</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">cinematic-title-intro</strong> is the most widely used opening template: the title rises with spring physics (<code class="text-blue-400">spring()</code>), an underline expands from left to right, and the subtitle fades in with a delay. Cinematic result with ~50 lines of code.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Three animations in sequence</span>
+<span class="text-xs text-neutral-500 font-mono">cinematic-title-intro.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> titleY = <span class="text-blue-400">spring</span>({
+  frame, fps, from: <span class="text-amber-400">50</span>, to: <span class="text-amber-400">0</span>, durationInFrames: <span class="text-amber-400">40</span>,
+  config: { damping: <span class="text-amber-400">14</span>, mass: <span class="text-amber-400">0.8</span> },
+});
+
+<span class="text-purple-400">const</span> underlineWidth = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">20</span>, <span class="text-amber-400">50</span>], [<span class="text-amber-400">0</span>, <span class="text-amber-400">100</span>],
+  { extrapolateLeft: <span class="text-emerald-400">"clamp"</span>, extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">const</span> subtitleOpacity = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-amber-400">40</span>, <span class="text-amber-400">60</span>], [<span class="text-amber-400">0</span>, <span class="text-amber-400">1</span>],
+  { extrapolateLeft: <span class="text-emerald-400">"clamp"</span>, extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);</pre>
+</div>
+<!-- tip box -->
+<div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">💡</span> Practical tip</h3>
+<p class="text-neutral-300">Change the color of the <code>underline</code> for your brand color. With one change to the gradient you get a completely customized intro. Combine with <code>fade-through-black</code> before it for a cinematic fade-in from black.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">spring translateY</div><div class="text-neutral-400 text-xs">Title rises with natural physics</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">width interpolate</div><div class="text-neutral-400 text-xs">Underline expands 0→100%</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">delay via frame offset</div><div class="text-neutral-400 text-xs">Subtitle starts at frame 40</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">damping 14</div><div class="text-neutral-400 text-xs">Low damping = soft bounce</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">⏱️ countdown-intro — 3-2-1-GO! ring</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">countdown-intro</strong> uses an SVG ring with <code>strokeDasharray</code> animated to show the progress of each second, while the number in the center changes from 3 → 2 → 1 → GO with a scale spring.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Ring + number + GO</span>
+<span class="text-xs text-neutral-500 font-mono">countdown-intro.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> circumference = <span class="text-amber-400">2</span> * Math.<span class="text-blue-400">PI</span> * <span class="text-amber-400">70</span>;
+<span class="text-purple-400">const</span> ringProgress = (frame % fps) / fps;
+<span class="text-purple-400">const</span> dashOffset = circumference * ringProgress;
+
+<span class="text-neutral-500">// GO! com spring de escala</span>
+<span class="text-purple-400">const</span> goScale = <span class="text-blue-400">spring</span>({
+  frame: Math.<span class="text-blue-400">max</span>(<span class="text-amber-400">0</span>, frame - totalCountdownFrames),
+  fps, config: { damping: <span class="text-amber-400">8</span>, stiffness: <span class="text-amber-400">100</span> },
+});
+
+<span class="text-neutral-500">// SVG: anel gira -90deg (topo = início)</span>
+&lt;<span class="text-emerald-400">svg</span> style={{ transform: <span class="text-emerald-400">"rotate(-90deg)"</span> }}&gt;
+  &lt;<span class="text-emerald-400">circle</span> stroke=<span class="text-emerald-400">"#3b82f6"</span>
+    strokeDasharray={circumference}
+    strokeDashoffset={dashOffset} /&gt;
+&lt;/<span class="text-emerald-400">svg</span>&gt;</pre>
+</div>
+<!-- grid fazer vs evitar -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-5">
+<h4 class="text-emerald-400 font-semibold mb-3 flex items-center"><span class="mr-2">✓</span> Ideal contexts</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Live streams (interval before start)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Technical tutorials with an energetic intro</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Sports, gaming, and timed challenge videos</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5">
+<h4 class="text-red-400 font-semibold mb-3 flex items-center"><span class="mr-2">✗</span> Avoid in</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Serious / formal corporate content</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Emotional or narrative videos</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>When the content itself already has a strong introduction</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">strokeDashoffset</div><div class="text-neutral-400 text-xs">Ring progress per second</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">frame % fps</div><div class="text-neutral-400 text-xs">Resets every second</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">rotate(-90deg)</div><div class="text-neutral-400 text-xs">Start at the top of the circle</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">spring scale GO!</div><div class="text-neutral-400 text-xs">Energetic bounce at the end</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">📋 lower-third — name/title bar</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">lower-third</strong> is the classic TV overlay: a bar appears in the lower third of the frame with a name and title/role. It’s standard in journalism and interviews; on YouTube, it adds a touch of professionalism.</p>
+<!-- timeline de como lower-third aparece -->
+<div class="space-y-4 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">1</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-1">Bar slides in from the left</h4>
+<p class="text-sm text-neutral-400">An element <code class="font-mono">translateX(-100% → 0)</code> with spring enters from the left edge of the frame.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">2</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-1">Text appears with a delay</h4>
+<p class="text-sm text-neutral-400">Name and title make <code class="font-mono">opacity</code> fade in after the bar is visible — prevents text from appearing before the container.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-12 h-12 rounded-full bg-blue-500/20 flex items-center justify-center">
+<span class="text-blue-400 font-bold">3</span>
+</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-1">Bar exits to the left</h4>
+<p class="text-sm text-neutral-400">Near the end of the composition, the bar retraces its path with smooth interpolation.</p>
+</div>
+</div>
+</div>
+<div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">💡</span> Practical tip</h3>
+<p class="text-neutral-300">Use <code>lower-third</code> with <code>&lt;Sequence from={fps * 3} durationInFrames={fps * 4}&gt;</code> to show the bar only during a specific section of the video. The <code>useCurrentFrame()</code> inside the Sequence starts from zero — no manual offset calculations.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">position absolute</div><div class="text-neutral-400 text-xs">Overlay over the main video</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">bottom: 15%</div><div class="text-neutral-400 text-xs">Bottom third of the screen</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Sequence</div><div class="text-neutral-400 text-xs">Controls when it appears/disappears</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">semi-transparent</div><div class="text-neutral-400 text-xs">rgba bg so it doesn't cover the background</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🔔 end-card + subscribe-reminder — conversion</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">end-card</strong> displays a call-to-action card at the end of the video with subscribe buttons. The <strong class="text-blue-400">subscribe-reminder</strong> is a floating overlay that can appear at any moment—both are conversion tools for YouTube channels.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">subscribe-reminder as overlay</span>
+<span class="text-xs text-neutral-500 font-mono">subscribe-reminder.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// Aparece no frame 90, fica 3s, some</span>
+<span class="text-purple-400">const</span> showAt = fps * <span class="text-amber-400">3</span>;
+<span class="text-purple-400">const</span> hideAt = fps * <span class="text-amber-400">6</span>;
+
+<span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(
+  frame,
+  [showAt, showAt + <span class="text-amber-400">10</span>, hideAt - <span class="text-amber-400">10</span>, hideAt],
+  [<span class="text-amber-400">0</span>, <span class="text-amber-400">1</span>, <span class="text-amber-400">1</span>, <span class="text-amber-400">0</span>],
+  { extrapolateLeft: <span class="text-emerald-400">"clamp"</span>, extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">const</span> translateY = <span class="text-blue-400">spring</span>({
+  frame: Math.<span class="text-blue-400">max</span>(<span class="text-amber-400">0</span>, frame - showAt),
+  fps, config: { damping: <span class="text-amber-400">12</span> },
+  from: <span class="text-amber-400">60</span>, to: <span class="text-amber-400">0</span>,
+});</pre>
+</div>
+<!-- grid fazer vs evitar -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+<div class="bg-emerald-900/20 border border-emerald-500/30 rounded-xl p-5">
+<h4 class="text-emerald-400 font-semibold mb-3 flex items-center"><span class="mr-2">✓</span> Best practices</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Showing the subscribe-reminder halfway through the video</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>20-second end card (YouTube standard)</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400 mt-0.5">•</span><span>Keep the visual cloche short and to the point</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5">
+<h4 class="text-red-400 font-semibold mb-3 flex items-center"><span class="mr-2">✗</span> Common mistakes</h4>
+<ul class="space-y-2 text-sm text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Showing the subscribe-reminder too early (before 30s)</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>End card with more than 4 elements — confusing</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400 mt-0.5">•</span><span>Colors that conflict with the content behind them</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">keyframes 4pts</div><div class="text-neutral-400 text-xs">Fade in → hold → fade out</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">entrance spring</div><div class="text-neutral-400 text-xs">Bounce from the bottom</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">end-card 20s</div><div class="text-neutral-400 text-xs">YouTube pattern for end cards</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Sequence wrapper</div><div class="text-neutral-400 text-xs">Controls timing without manual math</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">💬 quote-card + title-split — visual impact</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <strong class="text-blue-400">quote-card</strong> displays a quote with the author highlighted — great for motivational videos, interviews, and lesson highlights. The <strong class="text-blue-400">title-split</strong> splits the title into two blocks that meet in the center—a dramatic effect for openings.</p>
+<div class="bg-blue-500/10 border border-blue-500/30 rounded-xl p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">💡</span> title-split in practice</h3>
+<p class="text-neutral-300">The trick of <code>title-split</code> is simple: two spans, one with <code>translateX(-80 → 0)</code> and another one with <code>translateX(80 → 0)</code>, both animated with <code>spring</code> in the same frame. Their meeting in the center creates visual tension that viewers feel even without noticing the mechanics.</p>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">title-split — two sides come together</span>
+<span class="text-xs text-neutral-500 font-mono">title-split.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> progress = <span class="text-blue-400">spring</span>({ frame, fps,
+  config: { damping: <span class="text-amber-400">18</span>, stiffness: <span class="text-amber-400">90</span> }
+});
+
+<span class="text-neutral-500">// Metade esquerda vem da esquerda</span>
+<span class="text-purple-400">const</span> leftX = <span class="text-blue-400">interpolate</span>(progress, [<span class="text-amber-400">0</span>, <span class="text-amber-400">1</span>], [<span class="text-amber-400">-80</span>, <span class="text-amber-400">0</span>]);
+<span class="text-neutral-500">// Metade direita vem da direita</span>
+<span class="text-purple-400">const</span> rightX = <span class="text-blue-400">interpolate</span>(progress, [<span class="text-amber-400">0</span>, <span class="text-amber-400">1</span>], [<span class="text-amber-400">80</span>, <span class="text-amber-400">0</span>]);</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">two spans</div><div class="text-neutral-400 text-xs">Each independently animated half</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">overflow hidden</div><div class="text-neutral-400 text-xs">Hides the halves before they enter</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">quote-card</div><div class="text-neutral-400 text-xs">Quote + author with sequential fade</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">damping 18</div><div class="text-neutral-400 text-xs">Higher = more direct encounter</div></div>
+</div>
+</section>
+<!-- TÓPICO 7 — Biblioteca Completa -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">📚 Complete Intro &amp; Outro Library</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The 9 templates in this category — quick reference:</p>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6">
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">chapter-title</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/chapter-title.tsx</div>
+<div class="text-sm text-neutral-400">Chapter number with decorative lines</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: interpolate line width</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">cinematic-title-intro</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/cinematic-title-intro.tsx</div>
+<div class="text-sm text-neutral-400">Spring title + underline + fading subtitle</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: spring translateY + interpolate</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">countdown-intro</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/countdown-intro.tsx</div>
+<div class="text-sm text-neutral-400">SVG 3-2-1-GO ring with scale spring</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: strokeDashoffset + spring scale</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">credits-roll</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/credits-roll.tsx</div>
+<div class="text-sm text-neutral-400">Credits rolling from bottom to top</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: continuous translateY interpolate</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">end-card</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/end-card.tsx</div>
+<div class="text-sm text-neutral-400">Subscribe CTA card at the end</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: spring scale + opacity fade in</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">lower-third</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/lower-third.tsx</div>
+<div class="text-sm text-neutral-400">Name/title bar in the lower third</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: spring translateX + text delay</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">quote-card</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/quote-card.tsx</div>
+<div class="text-sm text-neutral-400">Quote with author — sequential fade</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: interpolate opacity per element</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">subscribe-reminder</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/subscribe-reminder.tsx</div>
+<div class="text-sm text-neutral-400">Floating overlay — appears and disappears</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: interpolate 4 keyframes</div>
+</div>
+<div class="bg-dark-800 rounded-xl p-5 border border-dark-600">
+<div class="text-blue-400 font-bold mb-1">title-split</div>
+<div class="text-xs text-neutral-500 font-mono mb-2">templates/title-split.tsx</div>
+<div class="text-sm text-neutral-400">Two halves of text come together</div>
+<div class="mt-2 text-xs text-cyan-400 font-mono">hook: spring ±80px → 0</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">9 templates</div><div class="text-neutral-400 text-xs">From opening to closing</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">dominant spring</div><div class="text-neutral-400 text-xs">Natural physics in all intros</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">overlay vs full</div><div class="text-neutral-400 text-xs">lower-third and subscribe are overlays</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Sequence timing</div><div class="text-neutral-400 text-xs">Use Sequence to position it in time</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">cinematic-title-intro</strong><span class="text-neutral-400"> — spring + underline + subtitle, the cinematic opening pattern</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">countdown-intro</strong><span class="text-neutral-400"> — strokeDashoffset animated for an SVG 3-2-1-GO ring</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">lower-third</strong><span class="text-neutral-400"> — TV/journalism overlay for name and title</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">end-card + subscribe-reminder</strong><span class="text-neutral-400"> — conversion tools for YouTube</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">title-split</strong><span class="text-neutral-400"> — two blocks meet in the center with a spring</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Next Module:</h3>
+<p class="text-neutral-300">2.9 — Logo &amp; Branding: 9 logo animations for visual identity</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="modulo-2-7.html">← Module 2.7</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="modulo-2-9.html">Next Module →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Remotion Course · Module 2.8 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const toggle = document.getElementById('theme-toggle');
+    const darkIcon = document.getElementById('theme-toggle-dark-icon');
+    const lightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    function applyTheme(theme) {
+      if (theme === 'dark') { html.classList.add('dark'); darkIcon.classList.add('hidden'); lightIcon.classList.remove('hidden'); }
+      else { html.classList.remove('dark'); darkIcon.classList.remove('hidden'); lightIcon.classList.add('hidden'); }
+    }
+    const saved = localStorage.getItem('theme') || 'dark';
+    applyTheme(saved);
+    toggle.addEventListener('click', () => {
+      const next = html.classList.contains('dark') ? 'light' : 'dark';
+      localStorage.setItem('theme', next); applyTheme(next);
+    });
+  </script>
+</body>
+</html>

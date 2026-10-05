@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="es">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Módulo 1.3 · spring &amp; composición | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (emerald T1) */
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .bg-emerald-500\/20 { background-color: rgba(5,150,105,0.12); }
+    html:not(.dark) .bg-emerald-500\/10 { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .border-emerald-500\/30 { border-color: rgba(5,150,105,0.25); }
+    html:not(.dark) .hover\:bg-emerald-500\/30:hover { background-color: rgba(5,150,105,0.18); }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* boxes */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.3s} .wf-a:nth-child(3){animation-delay:.6s} .wf-a:nth-child(4){animation-delay:.9s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha1/modulo-1-3.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha1/modulo-1-3.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha1/modulo-1-3.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha1/modulo-1-3.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="../../../../en/curso-remotion/curso/trilha1/modulo-1-3.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">EN</a><a href="modulo-1-3.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10" href="index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Recursos</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combinación</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Proyectos</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-emerald-400" href="../../index.html">Inicio</a><span>/</span>
+<a class="hover:text-emerald-400" href="index.html">Trayecto 1</a><span>/</span>
+<span class="text-emerald-400">Módulo 1.3</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MÓDULO 1.3</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🌊 spring y composición</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">O <code>spring()</code> simula física de resorte para animaciones con vida propia. <code>Sequence</code> e <code>AbsoluteFill</code> apilan escenas en capas. Juntos, forman la base de todo proyecto de la Trilha 4.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Temas</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Básico</div><div class="text-xs text-neutral-400">Nivel</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Práctico</div><div class="text-xs text-neutral-400">Tipo</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- Diagrama do conceito -->
+<div class="rounded-2xl border border-emerald-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="spring parte de 0 y llega a 1 con overshoot: el valor supera brevemente 1 antes de estabilizarse; damping y stiffness controlan el comportamiento" class="w-full h-auto" role="img" viewbox="0 0 1000 230">
+<defs>
+<lineargradient id="m13-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#34d399"></stop><stop offset="1" stop-color="#10b981"></stop></lineargradient>
+<filter height="180%" id="m13-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m13-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#10b981" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m13-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#34d399"></path></marker>
+<marker id="m13-ahc" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"></path></marker>
+</defs>
+<rect fill="url(#m13-grid)" height="230" width="1000" x="0" y="0"></rect>
+<!-- Eixos -->
+<line stroke="#374151" stroke-width="1.5" x1="60" x2="700" y1="190" y2="190"></line>
+<line stroke="#374151" stroke-width="1.5" x1="60" x2="60" y1="190" y2="40"></line>
+<!-- Rótulos eixos -->
+<text fill="#6b7280" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="370" y="215">frame</text>
+<text fill="#6b7280" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" transform="rotate(-90,30,120)" x="30" y="120">valor</text>
+<!-- Linha de referência em y=1 -->
+<line opacity="0.3" stroke="#34d399" stroke-dasharray="6,4" stroke-width="1" x1="60" x2="700" y1="80" y2="80"></line>
+<text fill="#34d399" font-family="Inter,sans-serif" font-size="11" opacity="0.7" x="708" y="84">1.0</text>
+<!-- Curva spring (overshoot) -->
+<path d="M60,190 C80,190 100,150 140,85 C165,50 180,72 210,78 C235,82 250,79 290,80 C330,80 370,80 700,80" fill="none" opacity="0.9" stroke="#34d399" stroke-width="2.5"></path>
+<!-- Ponto de overshoot -->
+<g filter="url(#m13-glow)">
+<circle cx="175" cy="52" fill="#0e2018" r="7" stroke="url(#m13-grad)" stroke-width="2.5"></circle>
+</g>
+<text fill="#a7f3d0" font-family="Inter,sans-serif" font-size="11" font-weight="600" x="185" y="48">overshoot</text>
+<!-- Caixa spring call -->
+<rect fill="#0e1622" height="80" rx="12" stroke="#38bdf8" stroke-width="2" width="220" x="750" y="55"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="860" y="88">spring({ frame, fps,</text>
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="12" text-anchor="middle" x="860" y="108">config: { damping } })</text>
+<!-- Seta da curva para caixa -->
+<path d="M702,100 L748,100" fill="none" marker-end="url(#m13-ah)" opacity="0.6" stroke="#34d399" stroke-width="1.8"></path>
+<!-- Label embaixo -->
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="11.5" text-anchor="middle" x="380" y="210">damping bajo → más oscilación (overshoot pronunciado)</text>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🌊 spring() — simulación de resorte</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-emerald-400">spring()</code> no recibe un inputRange y outputRange; <strong>simula física</strong>. Dado el frame actual y los fps, calcula un valor que parte de 0 y tiende a 1, <strong class="text-emerald-400">pasa un poco de 1 (overshoot)</strong> y luego se asienta. Ese rebote es lo que le da vida a la animación.</p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Llamada mínima</h3>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { spring, useCurrentFrame, useVideoConfig } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+
+<span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> { fps } = <span class="text-blue-400">useVideoConfig</span>();
+
+<span class="text-neutral-500">// retorna 0 → 1 (com overshoot natural)</span>
+<span class="text-purple-400">const</span> progress = <span class="text-blue-400">spring</span>({ frame, fps });
+
+<span class="text-purple-400">return</span> &lt;div style={{ transform: <span class="text-emerald-400">`scale(${progress})`</span> }}&gt;Pop!&lt;/div&gt;;</pre>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> spring() vs interpolate() — resultados diferentes</h3>
+<ul class="space-y-2 text-neutral-300 text-sm">
+<li><strong class="text-blue-300">interpolate:</strong> controlas cada keyframe; el movimiento es predecible y exacto.</li>
+<li><strong class="text-blue-300">spring:</strong> defines la física; el movimiento surge de la simulación con naturalidad.</li>
+<li>El spring devuelve un valor ≈ 0→1, pero <strong>puede superar 1</strong> antes de asentarse — eso es el overshoot.</li>
+</ul>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Entrada</div><div class="text-xs text-neutral-400">frame + fps</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Salida</div><div class="text-xs text-neutral-400">≈ 0 → 1</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Overshoot</div><div class="text-xs text-neutral-400">Supera 1 brevemente</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Física</div><div class="text-xs text-neutral-400">Simulación de resorte</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">⚙️ config: damping, stiffness y mass</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">El comportamiento del resorte se ajusta con el objeto <code class="text-emerald-400">config</code>. Tres parámetros principales: <strong>damping</strong> (amortiguamiento), <strong>stiffness</strong> (rigidez) y <strong>mass</strong> (peso). Combinando los tres, puedes pasar de un pop rápido a una oscilación larga y suave.</p>
+<!-- Timeline de parâmetros -->
+<div class="space-y-4 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-sm">D</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">damping — amortiguamiento <span class="text-neutral-500 font-normal text-sm">(predeterminado: 10)</span></h4>
+<p class="text-neutral-300 text-sm"><strong>Alto (ej.: 200)</strong>: sin overshoot, movimiento directo como un CSS ease-out. <strong>Bajo (ej.: 5)</strong>: mucha oscilación, efecto «trampolín».</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-sm">S</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">stiffness — rigidez <span class="text-neutral-500 font-normal text-sm">(predeterminado: 100)</span></h4>
+<p class="text-neutral-300 text-sm"><strong>Alto (ej.: 300)</strong>: movimiento más rápido y agresivo. <strong>Bajo (ej.: 40)</strong>: se mueve más despacio, resorte «flojo».</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-emerald-500/20 flex items-center justify-center text-emerald-400 font-bold text-sm">M</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">mass — peso <span class="text-neutral-500 font-normal text-sm">(predeterminado: 1)</span></h4>
+<p class="text-neutral-300 text-sm"><strong>Alto (ej.: 3)</strong>: «objeto pesado», movimiento lento con más oscilación. <strong>Bajo (ej.: 0.5)</strong>: objeto liviano, se resuelve rápido.</p>
+</div>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Variaciones de config</span>
+<span class="text-xs text-neutral-500 font-mono">SpringConfig.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-neutral-500">// Pop rápido sem bounce</span>
+<span class="text-blue-400">spring</span>({ frame, fps, config: { damping: <span class="text-emerald-400">200</span> } })
+
+<span class="text-neutral-500">// Bounce divertido</span>
+<span class="text-blue-400">spring</span>({ frame, fps, config: { damping: <span class="text-emerald-400">8</span>, stiffness: <span class="text-emerald-400">120</span> } })
+
+<span class="text-neutral-500">// Entrada pesada e lenta</span>
+<span class="text-blue-400">spring</span>({ frame, fps, config: { damping: <span class="text-emerald-400">15</span>, stiffness: <span class="text-emerald-400">60</span>, mass: <span class="text-emerald-400">2.5</span> } })</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">damping alto</div><div class="text-xs text-neutral-400">Sin bounce</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">damping bajo</div><div class="text-xs text-neutral-400">Mucha oscilación</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">stiffness</div><div class="text-xs text-neutral-400">Velocidad del resorte</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">mass</div><div class="text-xs text-neutral-400">Peso del objeto</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">⚖️ spring vs interpolate — cuándo usar cada uno</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Las dos funciones tienen propósitos diferentes. Elegir la correcta ahorra tiempo y hace que el video quede más pulido. Una regla sencilla: <strong class="text-emerald-400">spring para entradas con vida</strong>, <strong class="text-emerald-400">interpolate para timing exacto y fades</strong>.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Usa spring() cuando…</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>El elemento «salta» a la posición: ícono, badge, tarjeta de entrada.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Quieres un overshoot natural sin definir keyframes manualmente.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Scale de 0→1 con bounce (aparece el logo).</span></li>
+</ul>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">↔ Usa interpolate() cuando…</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Fade-in/out con timing exacto (sabes cuál es el frame correcto).</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Color, opacidad: valores que no deben superar un límite.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Animación con múltiples keyframes (pausa, secuencia).</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> ¡Combina los dos!</h3>
+<p class="text-neutral-300">Es muy común usar <code>spring()</code> para la escala de entrada y <code>interpolate()</code> para la opacidad del mismo elemento — cada uno donde destaca. No hay conflicto al llamar a ambos en el mismo componente.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">spring</div><div class="text-xs text-neutral-400">Entradas con pop</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">interpolate</div><div class="text-xs text-neutral-400">Timing exacto</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Combinación</div><div class="text-xs text-neutral-400">Sin conflictos</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Regla</div><div class="text-xs text-neutral-400">Física vs. keyframe</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">⏩ Sequence — escenas con retraso y frame local</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-emerald-400">&lt;Sequence&gt;</code> es un wrapper que <strong>retrasa</strong> el inicio de un componente hijo. Con la prop <code>from</code>, el hijo solo empieza a existir en el frame especificado y, lo que es crucial, <strong class="text-emerald-400">el frame local dentro del hijo se reinicia en 0</strong> en ese punto.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Dos títulos en secuencia</span>
+<span class="text-xs text-neutral-500 font-mono">Titles.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { Sequence } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+
+<span class="text-neutral-500">// Título 1: frame global 0–59 → frame local 0–59</span>
+&lt;<span class="text-blue-400">Sequence</span> from={<span class="text-emerald-400">0</span>} durationInFrames={<span class="text-emerald-400">60</span>}&gt;
+  &lt;<span class="text-blue-400">Title1</span> /&gt;  <span class="text-neutral-500">// useCurrentFrame() aqui retorna 0..59</span>
+&lt;/<span class="text-blue-400">Sequence</span>&gt;
+
+<span class="text-neutral-500">// Título 2: começa no frame global 60 → frame local reinicia em 0</span>
+&lt;<span class="text-blue-400">Sequence</span> from={<span class="text-emerald-400">60</span>} durationInFrames={<span class="text-emerald-400">60</span>}&gt;
+  &lt;<span class="text-blue-400">Title2</span> /&gt;  <span class="text-neutral-500">// useCurrentFrame() aqui também retorna 0..59</span>
+&lt;/<span class="text-blue-400">Sequence</span>&gt;</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Qué HACER con Sequence</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Usar <code>from</code> para retrasar cualquier componente sin cambiar el código interno.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Usar <code>durationInFrames</code> para limitar la ventana de visibilidad del hijo.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Reutiliza el mismo componente en varias Sequences con diferentes offsets.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Qué NO hacer</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Usar <code>frame - offset</code> manualmente en el componente hijo; Sequence ya se encarga de eso.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Dejar de usar <code>durationInFrames</code>: el hijo permanece «vivo» para siempre (visible después de su tiempo).</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Confundir el frame global con el frame local — dentro de Sequence el reloj se reinicia.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">from</div><div class="text-xs text-neutral-400">Offset de inicio</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">durationInFrames</div><div class="text-xs text-neutral-400">Ventana de visibilidad</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Frame local</div><div class="text-xs text-neutral-400">Se reinicia en 0</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Reutilizable</div><div class="text-xs text-neutral-400">El mismo comp, N veces</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🪟 AbsoluteFill — apilamiento de capas</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-emerald-400">&lt;AbsoluteFill&gt;</code> es un div que ocupa el 100% del ancho y alto de la composición, con <code>position: absolute</code>. Al apilarlo con otros AbsoluteFills, crea capas —fondo, contenido, overlay— sin interferir con el layout.</p>
+<div class="bg-gradient-to-br from-emerald-900/30 to-dark-800 rounded-xl border border-emerald-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-emerald-400 mb-4 flex items-center"><span class="mr-2">🎯</span> La estructura de tres capas</h3>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { AbsoluteFill } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+
+<span class="text-purple-400">export const</span> <span class="text-blue-400">Scene</span> = () =&gt; (
+  &lt;&gt;
+    <span class="text-neutral-500">{/* Camada 1 — fundo (z mais baixo) */}</span>
+    &lt;<span class="text-blue-400">AbsoluteFill</span> style={{ backgroundColor: <span class="text-emerald-400">"#0a0a0a"</span> }} /&gt;
+
+    <span class="text-neutral-500">{/* Camada 2 — conteúdo principal */}</span>
+    &lt;<span class="text-blue-400">AbsoluteFill</span>&gt;
+      &lt;div&gt;Título e elementos&lt;/div&gt;
+    &lt;/<span class="text-blue-400">AbsoluteFill</span>&gt;
+
+    <span class="text-neutral-500">{/* Camada 3 — overlay (z mais alto) */}</span>
+    &lt;<span class="text-blue-400">AbsoluteFill</span> style={{ opacity: <span class="text-emerald-400">0.15</span>, background: <span class="text-emerald-400">"radial-gradient(...)"</span> }} /&gt;
+  &lt;/&gt;
+);</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> El orden = z-index implícito</h3>
+<p class="text-neutral-300">En React, los elementos hermanos con <code>position: absolute</code> y aun así <code>z-index</code> se superponen por la <strong>orden en JSX</strong>: el último queda al frente. Los AbsoluteFills en secuencia crean una pila de capas predecible: no hace falta un z-index explícito en la mayoría de los casos.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">100% × 100%</div><div class="text-xs text-neutral-400">Completa la composición</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">position: absolute</div><div class="text-xs text-neutral-400">Sin afectar el layout</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Orden JSX</div><div class="text-xs text-neutral-400">= z implícito</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Apilar</div><div class="text-xs text-neutral-400">Fondo/contenido/overlay</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🎞️ Series.Sequence — escenas en fila automática</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Con el <code class="text-emerald-400">&lt;Series&gt;</code>, no necesitas calcular manualmente el <code>from</code> de cada escena. Coloca elementos hijos dentro de <code>&lt;Series.Sequence durationInFrames={N}&gt;</code> y Remotion calcula los offsets automáticamente. Es la base de cualquier proyecto con varias escenas de la Trilha 4.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Tres escenas sin calcular el offset</span>
+<span class="text-xs text-neutral-500 font-mono">Video.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { Series } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+
+<span class="text-purple-400">export const</span> <span class="text-blue-400">MyVideo</span> = () =&gt; (
+  &lt;<span class="text-blue-400">Series</span>&gt;
+    <span class="text-neutral-500">{/* Cena 1: frames 0–89 */}</span>
+    &lt;<span class="text-blue-400">Series.Sequence</span> durationInFrames={<span class="text-emerald-400">90</span>}&gt;
+      &lt;<span class="text-blue-400">Intro</span> /&gt;
+    &lt;/<span class="text-blue-400">Series.Sequence</span>&gt;
+
+    <span class="text-neutral-500">{/* Cena 2: frames 90–179 (calculado auto) */}</span>
+    &lt;<span class="text-blue-400">Series.Sequence</span> durationInFrames={<span class="text-emerald-400">90</span>}&gt;
+      &lt;<span class="text-blue-400">MainContent</span> /&gt;
+    &lt;/<span class="text-blue-400">Series.Sequence</span>&gt;
+
+    <span class="text-neutral-500">{/* Cena 3: frames 180–269 */}</span>
+    &lt;<span class="text-blue-400">Series.Sequence</span> durationInFrames={<span class="text-emerald-400">90</span>}&gt;
+      &lt;<span class="text-blue-400">Outro</span> /&gt;
+    &lt;/<span class="text-blue-400">Series.Sequence</span>&gt;
+  &lt;/<span class="text-blue-400">Series</span>&gt;
+);</pre>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Ventajas de Series</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Offsets calculados automáticamente — agregar una escena no afecta a las demás.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Cada escena recibe un frame local que se reinicia en 0: la misma lógica de Sequence.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Estructura declarativa: el orden en JSX = el orden en el video.</span></li>
+</ul>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6">
+<h4 class="font-bold text-blue-400 mb-4">↔ Series vs Sequence manual</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span><strong>Series:</strong> escenas lineales en secuencia — proyectos con cortes directos.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span><strong>Secuencia manual:</strong> capas simultáneas superpuestas, timing preciso.</span></li>
+<li class="flex items-start space-x-2"><span class="text-blue-400">→</span><span>Los proyectos reales suelen usar <strong>los dos</strong>: Series para escenas, Sequence para elementos internos.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Series</div><div class="text-xs text-neutral-400">Escenas en fila</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Auto-offset</div><div class="text-xs text-neutral-400">Sin cálculos manuales</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Frame local</div><div class="text-xs text-neutral-400">Se reinicia por escena</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-emerald-400 font-bold text-sm mb-1">Base T4</div><div class="text-xs text-neutral-400">Todos los proyectos</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Resumen del módulo</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">spring({ frame, fps })</strong><span class="text-neutral-400"> — simula un resorte, devuelve 0→1 con overshoot natural; perfecto para entradas con vida.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">config: damping / stiffness / mass</strong><span class="text-neutral-400"> — un damping alto elimina el rebote; la stiffness define la velocidad; la mass define la inercia.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">spring vs interpolate</strong><span class="text-neutral-400"> — spring para pop/entrada; interpolate para timing exacto y opacidad. Combina ambos sin problema.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Sequence</strong><span class="text-neutral-400"> — retrasa el inicio de un componente con <code>from</code>; el frame local se reinicia en 0 dentro del hijo.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">AbsoluteFill</strong><span class="text-neutral-400"> — ocupa el 100% de la composición; apilado en capas de fondo/contenido/overlay según el orden JSX.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Series.Sequence</strong><span class="text-neutral-400"> — escenas en fila con offsets automáticos; base de todos los proyectos de la Trilha 4.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-emerald-400 mb-2">Próxima ruta:</h3>
+<p class="text-neutral-300">Trayecto 2 — Recursos: imágenes, videos, audio, fuentes y assets externos en Remotion. Ya dominas el motor; ahora viene el combustible.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="index.html">← Volver a la ruta</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="../trilha2/index.html">Próxima ruta: Recursos →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Curso de Remotion · Módulo 1.3 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

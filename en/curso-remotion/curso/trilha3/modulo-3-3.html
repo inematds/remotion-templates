@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 3.3 · Pacing &amp; Transitions Between Scenes | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+
+    /* Light mode - base */
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+
+    /* Light mode - cores de acento (purple T3) */
+    html:not(.dark) .text-purple-400 { color: #7c3aed; }
+    html:not(.dark) .bg-purple-500\/20 { background-color: rgba(124,58,237,0.12); }
+    html:not(.dark) .bg-purple-500\/10 { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .border-purple-500\/30 { border-color: rgba(124,58,237,0.25); }
+    html:not(.dark) .hover\:bg-purple-500\/30:hover { background-color: rgba(124,58,237,0.18); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    /* nav - outras trilhas */
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:bg-blue-500\/10:hover { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    /* boxes de pesquisa/alerta */
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+
+    /* Light mode - remove gradientes e cores especiais */
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    /* Dark mode - bordas suavizadas */
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+
+    /* SVG diagramas - suavizar no light mode */
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.35s} .wf-a:nth-child(3){animation-delay:.7s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha3/modulo-3-3.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha3/modulo-3-3.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha3/modulo-3-3.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha3/modulo-3-3.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-3-3.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../../es/curso-remotion/curso/trilha3/modulo-3-3.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors" href="../trilha2/index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Resources</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-purple-400 bg-purple-500/10" href="index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combination</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projects</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-purple-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-purple-400" href="index.html">Track 3</a><span>/</span>
+<span class="text-purple-400">Module 3.3</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-purple-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-purple-500/20 text-purple-400 text-xs font-semibold rounded-full mb-4">MODULE 3.3</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🥁 Rhythm &amp; Scene Transitions</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">Pacing is what turns a sequence of slides into a video that <em>flows</em>. Here you learn how to use <code class="text-purple-400">Series</code> to sequence scenes, choose durations that breathe, add smooth transitions, and time the cuts to the beat.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">6</div><div class="text-xs text-neutral-400">Topics</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">40</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Intermediate</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-purple-400">Practice</div><div class="text-xs text-neutral-400">Type</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SVG: cenas em fila com Series -->
+<div class="rounded-2xl border border-purple-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="Series diagram: three Series.Sequence in a row — scene 1 to 2 to 3 with transitions between them" class="w-full h-auto" role="img" viewbox="0 0 1000 180">
+<defs>
+<lineargradient id="m33-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#c084fc"></stop><stop offset="1" stop-color="#a855f7"></stop></lineargradient>
+<filter height="180%" id="m33-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m33-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#a855f7" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m33-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#c084fc"></path></marker>
+</defs>
+<rect fill="url(#m33-grid)" height="180" width="1000" x="0" y="0"></rect>
+<text fill="#e9d5ff" font-family="Inter,sans-serif" font-size="13" font-weight="600" text-anchor="middle" x="500" y="22">Series.Sequence — scenes automatically arranged in a row</text>
+<!-- eixo do tempo -->
+<line stroke="#4b5563" stroke-width="2" x1="40" x2="960" y1="140" y2="140"></line>
+<!-- cena 1 -->
+<g class="wf-a">
+<rect fill="#1a1230" height="70" rx="12" stroke="#c084fc" stroke-width="2" width="260" x="40" y="50"></rect>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="170" y="83">Scene 1 · Intro</text>
+<text fill="#e9d5ff" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="170" y="103">durationInFrames={90}</text>
+</g>
+<!-- transição 1→2 -->
+<rect fill="#0e1622" height="70" rx="6" stroke="#38bdf8" stroke-dasharray="4,3" stroke-width="1.5" width="36" x="296" y="50"></rect>
+<text fill="#38bdf8" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="314" y="82">fade</text>
+<text fill="#38bdf8" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="314" y="96">15f</text>
+<!-- cena 2 -->
+<g class="wf-a">
+<rect fill="#1a1230" height="70" rx="12" stroke="#a855f7" stroke-width="2" width="300" x="328" y="50"></rect>
+<text fill="#a855f7" font-family="Inter,sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="478" y="83">Scene 2 · Content</text>
+<text fill="#d8b4fe" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="478" y="103">durationInFrames={150}</text>
+</g>
+<!-- transição 2→3 -->
+<rect fill="#0e1622" height="70" rx="6" stroke="#38bdf8" stroke-dasharray="4,3" stroke-width="1.5" width="36" x="624" y="50"></rect>
+<text fill="#38bdf8" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="642" y="82">slide</text>
+<text fill="#38bdf8" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="642" y="96">12f</text>
+<!-- cena 3 -->
+<g class="wf-a">
+<rect fill="#1a1230" height="70" rx="12" stroke="#c084fc" stroke-width="2" width="280" x="656" y="50"></rect>
+<text fill="#c084fc" font-family="Inter,sans-serif" font-size="14" font-weight="600" text-anchor="middle" x="796" y="83">Scene 3 · CTA</text>
+<text fill="#e9d5ff" font-family="Inter,sans-serif" font-size="11" text-anchor="middle" x="796" y="103">durationInFrames={90}</text>
+</g>
+<!-- marcadores de tempo -->
+<g fill="#6b7280" font-family="Inter,sans-serif" font-size="10">
+<text x="40" y="155">0</text>
+<text x="290" y="155">90</text>
+<text x="620" y="155">240</text>
+<text x="930" y="155">330</text>
+</g>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">📽️ Series.Sequence — scenes in a row</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed"><code class="text-purple-400">Series</code> from the package <code class="text-purple-400">@remotion/transitions</code> (or Remotion itself) puts each <code>Series.Sequence</code> automatically one after another. You only declare the duration of each scene—the cumulative offset is calculated internally.</p>
+<div class="bg-gradient-to-br from-purple-900/30 to-dark-800 rounded-xl border border-purple-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-purple-400 mb-4 flex items-center"><span class="mr-2">🎯</span> Why use Series instead of a manual Sequence</h3>
+<ul class="space-y-2 text-neutral-300">
+<li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>With manual Sequence: <code>from={90}</code>, <code>from={240}</code>… calculating it by hand and keeping it synchronized is tedious.</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>With Series: just declare <code>durationInFrames</code> in each scene — the position is calculated automatically.</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400 mt-1">•</span><span>Reordering scenes in JSX reorders them in the video — without recalculating any offsets.</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Basic Series — 3 scenes</span>
+<span class="text-xs text-neutral-500 font-mono">MultiScene.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { Series } <span class="text-purple-400">from</span> <span class="text-emerald-400">"remotion"</span>;
+
+<span class="text-purple-400">export const</span> <span class="text-blue-400">MultiScene</span> = () =&gt; (
+  &lt;<span class="text-blue-400">Series</span>&gt;
+    <span class="text-neutral-500">{/* Cena 1: Intro — 3 segundos a 30fps */}</span>
+    &lt;<span class="text-blue-400">Series.Sequence</span> durationInFrames={<span class="text-emerald-400">90</span>}&gt;
+      &lt;<span class="text-blue-400">IntroScene</span> /&gt;
+    &lt;/<span class="text-blue-400">Series.Sequence</span>&gt;
+
+    <span class="text-neutral-500">{/* Cena 2: Conteúdo — 5 segundos */}</span>
+    &lt;<span class="text-blue-400">Series.Sequence</span> durationInFrames={<span class="text-emerald-400">150</span>}&gt;
+      &lt;<span class="text-blue-400">ContentScene</span> /&gt;
+    &lt;/<span class="text-blue-400">Series.Sequence</span>&gt;
+
+    <span class="text-neutral-500">{/* Cena 3: CTA — 3 segundos */}</span>
+    &lt;<span class="text-blue-400">Series.Sequence</span> durationInFrames={<span class="text-emerald-400">90</span>}&gt;
+      &lt;<span class="text-blue-400">CTAScene</span> /&gt;
+    &lt;/<span class="text-blue-400">Series.Sequence</span>&gt;
+  &lt;/<span class="text-blue-400">Series</span>&gt;
+);
+<span class="text-neutral-500">// Total: 330 frames = 11 segundos — calculado automaticamente</span></pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Series</div><div class="text-xs text-neutral-400">Auto-offset</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">JSX order</div><div class="text-xs text-neutral-400">= time order</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Local frame</div><div class="text-xs text-neutral-400">0 in each scene</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Reorder</div><div class="text-xs text-neutral-400">Move line only</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">💨 Durations that breathe</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">A scene that's too short doesn't give you time to absorb the content. A scene that's too long loses its rhythm and becomes boring. The ideal duration varies by content type—but there's a simple rule for calibrating it: <strong class="text-purple-400">read the text aloud</strong> and make sure the scene lasts at least that long.</p>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Duration references by scene type</h3>
+<ul class="space-y-2 text-neutral-300">
+<li><strong>Title only (3–5 words):</strong> 60–75 frames (2–2.5s)</li>
+<li><strong>Short phrase / subtitle:</strong> 75–90 frames (2.5–3s)</li>
+<li><strong>List of 3–4 items with stagger:</strong> 120–150 frames (4–5s)</li>
+<li><strong>Explanatory concept (paragraph):</strong> 180–240 frames (6–8s)</li>
+<li><strong>Final CTA:</strong> 90–120 frames (3–4s)—more time to absorb the action</li>
+</ul>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ Durations that respect the viewer</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Each scene lasts as long as needed for the content to be read.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Deliberate variation—shorter action scenes, longer contemplative ones.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Always allow plenty of time for the CTA — the viewer needs time to act.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Duration mistakes</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Every scene has the same duration—mechanical, boring pacing.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>30-frame scenes with lots of text — unreadable.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>CTA with 30 frames — the viewer doesn't have time to read and act.</span></li>
+</ul>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Minimum</div><div class="text-xs text-neutral-400">2s for text</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Test</div><div class="text-xs text-neutral-400">Read aloud</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">CTA</div><div class="text-xs text-neutral-400">3–4s, generous</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Vary</div><div class="text-xs text-neutral-400">Deliberately</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 — Timeline de passos -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🌀 Transition between scenes — smooth the cut</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The package <code class="text-purple-400">@remotion/transitions</code> provides the <code>TransitionSeries</code> with ready-made transitions: <code>fade</code>, <code>slide</code>, <code>wipe</code>, <code>flip</code>. They automatically overlap scenes for N frames, eliminating hard cuts without manually coding overlaps.</p>
+<!-- Timeline de setup -->
+<div class="space-y-4 mb-6">
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">1</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Install the package</h4>
+<p class="text-neutral-300 text-sm font-mono text-xs">npm install @remotion/transitions</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">2</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Replace Series with TransitionSeries</h4>
+<p class="text-neutral-300 text-sm">The component accepts <code>&lt;TransitionSeries.Transition&gt;</code> between scenes to apply the transition.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-purple-500/20 flex items-center justify-center text-purple-400 font-bold">3</div>
+<div class="flex-1 bg-dark-800 rounded-xl p-5 border border-dark-600">
+<h4 class="font-semibold text-white mb-2">Choosing the transition and duration</h4>
+<p class="text-neutral-300 text-sm">Typically 10–20 frames for a fade; 8–15 for a slide. Transitions that are too long steal time from the scene.</p>
+</div>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">TransitionSeries with fade and slide</span>
+<span class="text-xs text-neutral-500 font-mono">TransitionScene.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">import</span> { TransitionSeries, springTiming, linearTiming } <span class="text-purple-400">from</span> <span class="text-emerald-400">"@remotion/transitions"</span>;
+<span class="text-purple-400">import</span> { fade } <span class="text-purple-400">from</span> <span class="text-emerald-400">"@remotion/transitions/fade"</span>;
+<span class="text-purple-400">import</span> { slide } <span class="text-purple-400">from</span> <span class="text-emerald-400">"@remotion/transitions/slide"</span>;
+
+<span class="text-purple-400">export const</span> <span class="text-blue-400">TransitionScene</span> = () =&gt; (
+  &lt;<span class="text-blue-400">TransitionSeries</span>&gt;
+    &lt;<span class="text-blue-400">TransitionSeries.Sequence</span> durationInFrames={<span class="text-emerald-400">90</span>}&gt;
+      &lt;<span class="text-blue-400">IntroScene</span> /&gt;
+    &lt;/<span class="text-blue-400">TransitionSeries.Sequence</span>&gt;
+
+    <span class="text-neutral-500">{/* Fade de 15 frames entre Intro e Conteúdo */}</span>
+    &lt;<span class="text-blue-400">TransitionSeries.Transition</span>
+      presentation={<span class="text-blue-400">fade</span>()}
+      timing={<span class="text-blue-400">linearTiming</span>({ durationInFrames: <span class="text-emerald-400">15</span> })}
+    /&gt;
+
+    &lt;<span class="text-blue-400">TransitionSeries.Sequence</span> durationInFrames={<span class="text-emerald-400">150</span>}&gt;
+      &lt;<span class="text-blue-400">ContentScene</span> /&gt;
+    &lt;/<span class="text-blue-400">TransitionSeries.Sequence</span>&gt;
+
+    <span class="text-neutral-500">{/* Slide de 12 frames entre Conteúdo e CTA */}</span>
+    &lt;<span class="text-blue-400">TransitionSeries.Transition</span>
+      presentation={<span class="text-blue-400">slide</span>({ direction: <span class="text-emerald-400">"from-right"</span> })}
+      timing={<span class="text-blue-400">springTiming</span>({ config: { damping: <span class="text-emerald-400">15</span> } })}
+    /&gt;
+
+    &lt;<span class="text-blue-400">TransitionSeries.Sequence</span> durationInFrames={<span class="text-emerald-400">90</span>}&gt;
+      &lt;<span class="text-blue-400">CTAScene</span> /&gt;
+    &lt;/<span class="text-blue-400">TransitionSeries.Sequence</span>&gt;
+  &lt;/<span class="text-blue-400">TransitionSeries</span>&gt;
+);</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Practical tip</h3>
+<p class="text-neutral-300">Always start with <code>fade</code> — it's the most neutral transition and works in 90% of cases. Only add <code>slide</code> or <code>wipe</code> when you want to explicitly communicate direction or reveal.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">fade</div><div class="text-xs text-neutral-400">Universal neutral</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">slide</div><div class="text-xs text-neutral-400">Explicit direction</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">wipe</div><div class="text-xs text-neutral-400">Reveal</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Duration</div><div class="text-xs text-neutral-400">10–20 frames</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">🥁 Cut Rhythm — Fast vs. Slow</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Cutting pace is a communication decision, not just a technical one. Fast cuts (1–2s per scene) create energy and urgency — perfect for highlights, trailers, and action content. Slow cuts (4–6s) create weight, contemplation, and authority — better for tutorials, documentaries, and courses.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-purple-900/20 rounded-xl border border-purple-500/30 p-6">
+<h4 class="font-bold text-purple-400 mb-4">⚡ Quick cuts (30–60 frames)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-purple-400">→</span><span>Product highlights / course trailer</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400">→</span><span>Reels with a fast beat</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400">→</span><span>Countdown / urgency</span></li>
+<li class="flex items-start space-x-2"><span class="text-purple-400">→</span><span>Content for people who already know the topic</span></li>
+</ul>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h4 class="font-bold text-neutral-300 mb-4">🐢 Slow cuts (90–180 frames)</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-neutral-400">→</span><span>Technical tutorial / step-by-step explanation</span></li>
+<li class="flex items-start space-x-2"><span class="text-neutral-400">→</span><span>Premium product presentation</span></li>
+<li class="flex items-start space-x-2"><span class="text-neutral-400">→</span><span>Emotional content / storytelling</span></li>
+<li class="flex items-start space-x-2"><span class="text-neutral-400">→</span><span>New to the subject</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Variation is the secret</h3>
+<p class="text-neutral-300">Videos with a 100% uniform rhythm become hypnotic (in a bad way). The professional technique is to maintain a base rhythm and <em>break</em> deliberately at high-impact moments — a longer scene before a peak, or a flurry of quick cuts at a climactic point.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Fast</div><div class="text-xs text-neutral-400">Energy / urgency</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Slow</div><div class="text-xs text-neutral-400">Weight / authority</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Variation</div><div class="text-xs text-neutral-400">Creates a peak</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Audience</div><div class="text-xs text-neutral-400">Define the pace</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">🎵 Match the beat</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Synchronizing scene cuts with the audio beat is what gives the video that feeling that “everything fits together.” The formula is straightforward: given the music's BPM, calculate which frame each beat falls on and align the <code class="text-purple-400">durationInFrames</code> these values.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Calculate frames per beat</span>
+<span class="text-xs text-neutral-500 font-mono">beatSync.ts</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> BPM = <span class="text-emerald-400">120</span>;         <span class="text-neutral-500">// batidas por minuto da música</span>
+<span class="text-purple-400">const</span> FPS = <span class="text-emerald-400">30</span>;          <span class="text-neutral-500">// frames por segundo do vídeo</span>
+
+<span class="text-neutral-500">// Frames por batida</span>
+<span class="text-purple-400">const</span> framesPerBeat = (<span class="text-emerald-400">60</span> / BPM) * FPS;  <span class="text-neutral-500">// 15 frames @ 120bpm/30fps</span>
+
+<span class="text-neutral-500">// Frames por compasso (4 batidas)</span>
+<span class="text-purple-400">const</span> framesPerBar  = framesPerBeat * <span class="text-emerald-400">4</span>;    <span class="text-neutral-500">// 60 frames = 2s</span>
+
+<span class="text-neutral-500">// Duração de 2 compassos para a cena 1:</span>
+<span class="text-purple-400">const</span> SCENE1_DUR = framesPerBar * <span class="text-emerald-400">2</span>;  <span class="text-neutral-500">// 120 frames = 4s</span>
+
+<span class="text-neutral-500">// Resultado: cena corta exatamente na batida</span>
+&lt;<span class="text-blue-400">TransitionSeries.Sequence</span> durationInFrames={SCENE1_DUR}&gt;
+  &lt;<span class="text-blue-400">Scene1</span> /&gt;
+&lt;/<span class="text-blue-400">TransitionSeries.Sequence</span>&gt;</pre>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">📊</span> Common BPMs and frames per beat (30fps)</h3>
+<ul class="space-y-2 text-neutral-300">
+<li><strong>80 BPM (slow/lo-fi):</strong> 22.5 frames per beat · 90 frames per measure</li>
+<li><strong>100 BPM (moderate):</strong> 18 frames per beat · 72 frames per measure</li>
+<li><strong>120 BPM (standard pop):</strong> 15 frames per beat · 60 frames per measure</li>
+<li><strong>140 BPM (energetic):</strong> 12.9 frames per beat · 51 frames per measure</li>
+</ul>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Formula</div><div class="text-xs text-neutral-400">(60/BPM) × fps</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">120 BPM</div><div class="text-xs text-neutral-400">15f per beat</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Beat</div><div class="text-xs text-neutral-400">× 4 beats</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Effect</div><div class="text-xs text-neutral-400">Looks produced</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-purple-500/20 text-purple-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🔚 Clean Closing — the Last Scene</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The video's final impression is just as important as its first. An abrupt final scene ruins the whole story you've built. The ideal ending has three parts: the scene's content, the visual resolution (fade-out or logo), and, if applicable, a clear CTA with enough time to read it.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-4">✓ A closing that works</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Final scene with a generous duration (≥90 frames).</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>Opacity fade-out over the last 20–30 frames.</span></li>
+<li class="flex items-start space-x-2"><span class="text-emerald-400">✓</span><span>CTA appears early enough to be read before the fade.</span></li>
+</ul>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-4">✗ Bad ending</h4>
+<ul class="space-y-3 text-neutral-300 text-sm">
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Video ends abruptly without a fade — it looks like a technical error.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>CTA appears in the last second — impossible to read.</span></li>
+<li class="flex items-start space-x-2"><span class="text-red-400">✗</span><span>Very fast fade-out (5 frames)—looks like a hard cut.</span></li>
+</ul>
+</div>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">Final scene with fade-out and CTA</span>
+<span class="text-xs text-neutral-500 font-mono">FinalScene.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> SCENE_DUR = <span class="text-emerald-400">120</span>;  <span class="text-neutral-500">// 4 segundos</span>
+<span class="text-purple-400">const</span> FADE_START = <span class="text-emerald-400">90</span>;   <span class="text-neutral-500">// fade começa no frame 90 (3s)</span>
+
+<span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-neutral-500">// Fade-out global nos últimos 30 frames</span>
+<span class="text-purple-400">const</span> fadeOut = <span class="text-blue-400">interpolate</span>(
+  frame,
+  [FADE_START, SCENE_DUR],
+  [<span class="text-emerald-400">1</span>, <span class="text-emerald-400">0</span>],
+  { extrapolateLeft: <span class="text-emerald-400">"clamp"</span>, extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">return</span> (
+  &lt;<span class="text-blue-400">AbsoluteFill</span> style={{ opacity: fadeOut }}&gt;
+    &lt;<span class="text-blue-400">CTAContent</span> /&gt;
+    &lt;<span class="text-blue-400">Logo</span> /&gt;
+  &lt;/<span class="text-blue-400">AbsoluteFill</span>&gt;
+);</pre>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Fade-out</div><div class="text-xs text-neutral-400">20–30 frames</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">CTA</div><div class="text-xs text-neutral-400">First third</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Duration</div><div class="text-xs text-neutral-400">≥90 frames</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-purple-400 font-bold text-sm mb-1">Logo</div><div class="text-xs text-neutral-400">In the final scene</div></div>
+</div>
+</section>
+<!-- RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-purple-900/40 via-dark-800 to-dark-800 rounded-xl border border-purple-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Series.Sequence</strong><span class="text-neutral-400"> — scenes queued automatically; offset calculated internally.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Durations that breathe</strong><span class="text-neutral-400"> — minimum 2s for text; vary deliberately to create rhythm.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">TransitionSeries</strong><span class="text-neutral-400"> — fade, slide, and wipe between scenes without manual overlay code.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Cutting pace</strong><span class="text-neutral-400"> — fast for energy, slow for weight; variation creates a peak of impact.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Beat</strong><span class="text-neutral-400"> — (60/BPM) × fps = frames per beat; aligning cuts to the beat gives a professional feel.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-purple-400 mt-1">✓</span><div><strong class="text-white">Closing</strong><span class="text-neutral-400"> — generous fade-out, visible CTA, logo in the final scene.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-purple-400 mb-2">You completed Track 3!</h3>
+<p class="text-neutral-300">Timing, layers, and rhythm are the three pillars of the combination. In Track 4, you’ll apply all of this in complete projects—from scratch to the final render.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="modulo-3-2.html">← Module 3.2</a>
+<a class="flex-1 text-center px-6 py-3 bg-amber-600 text-white rounded-lg font-semibold hover:bg-amber-500 transition-colors" href="../trilha4/index.html">Next track: Projects →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Remotion Course · Module 3.3 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>

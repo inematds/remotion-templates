@@ -1,0 +1,538 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Module 2.3 · Content Animation | Remotion</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } }
+    }
+  </script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    code, .font-mono { font-family: 'JetBrains Mono', monospace; }
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .hover\:text-emerald-400:hover { color: #059669; }
+    html:not(.dark) .hover\:bg-emerald-500\/10:hover { background-color: rgba(5,150,105,0.08); }
+    html:not(.dark) .hover\:text-purple-400:hover { color: #7c3aed; }
+    html:not(.dark) .hover\:bg-purple-500\/10:hover { background-color: rgba(124,58,237,0.08); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .hover\:bg-amber-500\/10:hover { background-color: rgba(217,119,6,0.08); }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .border-primary\/40 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .hover\:text-yellow-300:hover { color: #854d0e; }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.35s} .wf-a:nth-child(3){animation-delay:.7s}
+      .wf-a:nth-child(4){animation-delay:1.05s} .wf-a:nth-child(5){animation-delay:1.4s}
+    }
+  </style>
+<link href="https://inematds.github.io/remotion-templates/curso-remotion/curso/trilha2/modulo-2-3.html" hreflang="pt-BR" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/en/curso-remotion/curso/trilha2/modulo-2-3.html" hreflang="en" rel="alternate"/><link href="https://inematds.github.io/remotion-templates/es/curso-remotion/curso/trilha2/modulo-2-3.html" hreflang="es" rel="alternate"/></head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen"><div class="inema-lang" style="position:fixed;right:14px;bottom:14px;z-index:9999;display:flex;gap:2px;padding:4px;border-radius:10px;background:rgba(12,12,16,.82);border:1px solid rgba(226,162,59,.45);font:600 12px/1 Sora,Inter,system-ui,sans-serif;backdrop-filter:blur(8px)" translate="no"><a href="../../../../curso-remotion/curso/trilha2/modulo-2-3.html" hreflang="pt-BR" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">PT</a><a href="modulo-2-3.html" hreflang="en" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#1a1206;background:#E2A23B">EN</a><a href="../../../../es/curso-remotion/curso/trilha2/modulo-2-3.html" hreflang="es" style="padding:6px 8px;border-radius:7px;text-decoration:none;color:#e9e9ee">ES</a></div>
+<!-- NAVIGATION -->
+<nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-14">
+<div class="flex items-center space-x-4">
+<a class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300" href="../../index.html">
+<span class="text-2xl">🎬</span><span class="font-bold text-lg hidden sm:inline">Remotion</span>
+</a>
+<span class="text-neutral-600">|</span>
+<a class="text-sky-400 hover:text-sky-300 text-sm font-medium" href="https://inema.club" target="_blank">INEMA.CLUB</a>
+</div>
+<div class="flex items-center space-x-1 sm:space-x-2">
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors" href="../trilha1/index.html"><span class="sm:hidden">T1</span><span class="hidden sm:inline">Fundamentals</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10" href="index.html"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Resources</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors" href="../trilha3/index.html"><span class="sm:hidden">T3</span><span class="hidden sm:inline">Combination</span></a>
+<a class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors" href="../trilha4/index.html"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Projects</span></a>
+<button class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-2" id="theme-toggle">
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-dark-icon" viewbox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+<svg class="hidden w-5 h-5 text-neutral-300" fill="currentColor" id="theme-toggle-light-icon" viewbox="0 0 20 20"><path clip-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd"></path></svg>
+</button>
+</div>
+</div>
+</div>
+</nav>
+<!-- BREADCRUMB -->
+<nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
+<div class="flex items-center space-x-2 text-sm text-neutral-400">
+<a class="hover:text-blue-400" href="../../index.html">Start</a><span>/</span>
+<a class="hover:text-blue-400" href="index.html">Track 2</a><span>/</span>
+<span class="text-blue-400">Module 2.3</span>
+</div>
+</nav>
+<!-- HEADER -->
+<header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">MODULE 2.3</span>
+<h1 class="text-3xl sm:text-4xl font-bold mb-4">🎞️ Content Animation</h1>
+<p class="text-lg text-neutral-400 max-w-3xl">9 templates for animating lists, cards, timers, notifications, particles, and sounds. Each one teaches a different pattern: stagger, 3D CSS, frame-derived state, simple physics, and perpetual loops.</p>
+<div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">9</div><div class="text-xs text-neutral-400">Templates</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">45</div><div class="text-xs text-neutral-400">Minutes</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Inter</div><div class="text-xs text-neutral-400">Level</div></div>
+<div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Composition</div><div class="text-xs text-neutral-400">Type</div></div>
+</div>
+</div>
+</header>
+<main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+<!-- SVG conceitual — stagger de itens -->
+<div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-12 overflow-hidden">
+<svg aria-label="A list of items enters with a stagger: using Sequence from scaled for each item creates staggered entrances over time" class="w-full h-auto" role="img" viewbox="0 0 1000 200">
+<defs>
+<lineargradient id="m23-grad" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#60a5fa"></stop><stop offset="1" stop-color="#3b82f6"></stop></lineargradient>
+<filter height="180%" id="m23-glow" width="180%" x="-40%" y="-40%"><fegaussianblur result="b" stddeviation="1.8"></fegaussianblur><femerge><femergenode in="b"></femergenode><femergenode in="SourceGraphic"></femergenode></femerge></filter>
+<pattern height="32" id="m23-grid" patternunits="userSpaceOnUse" width="32"><circle cx="1.3" cy="1.3" fill="#3b82f6" opacity="0.12" r="1.3"></circle></pattern>
+<marker id="m23-ah" markerheight="9" markerwidth="9" orient="auto" refx="6.5" refy="4.5"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#60a5fa"></path></marker>
+</defs>
+<rect fill="url(#m23-grid)" height="200" width="1000" x="0" y="0"></rect>
+<!-- label timeline -->
+<text fill="#93c5fd" font-family="Inter,sans-serif" font-size="12" font-weight="600" text-anchor="middle" x="500" y="22">Timeline: stagger = i × 10 frames</text>
+<!-- eixo tempo -->
+<line stroke="#374151" stroke-width="1.5" x1="60" x2="940" y1="40" y2="40"></line>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="60" y="35">F0</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="270" y="35">F10</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="480" y="35">F20</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="690" y="35">F30</text>
+<text fill="#9ca3af" font-family="Inter,sans-serif" font-size="10" text-anchor="middle" x="900" y="35">F40</text>
+<!-- marcadores -->
+<g fill="#374151"><line stroke="#374151" stroke-width="1" x1="270" x2="270" y1="38" y2="44"></line><line stroke="#374151" stroke-width="1" x1="480" x2="480" y1="38" y2="44"></line><line stroke="#374151" stroke-width="1" x1="690" x2="690" y1="38" y2="44"></line></g>
+<!-- item 0 -->
+<g class="wf-a">
+<rect fill="#0e1622" height="28" rx="6" stroke="#38bdf8" stroke-width="1.6" width="280" x="60" y="52"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="12" font-weight="500" text-anchor="middle" x="200" y="71">✅ Item 1 — from=0</text>
+</g>
+<!-- item 1 -->
+<g class="wf-a">
+<rect fill="#0e1622" height="28" rx="6" stroke="#38bdf8" stroke-width="1.6" width="280" x="270" y="88"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="12" font-weight="500" text-anchor="middle" x="410" y="107">✅ Item 2 — from=10</text>
+</g>
+<!-- item 2 -->
+<g class="wf-a">
+<rect fill="#0e1622" height="28" rx="6" stroke="#38bdf8" stroke-width="1.6" width="280" x="480" y="124"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="12" font-weight="500" text-anchor="middle" x="620" y="143">✅ Item 3 — from=20</text>
+</g>
+<!-- item 3 -->
+<g class="wf-a">
+<rect fill="#0e1622" height="28" rx="6" stroke="#38bdf8" stroke-width="1.6" width="230" x="690" y="160"></rect>
+<text fill="#bfe6ff" font-family="Inter,sans-serif" font-size="12" font-weight="500" text-anchor="middle" x="805" y="179">✅ Item 4 — from=30</text>
+</g>
+</svg>
+</div>
+<!-- TÓPICO 1 -->
+<section class="mb-16" id="topico-1">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">1</span>
+<h2 class="text-2xl font-bold">🎞️ Overview — Temporal composition patterns</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">The "Content Animation" category groups templates that go beyond animating a single element—they <strong class="text-blue-400">orchestrate multiple elements over time</strong>. The central pattern is stagger via <code>Sequence</code> with <code>from</code> staggered, but the category also covers CSS 3D, physics simulation, and perpetual loops.</p>
+<div class="bg-gradient-to-br from-blue-900/30 to-dark-800 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-4 flex items-center"><span class="mr-2">🎯</span> The 4 patterns in this category</h3>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+<div class="bg-dark-800/60 rounded-lg p-4">
+<div class="text-blue-300 font-semibold text-sm mb-1">1. Sequential Stagger</div>
+<p class="text-neutral-400 text-xs">animated-list, notification-pop, progress-steps — multiple elements with scaled from.</p>
+</div>
+<div class="bg-dark-800/60 rounded-lg p-4">
+<div class="text-blue-300 font-semibold text-sm mb-1">2. CSS 3D</div>
+<p class="text-neutral-400 text-xs">card-flip, rotating-carousel — perspective + rotateY for depth.</p>
+</div>
+<div class="bg-dark-800/60 rounded-lg p-4">
+<div class="text-blue-300 font-semibold text-sm mb-1">3. Frame-derived state</div>
+<p class="text-neutral-400 text-xs">countdown-timer — the displayed number is calculated directly from the frame, without useState.</p>
+</div>
+<div class="bg-dark-800/60 rounded-lg p-4">
+<div class="text-blue-300 font-semibold text-sm mb-1">4. Physics simulation</div>
+<p class="text-neutral-400 text-xs">particle-explosion, sound-wave — position/height calculated with per-frame arithmetic.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">9 templates</div><div class="text-xs text-neutral-400">Category</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">4 patterns</div><div class="text-xs text-neutral-400">Stagger/3D/Derived/Physics</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Sequence</div><div class="text-xs text-neutral-400">Core tool</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">No useState</div><div class="text-xs text-neutral-400">Everything comes from the frame</div></div>
+</div>
+</section>
+<!-- TÓPICO 2 -->
+<section class="mb-16" id="topico-2">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">2</span>
+<h2 class="text-2xl font-bold">📋 animated-list — staggered items</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">animated-list.tsx</code> is the reference template for staggering multiple elements. Each item in a list appears with a delay proportional to its index, creating that “items keep arriving” feeling that’s ubiquitous in explainer videos and animated slides.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">animated-list — stagger with Sequence</span>
+<span class="text-xs text-neutral-500 font-mono">templates/animated-list.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> DELAY_PER_ITEM = <span class="text-emerald-400">10</span>; <span class="text-neutral-500">// frames entre cada item</span>
+
+{items.<span class="text-blue-400">map</span>((item, i) =&gt; (
+  &lt;Sequence key={i} from={i * DELAY_PER_ITEM}&gt;
+    &lt;ListItem item={item} /&gt;
+  &lt;/Sequence&gt;
+))}
+
+<span class="text-neutral-500">// Dentro de ListItem: frame é LOCAL (começa em 0)</span>
+<span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>(); <span class="text-neutral-500">// 0, 1, 2...</span>
+<span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">15</span>], [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">1</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> });
+<span class="text-purple-400">const</span> y = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">15</span>], [<span class="text-emerald-400">20</span>, <span class="text-emerald-400">0</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> });</pre>
+</div>
+<div class="bg-blue-900/20 rounded-xl border border-blue-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-blue-400 mb-3 flex items-center"><span class="mr-2">📊</span> The power of the LOCAL frame within the Sequence</h3>
+<p class="text-neutral-300 text-sm">When you use <code>&lt;Sequence from={i * 10}&gt;</code>, the child component receives <code>useCurrentFrame()</code> starting at 0 when the sequence begins. This means <strong>each ListItem can use the same animation logic</strong> — you don't need to subtract the offset manually. Remotion handles the shift.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-6">
+<h4 class="font-bold text-emerald-400 mb-3">✓ Correct: Sequence + local frame</h4>
+<pre class="font-mono text-xs text-neutral-300 overflow-x-auto"><span class="text-emerald-400">&lt;Sequence from={i * 10}&gt;</span>
+  &lt;Item /&gt;  <span class="text-neutral-500">// frame começa em 0</span>
+<span class="text-emerald-400">&lt;/Sequence&gt;</span></pre>
+<p class="text-neutral-400 text-xs mt-2">Each Item has the same logic — clean and reusable.</p>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6">
+<h4 class="font-bold text-red-400 mb-3">✗ Incorrect: manually subtracting the offset</h4>
+<pre class="font-mono text-xs text-neutral-300 overflow-x-auto"><span class="text-red-400">const</span> localFrame = frame - i * <span class="text-emerald-400">10</span>;
+<span class="text-red-400">if</span> (localFrame &lt; 0) <span class="text-red-400">return null</span>;</pre>
+<p class="text-neutral-400 text-xs mt-2">Verbose, prone to edge-case bugs (negative frame).</p>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Pattern</div><div class="text-xs text-neutral-400">Sequence from=i×delay</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Local frame</div><div class="text-xs text-neutral-400">Starts at 0 in the child</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Animation</div><div class="text-xs text-neutral-400">fade + translateY</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Reuse in</div><div class="text-xs text-neutral-400">bullets, toasts, steps</div></div>
+</div>
+</section>
+<!-- TÓPICO 3 -->
+<section class="mb-16" id="topico-3">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">3</span>
+<h2 class="text-2xl font-bold">🃏 card-flip — CSS 3D in Remotion</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">card-flip.tsx</code> shows how to implement CSS 3D inside Remotion: two faces of a card positioned with <code>backfaceVisibility: "hidden"</code>, the container with <code>perspective</code>, and the interpolated rotation from 0° to 180°.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">card-flip — CSS 3D rotation</span>
+<span class="text-xs text-neutral-500 font-mono">templates/card-flip.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+
+<span class="text-purple-400">const</span> rotation = <span class="text-blue-400">interpolate</span>(
+  frame, [<span class="text-emerald-400">15</span>, <span class="text-emerald-400">45</span>], [<span class="text-emerald-400">0</span>, <span class="text-emerald-400">180</span>],
+  { extrapolateRight: <span class="text-emerald-400">"clamp"</span> }
+);
+
+<span class="text-purple-400">return</span> (
+  <span class="text-neutral-500">{/* Contêiner: define a perspectiva */}</span>
+  &lt;div style={{ perspective: <span class="text-emerald-400">800</span>, transformStyle: <span class="text-emerald-400">"preserve-3d"</span> }}&gt;
+    <span class="text-neutral-500">{/* Frente */}</span>
+    &lt;div style={{
+      backfaceVisibility: <span class="text-emerald-400">"hidden"</span>,
+      transform: `rotateY(${rotation}deg)`,
+      position: <span class="text-emerald-400">"absolute"</span>, inset: <span class="text-emerald-400">0</span>
+    }}&gt;Face A&lt;/div&gt;
+    <span class="text-neutral-500">{/* Verso — começa já virado 180° */}</span>
+    &lt;div style={{
+      backfaceVisibility: <span class="text-emerald-400">"hidden"</span>,
+      transform: `rotateY(${rotation - 180}deg)`,
+      position: <span class="text-emerald-400">"absolute"</span>, inset: <span class="text-emerald-400">0</span>
+    }}&gt;Face B&lt;/div&gt;
+  &lt;/div&gt;
+);</pre>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> Why backfaceVisibility: "hidden"?</h3>
+<p class="text-neutral-300">Without this property, you'd see both sides at once — the front appearing mirrored in the back and vice versa. With <code>hidden</code>, each face is visible only when it’s facing the viewer. That’s the secret behind any flip card.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">CSS 3D</div><div class="text-xs text-neutral-400">perspective + preserve-3d</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Faces</div><div class="text-xs text-neutral-400">backfaceVisibility: hidden</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Rotation</div><div class="text-xs text-neutral-400">0° → 180°</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Back</div><div class="text-xs text-neutral-400">rotation - 180°</div></div>
+</div>
+</section>
+<!-- TÓPICO 4 -->
+<section class="mb-16" id="topico-4">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">4</span>
+<h2 class="text-2xl font-bold">⏳ countdown-timer — frame-derived state</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">countdown-timer.tsx</code> illustrates a core concept of Remotion: <strong class="text-blue-400">the displayed value is always a direct function of the frame</strong>, without useState or effects. The displayed number is calculated from the current frame and the duration/fps parameters.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">countdown-timer — frame derivation</span>
+<span class="text-xs text-neutral-500 font-mono">templates/countdown-timer.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> frame = <span class="text-blue-400">useCurrentFrame</span>();
+<span class="text-purple-400">const</span> { fps, durationInFrames } = <span class="text-blue-400">useVideoConfig</span>();
+
+<span class="text-neutral-500">// segundos restantes — derivados do frame</span>
+<span class="text-purple-400">const</span> secondsLeft = Math.<span class="text-blue-400">ceil</span>(
+  (durationInFrames - frame) / fps
+);
+
+<span class="text-neutral-500">// "GO" quando chega a 0</span>
+<span class="text-purple-400">const</span> label = secondsLeft &gt; <span class="text-emerald-400">0</span> ? String(secondsLeft) : <span class="text-emerald-400">"GO!"</span>;
+
+<span class="text-neutral-500">// spring de entrada para cada mudança de número</span>
+<span class="text-purple-400">const</span> frameInSegment = frame % fps; <span class="text-neutral-500">// 0→fps a cada segundo</span>
+<span class="text-purple-400">const</span> scale = <span class="text-blue-400">spring</span>({ fps, frame: frameInSegment,
+  config: { damping: <span class="text-emerald-400">10</span>, stiffness: <span class="text-emerald-400">150</span> }
+});</pre>
+</div>
+<div class="space-y-4 mb-6">
+<h3 class="font-semibold text-white mb-3">Countdown event sequence (30fps, 5s):</h3>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-xs">F0</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+<h4 class="font-semibold text-white text-sm mb-1">Frame 0 — displays "5"</h4>
+<p class="text-neutral-400 text-xs"><code>(150 - 0) / 30 = 5</code> → Math.ceil(5) = 5. Spring enters with a scale-pop.</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-xs">F30</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+<h4 class="font-semibold text-white text-sm mb-1">Frame 30 — switches to "4"</h4>
+<p class="text-neutral-400 text-xs"><code>(150 - 30) / 30 = 4</code> → number changes, spring restarts (frame % fps = 0).</p>
+</div>
+</div>
+<div class="flex items-start space-x-4">
+<div class="flex-shrink-0 w-10 h-10 rounded-full bg-blue-500/20 flex items-center justify-center"><span class="text-blue-400 font-bold text-xs">F150</span></div>
+<div class="flex-1 bg-dark-800 rounded-xl p-4 border border-dark-600">
+<h4 class="font-semibold text-white text-sm mb-1">Frame 150 — displays "GO!"</h4>
+<p class="text-neutral-400 text-xs"><code>secondsLeft ≤ 0</code> → label = "GO!". No state, no setInterval.</p>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Derivation</div><div class="text-xs text-neutral-400">Math.ceil(remaining/fps)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">No state</div><div class="text-xs text-neutral-400">Zero useState</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Spring</div><div class="text-xs text-neutral-400">frame % fps for pop</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">GO!</div><div class="text-xs text-neutral-400">Simple conditional</div></div>
+</div>
+</section>
+<!-- TÓPICO 5 -->
+<section class="mb-16" id="topico-5">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">5</span>
+<h2 class="text-2xl font-bold">💥 particle-explosion — deterministic 2D physics</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">O <code class="text-blue-400">particle-explosion.tsx</code> simulates a particle explosion with a physical trajectory: starting position at the center, velocity with a random (seeded) angle, and simple gravity. Everything is calculated frame by frame — with no accumulated state.</p>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6 mb-6">
+<div class="flex items-center justify-between mb-3">
+<span class="text-xs font-semibold text-neutral-400 uppercase tracking-wide">particle-explosion — seeded physics</span>
+<span class="text-xs text-neutral-500 font-mono">templates/particle-explosion.tsx</span>
+</div>
+<pre class="font-mono text-sm text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> PARTICLE_COUNT = <span class="text-emerald-400">40</span>;
+
+{Array.<span class="text-blue-400">from</span>({ length: PARTICLE_COUNT }, (_, i) =&gt; {
+  <span class="text-neutral-500">// velocidade e ângulo DETERMINÍSTICOS</span>
+  <span class="text-purple-400">const</span> angle = <span class="text-blue-400">random</span>(`angle-${i}`) * <span class="text-emerald-400">2</span> * Math.PI;
+  <span class="text-purple-400">const</span> speed = <span class="text-blue-400">random</span>(`speed-${i}`) * <span class="text-emerald-400">8</span> + <span class="text-emerald-400">2</span>;
+
+  <span class="text-purple-400">const</span> vx = Math.<span class="text-blue-400">cos</span>(angle) * speed;
+  <span class="text-purple-400">const</span> vy = Math.<span class="text-blue-400">sin</span>(angle) * speed;
+
+  <span class="text-neutral-500">// posição frame-a-frame com gravidade</span>
+  <span class="text-purple-400">const</span> x = cx + vx * frame;
+  <span class="text-purple-400">const</span> y = cy + vy * frame + <span class="text-emerald-400">0.15</span> * frame * frame; <span class="text-neutral-500">// g</span>
+
+  <span class="text-purple-400">const</span> opacity = <span class="text-blue-400">interpolate</span>(frame, [<span class="text-emerald-400">20</span>, <span class="text-emerald-400">45</span>], [<span class="text-emerald-400">1</span>, <span class="text-emerald-400">0</span>],
+    { extrapolateLeft: <span class="text-emerald-400">"clamp"</span>, extrapolateRight: <span class="text-emerald-400">"clamp"</span> });
+})}</pre>
+</div>
+<div class="bg-red-900/20 rounded-xl border border-red-500/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-red-400 mb-3 flex items-center"><span class="mr-2">⚠️</span> No seeded random() = corrupted video</h3>
+<p class="text-neutral-300 text-sm">If you use <code>Math.random()</code> here, each calculated frame produces a different trajectory — in Remotion’s parallel render, the particles “jump” to random positions. The final video looks corrupted. <code>random("seed")</code> ensures frame 42 always has the same particles in the same places.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">random(seed)</div><div class="text-xs text-neutral-400">Deterministic trajectory</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Physics</div><div class="text-xs text-neutral-400">v × frame + ½g×frame²</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Fade-out</div><div class="text-xs text-neutral-400">interpolate final frames</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">No state</div><div class="text-xs text-neutral-400">Recalculated position</div></div>
+</div>
+</section>
+<!-- TÓPICO 6 -->
+<section class="mb-16" id="topico-6">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">6</span>
+<h2 class="text-2xl font-bold">🎵 sound-wave &amp; text-highlight — loops and focus</h2>
+</div>
+<p class="text-neutral-300 mb-6 leading-relaxed">Two templates that demonstrate complementary patterns: <code class="text-blue-400">sound-wave.tsx</code> creates an audio visualizer (bars that oscillate with Math.sin) and <code class="text-blue-400">text-highlight.tsx</code> highlights one word at a time in sync with the frame — like karaoke or guided reading.</p>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h4 class="font-semibold text-blue-400 mb-3 text-sm uppercase tracking-wide">sound-wave</h4>
+<pre class="font-mono text-xs text-neutral-300 overflow-x-auto leading-relaxed">{bars.<span class="text-blue-400">map</span>((_, i) =&gt; {
+  <span class="text-purple-400">const</span> h = Math.<span class="text-blue-400">sin</span>(
+    frame / <span class="text-emerald-400">8</span>         <span class="text-neutral-500">// velocidade</span>
+    + i * <span class="text-emerald-400">0.4</span>       <span class="text-neutral-500">// fase</span>
+  ) * <span class="text-emerald-400">0.5</span> + <span class="text-emerald-400">0.5</span>;   <span class="text-neutral-500">// 0 a 1</span>
+  <span class="text-purple-400">return</span> &lt;rect height={h * maxH}/&gt;;
+})}</pre>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 p-6">
+<h4 class="font-semibold text-blue-400 mb-3 text-sm uppercase tracking-wide">text-highlight</h4>
+<pre class="font-mono text-xs text-neutral-300 overflow-x-auto leading-relaxed"><span class="text-purple-400">const</span> words = text.<span class="text-blue-400">split</span>(<span class="text-emerald-400">" "</span>);
+<span class="text-purple-400">const</span> framesPerWord = fps / <span class="text-emerald-400">2</span>;
+<span class="text-purple-400">const</span> activeIndex = Math.<span class="text-blue-400">floor</span>(
+  frame / framesPerWord
+);
+
+{words.<span class="text-blue-400">map</span>((w, i) =&gt; (
+  &lt;span style={{
+    color: i === activeIndex
+      ? <span class="text-emerald-400">"#60a5fa"</span> : <span class="text-emerald-400">"white"</span>
+  }}&gt;{w}&lt;/span&gt;
+))}</pre>
+</div>
+</div>
+<div class="bg-primary/10 rounded-xl border border-primary/30 p-6 mb-6">
+<h3 class="text-lg font-semibold text-primary mb-3 flex items-center"><span class="mr-2">💡</span> text-highlight: sync with audio</h3>
+<p class="text-neutral-300">The same pattern of <code>Math.floor(frame / framesPerWord)</code> can be adapted to sync words with transcript timestamps. In the advanced T3 modules, you’ll see how to combine this template with <code>@remotion/captions</code> for automatic karaoke.</p>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-3">
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">sound-wave</div><div class="text-xs text-neutral-400">Math.sin + phase</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">highlight</div><div class="text-xs text-neutral-400">Math.floor(frame/rate)</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Loop</div><div class="text-xs text-neutral-400">Sin: periodic</div></div>
+<div class="bg-dark-800 rounded-lg p-4 border border-dark-600"><div class="text-blue-400 font-bold text-sm mb-1">Synchronization</div><div class="text-xs text-neutral-400">fps/words/sec</div></div>
+</div>
+</section>
+<!-- TÓPICO 7 — biblioteca completa -->
+<section class="mb-16" id="topico-7">
+<div class="flex items-center space-x-4 mb-6">
+<span class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-500/20 text-blue-400 font-bold text-xl">7</span>
+<h2 class="text-2xl font-bold">📚 Complete Library — Content Animation</h2>
+</div>
+<div class="bg-dark-800 rounded-xl border border-dark-600 overflow-hidden mb-6">
+<div class="grid grid-cols-3 bg-dark-700/50 px-4 py-3 border-b border-dark-600 text-xs font-semibold text-neutral-400 uppercase tracking-wide">
+<span>Template</span><span>Description</span><span>Central pattern</span>
+</div>
+<div class="divide-y divide-dark-600">
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">animated-list.tsx</span>
+<span class="text-neutral-300">List with staggered timing</span>
+<span class="text-neutral-400 font-mono text-xs">Sequence from=i×delay</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">card-flip.tsx</span>
+<span class="text-neutral-300">Card with 3D flip</span>
+<span class="text-neutral-400 font-mono text-xs">rotateY + backfaceVisibility</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">countdown-timer.tsx</span>
+<span class="text-neutral-300">5-4-3-2-1-GO Countdown</span>
+<span class="text-neutral-400 font-mono text-xs">Math.ceil(remaining/fps)</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">notification-pop.tsx</span>
+<span class="text-neutral-300">Spring-stacked toasts</span>
+<span class="text-neutral-400 font-mono text-xs">Nested sequence + spring</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">particle-explosion.tsx</span>
+<span class="text-neutral-300">Explosion with 2D physics</span>
+<span class="text-neutral-400 font-mono text-xs">random(seed) + vx/vy×frame</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">progress-steps.tsx</span>
+<span class="text-neutral-300">Steps with an active indicator</span>
+<span class="text-neutral-400 font-mono text-xs">Math.floor(frame/stepDuration)</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">rotating-carousel.tsx</span>
+<span class="text-neutral-300">Rotating 3D carousel</span>
+<span class="text-neutral-400 font-mono text-xs">rotateY per slot + loop</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">sound-wave.tsx</span>
+<span class="text-neutral-300">Audio bar visualizer</span>
+<span class="text-neutral-400 font-mono text-xs">Math.sin + phase per bar</span>
+</div>
+<div class="grid grid-cols-3 px-4 py-3 text-sm hover:bg-dark-700/30 transition-colors">
+<span class="font-mono text-blue-300 text-xs">text-highlight.tsx</span>
+<span class="text-neutral-300">Active word per second</span>
+<span class="text-neutral-400 font-mono text-xs">Math.floor(frame/fps×rate)</span>
+</div>
+</div>
+</div>
+</section>
+<!-- TÓPICO 8 — RESUMO -->
+<section class="mb-12">
+<div class="bg-gradient-to-br from-blue-900/40 via-dark-800 to-dark-800 rounded-xl border border-blue-500/30 p-8">
+<h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">📌</span> Module summary</h2>
+<div class="space-y-4 mb-8">
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Sequence + local frame</strong><span class="text-neutral-400"> — the correct stagger pattern; don't subtract the offset manually.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">3D CSS = perspective + backfaceVisibility</strong><span class="text-neutral-400"> — card flip and carousel without a 3D library.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Frame-derived state</strong><span class="text-neutral-400"> — countdown without useState; everything calculated from Math.ceil(remaining/fps).</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">random(seed) for physics</strong><span class="text-neutral-400"> — particles reproducible across parallel renders.</span></div></div>
+<div class="flex items-start space-x-3"><span class="text-blue-400 mt-1">✓</span><div><strong class="text-white">Math.sin for perpetual loops</strong><span class="text-neutral-400"> — sound wave and any continuous oscillation with no beginning or end.</span></div></div>
+</div>
+<div class="bg-dark-800/50 rounded-lg p-4 mb-8">
+<h3 class="font-semibold text-blue-400 mb-2">Next module:</h3>
+<p class="text-neutral-300">2.4 — Image &amp; Media: galleries, sliders, comparators, and frames for photos in video.</p>
+</div>
+<div class="flex flex-col sm:flex-row gap-4">
+<a class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors" href="modulo-2-2.html">← Previous module</a>
+<a class="flex-1 text-center px-6 py-3 bg-blue-600 text-white rounded-lg font-semibold hover:bg-blue-500 transition-colors" href="modulo-2-4.html">Next Module →</a>
+</div>
+</div>
+</section>
+</main>
+<footer class="border-t border-dark-600 py-8 mt-8">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm">
+<p>Remotion Course · Module 2.3 · 2026 · <a class="text-sky-400 hover:text-sky-300" href="https://inema.club" target="_blank">INEMA.CLUB</a></p>
+</div>
+</footer>
+<script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    const themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+    const html = document.documentElement;
+    if (localStorage.getItem('theme') === 'light' || (!localStorage.getItem('theme') && !html.classList.contains('dark'))) {
+      themeToggleDarkIcon.classList.remove('hidden'); html.classList.remove('dark');
+    } else { themeToggleLightIcon.classList.remove('hidden'); }
+    themeToggle.addEventListener('click', () => {
+      themeToggleDarkIcon.classList.toggle('hidden'); themeToggleLightIcon.classList.toggle('hidden');
+      html.classList.toggle('dark'); localStorage.setItem('theme', html.classList.contains('dark') ? 'dark' : 'light');
+    });
+  </script>
+</body>
+</html>
